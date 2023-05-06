@@ -1,0 +1,19 @@
+replicaCount: 1
+
+serviceMonitor:
+  # enabled should be set to true to enable prometheus-operator discovery of this service
+  enabled: true
+  interval: 30s
+  namespace: griddo
+  additionalLabels: 
+    app: prometheus
+
+# mysql connection params which build the DATA_SOURCE_NAME env var of the docker container
+mysql:
+  db: ""
+  host: "griddo-db"
+  param: ""
+  pass: "XXXXXXXX"
+  port: 3306
+  protocol: ""
+  user: "exporter"

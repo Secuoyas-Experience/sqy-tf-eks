@@ -1,0 +1,35 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: lab-secuoyas-com
+  region: eu-central-1
+  version: "1.24"
+
+iam:
+  withOIDC: true
+
+nodeGroups:
+  - name: tools
+    instanceType: t3a.medium
+    desiredCapacity: 1
+    volumeSize: 50
+    iam:
+      withAddonPolicies:
+        certManager: true
+        awsLoadBalancerController: true
+    labels: 
+      organization: secuoyas
+      purpose: tooling
+
+  - name: apps
+    instanceType: t3a.medium
+    desiredCapacity: 1
+    volumeSize: 50
+    iam:
+      withAddonPolicies:
+        certManager: true
+        awsLoadBalancerController: true
+    labels:
+      organization: secuoyas
+      purpose: apps
