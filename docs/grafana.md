@@ -1,6 +1,6 @@
 # Grafana
 
-Grafana enables you to query, visualize, alert on, and explore your metrics, logs, and traces wherever they are stored. 
+[Grafana](https://grafana.com/docs/grafana/latest/) enables you to query, visualize, alert on, and explore your metrics, logs, and traces wherever they are stored.
 Grafana OSS provides you with tools to turn your time-series database (TSDB) data into insightful graphs and visualizations.
 
 Altough the prometheus operator we mentioned in the previous section already installs a grafana deployment, there is the [Grafana operator](https://grafana-operator.github.io/grafana-operator/docs/installation/helm/).
