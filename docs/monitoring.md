@@ -20,8 +20,13 @@ kubectl create -f tools/prometheus/setup
 # Wait until the "servicemonitors" CRD is created. The message "No resources found" means success in this context.
 until kubectl get servicemonitors --all-namespaces ; do date; sleep 1; echo ""; done
 
-kubectl create -f tools/prometheus
+kubectl create -k tools/prometheus/overlays/<ENVIRONMENT>
 ```
+
+Where `<ENVIRONMENT>` can be:
+
+- minikube
+- lab
 
 In order to allow prometheus to collect metrics from services/pods/endpoints in different namespaces
 other than `monitoring` we need to change the `prometheus-k8s` cluster role to this one accoding to
@@ -67,11 +72,10 @@ Altough the prometheus operator we mentioned in the previous section already ins
 
 ### Ingress
 
-If you'd like to expose Grafana to the world you can create an ingress:
+Depending on the environment you can open Grafana web console via web browser:
 
-```
-kubectl apply -f tools/grafana/ingress.yml
-```
+- **minikube**: http://grafana.secuoyas.local
+- **lab**: https://grafana.lab.secuoyas.com
 
 ### Config
 

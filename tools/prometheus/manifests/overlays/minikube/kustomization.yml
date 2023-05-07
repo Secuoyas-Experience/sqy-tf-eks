@@ -37,3 +37,25 @@ patches:
       - op: replace
         path: /spec/rules/0/host
         value: grafana.secuoyas.local
+
+    ##################################################
+    ### Host path PVs don't handle well permissions ##
+    ### That's why we need to match the container's ##
+    ### user id with the host volume user id,       ##
+    ### which is normally 1000 in linux systems     ##
+    ##################################################
+  - target:
+      name: grafana      
+      namespace: monitoring
+      kind: Deployment      
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/securityContext/fsGroup
+        value: 472
+      - op: replace
+        path: /spec/template/spec/securityContext/runAsUser
+        value: 0
+      - op: replace
+        path: /spec/template/spec/securityContext/runAsNonRoot
+        value: false
+      

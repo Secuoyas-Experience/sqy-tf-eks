@@ -11,4 +11,4 @@ spec:
   persistentVolumeReclaimPolicy: Recycle
   storageClassName: grafana-database-storage
   hostPath:
-    path: /tmp/grafana/database
+    path: /tmp/grafana-database

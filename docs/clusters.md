@@ -61,14 +61,6 @@ minikube addons enable ingress
 minikube addons enable volumesnapshots
 ```
 
-#### Persistent volumes
-
-You can apply persistent volumes for a specific environment using kubectl and kustomize. For instance to create the tools persistent volume in `minikube`:
-
-```
-kubectl apply -k tools/volumes/overlays/minikube
-```
-
 #### Prometheus monitoring
 
 Next is to make sure prometheus monitoring is up and running in the cluster to monitor all our tools and apps will be
@@ -76,7 +68,7 @@ properly monitored.
 
 ```
 kubectl create -f tools/prometheus/setup
-kubectl create -k tools/prometheus/overlays/minikube
+kubectl create -k tools/prometheus/manifests/overlays/minikube
 ```
 
 There is an Ingress configured to access the grafana app, and it points to `grafana.secuoyas.local`. You can map your
@@ -94,7 +86,14 @@ password.
 ArgoCD is the reference tool use to operate the rest of the tools & apps. To install it just execute:
 
 ```
-kubectl apply -f tools/argocd
+kubectl apply -k tools/argocd/overlays/minikube
 ```
 
 This will install argocd in the cluster and will add the ArgoCD's prometheus monitoring as well.
+
+There is an Ingress configured to access the argocd app, and it points to `argocd.secuoyas.local`. You can map your
+`/etc/hosts` (Linux) to make your computer to point at the right ip:
+
+```
+192.168.49.2    argocd.secuoyas.local
+```
