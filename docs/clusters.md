@@ -2,32 +2,7 @@
 
 ## Creating a new cluster
 
-To create the cluster at the moment we will be using [eksctl](https://eksctl.io/). It is the easiest way of creating a cluster of k8s in AWS. **But the idea is to use Terraform** as it makes it safer and cleaner to 
-maintain K8s clusters overtime.
-
-A cluster must have at least 3 nodes (1 with control plane, 1 workload and 1 failover):
-
-**Control Plane**:
-
-- **region**: eu-central-1
-- **kubernetes version**: 1.24
-- **cpu**:
-- **memory**:
-- **labels**: control-plane
-
-**Workload**:
-
-- **region**: eu-central-1
-- **kubernetes version**: 1.24
-- **cpu**:
-- **memory**:
-- **labels**: workload
-
-**Failover**:
-
-The same as Workload nodes.
-
-**IMPORTANT**
+To create the cluster at the moment we will be using [eksctl](https://eksctl.io/). It is the easiest way of creating a cluster of k8s in AWS.
 
 There are a **very important questions** that devops team has to review  before considering a cluster has been propery configured.
 
@@ -38,14 +13,69 @@ There are a **very important questions** that devops team has to review  before 
 6. Is Loki installed so it can collect logs ?
 7. Is Grafana able to access Loki ?
 
-### eksctl
+### EKS
 
-TODO
+For other than local, at the moment we are using [eksctl](https://eksctl.io/) CLI to create kubernetes environments in AWS (EKS).
 
-### Terraform
+To create a new cluster, first create the cluster definition in `clusters` folder and then
+execute the definition with:
 
-TODO
+```
+eksctl --profile <aws_profile_in_credentials> create -f clusters/<cluster_name>/eks.yaml
+```
 
+It takes around 15 min to create a new cluster. Once the cluster has been created your 
+`~/.kube/conf` config file will be updated with the new cluster's credentials.
+
+#### Cluster Domain and Certs
+
+If you cluster is going to serve applications exposed to the outside world it will be
+you may want to provision some domain names and certificates for them. All this it's
+done with Terraform.
+
+#### AWS Load Balancer
+
+Is important to install a basic set of tools to our new cluster in order to make it fully
+functional.
+
+- AWS load balancer controller
+- Cert Manager
+- Prometheus monitoring (with Grafana)
+
+The AWS Load Balancer controller enables EKS to create load balancers when a certain
+kubernetes resource need them. For instance if we are creating a web application that requires
+to be exposed to the world via an ALB we can eventually annotate an Ingress deploy the
+application to K8s and it will create a load balancer in the background.
+
+```
+kubectl --context <name_of_cluster> apply -f tools/aws/alb
+```
+
+#### Prometheus monitoring
+
+Next is to make sure prometheus monitoring is up and running in the cluster to monitor all our tools and apps will be
+properly monitored.
+
+Apply first the `setup` folder with all the CRDs. And then apply the `toolbox` overlay to 
+install the deployments.
+
+```
+kubectl --context <name_of_cluster> create -f tools/prometheus/setup
+kubectl --context <name_of_cluster> create -k tools/prometheus/manifests/overlays/toolbox
+```
+
+The default username/password for grafana is `admin/admin`. Right after login in Grafana will ask you to change the
+password.
+
+#### ArgoCD
+
+ArgoCD is the reference tool use to operate the rest of the tools & apps. To install it just execute:
+
+```
+kubectl --context <name_of_cluster> apply -k tools/argocd/overlays/toolbox
+```
+
+This will install argocd in the cluster and will add the ArgoCD's prometheus monitoring as well.
 
 ### Minikube
 
@@ -63,13 +93,7 @@ minikube addons enable volumesnapshots
 
 #### Prometheus monitoring
 
-Next is to make sure prometheus monitoring is up and running in the cluster to monitor all our tools and apps will be
-properly monitored.
-
-```
-kubectl create -f tools/prometheus/setup
-kubectl create -k tools/prometheus/manifests/overlays/minikube
-```
+Same steps as EKS installation
 
 There is an Ingress configured to access the grafana app, and it points to `grafana.secuoyas.local`. You can map your
 `/etc/hosts` (Linux) to make your computer to point at the right ip:
@@ -78,22 +102,26 @@ There is an Ingress configured to access the grafana app, and it points to `graf
 192.168.49.2    grafana.secuoyas.local
 ```
 
-The default username/password for grafana is `admin/admin`. Right after login in Grafana will ask you to change the
-password.
-
 #### ArgoCD
 
-ArgoCD is the reference tool use to operate the rest of the tools & apps. To install it just execute:
+This time use `minikube` overlay:
 
 ```
-kubectl apply -k tools/argocd/overlays/minikube
+kubectl --context <name_of_cluster> apply -k tools/argocd/overlays/minikube
 ```
-
-This will install argocd in the cluster and will add the ArgoCD's prometheus monitoring as well.
 
 There is an Ingress configured to access the argocd app, and it points to `argocd.secuoyas.local`. You can map your
 `/etc/hosts` (Linux) to make your computer to point at the right ip:
 
 ```
 192.168.49.2    argocd.secuoyas.local
+```
+
+## Destroying a cluster
+
+To destroy a cluster you can execute the following snippet, but keep in mind that
+**IT WON'T ASK YOU FOR CONFIRMATION**:
+
+```
+eksctl --profile <aws_profile_name> delete cluster -f clusters/<name_of_cluster>/eks.yaml
 ```
