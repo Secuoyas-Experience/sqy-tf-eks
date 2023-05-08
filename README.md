@@ -7,4 +7,5 @@
 - [Deploying Griddo on K8s](./docs/griddo.md)
 - [Deploying new Tools on K8s](./docs/tools.md)
 - [Deploying new Apps on k8s](./docs/apps.md)
+- [Certificates](./docs//certs.md)
 - [Backups](./docs/backups.md)

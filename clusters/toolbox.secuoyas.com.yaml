@@ -18,7 +18,8 @@ nodeGroups:
       withAddonPolicies:
         certManager: true
         awsLoadBalancerController: true
-    labels: 
+        externalDNS: true
+    labels:
       organization: secuoyas
       purpose: tooling
 
@@ -30,6 +31,7 @@ nodeGroups:
       withAddonPolicies:
         certManager: true
         awsLoadBalancerController: true
+        externalDNS: true
     labels:
       organization: secuoyas
       purpose: apps

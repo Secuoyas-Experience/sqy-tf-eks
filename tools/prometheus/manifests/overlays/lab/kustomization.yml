@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+patches:
+  - target:
+      name:  grafana-ingress
+      namespace: monitoring
+      kind: Ingress
+    path: grafana-ingress.yml
+
+  - target:
+      name: grafana
+      namespace: monitoring
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/volumes/0
+        value: 
+          name: grafana-storage
+          emptyDir: {}
+
+  - target:
+      name: grafana-database
+      namespace: monitoring
+      kind: Deployment
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/volumes/0
+        value: 
+          name: grafana-database-disk
+          emptyDir: {}
