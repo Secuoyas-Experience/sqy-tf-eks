@@ -48,4 +48,4 @@ jobs:
         run: techdocs-cli generate --no-docker --verbose
 
       - name: Check generated files
-        run: ls -l k8s-clusters/site
+        run: ls -l
