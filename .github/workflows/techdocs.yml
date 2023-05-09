@@ -47,6 +47,14 @@ jobs:
         shell: bash
         run: techdocs-cli generate --no-docker --verbose --source-dir .
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: results
+          path: |
+            docs
+            site 
+
       - name: Check generated files
         run: |
           ls -l docs
