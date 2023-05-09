@@ -57,6 +57,7 @@ jobs:
 
   upload-docs:
     name: Upload to S3
+    needs: build-docs
     runs-on: ubuntu-20.04
     container:
       image: amazon/aws-cli:2.11.18
