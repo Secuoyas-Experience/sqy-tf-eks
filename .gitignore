@@ -12,3 +12,7 @@
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfvars
+
+# mkdocs
+.env
+site

@@ -1,7 +1,16 @@
 site_name: 'secuoyas-k8s'
 
 nav:
-  - Home: README.md
+  - Clusters: clusters.md
+  - AWS: aws.md
+  - Monitoring: monitoring.md
+  - ArgoCD: argocd.md
+  - Tools: tools.md
+  - Apps: apps.md
+  - Certificates: certs.md
+  - Griddo: griddo.md
+  - Backups: backups.md
+  - Home: index.md
 
 plugins:
-  - techdocs-core
+ - techdocs-core 

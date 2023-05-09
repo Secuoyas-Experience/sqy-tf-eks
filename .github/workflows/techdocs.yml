@@ -19,6 +19,6 @@ jobs:
         with:
           entity-name: 'secuoyas-k8s'
           publisher-type: 'awsS3'
-          storage-name: 'secuoyas-backstage-techdocs'
+          storage-name: ${{ secrets.TECHDOCS_AWS_S3_BUCKET }}
           aws-access-key-id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}
