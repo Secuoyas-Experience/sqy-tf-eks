@@ -1,0 +1,24 @@
+name: secuoyas-k8s
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - ".github/workflows/techdocs.yml"
+
+jobs:
+  publish-techdocs-site:
+    name: publish techdocs site
+    runs-on: ubuntu-20.04
+    steps:
+      - name: secuoyas-k8s-site
+        uses: Staffbase/backstage-techdocs-action@v1
+        with:
+          entity-name: 'secuoyas-k8s'
+          publisher-type: 'awsS3'
+          storage-name: 'secuoyas-backstage-techdocs'
+          aws-access-key-id: ${{ secrets.TECHDOCS_AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.TECHDOCS_AWS_SECRET_ACCESS_KEY }}

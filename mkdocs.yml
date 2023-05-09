@@ -1,0 +1,7 @@
+site_name: 'secuoyas-k8s'
+
+nav:
+  - Home: README.md
+
+plugins:
+  - techdocs-core
