@@ -37,6 +37,12 @@ jobs:
             python -m pip install $p
           done
 
+      - name: Fix docs not created
+        run: |
+          pwd
+          ls -l
+          mkdir -p docs
+
       - name: Generate docs site
         shell: bash
         run: techdocs-cli generate --no-docker --verbose
