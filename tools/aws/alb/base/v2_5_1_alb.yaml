@@ -860,7 +860,7 @@ spec:
     spec:
       containers:
       - args:
-        - --cluster-name=lab-secuoyas-com
+        - --cluster-name=<REPLACE_IN_OVERLAYS>
         - --ingress-class=alb
         image: public.ecr.aws/eks/aws-load-balancer-controller:v2.5.1
         livenessProbe:

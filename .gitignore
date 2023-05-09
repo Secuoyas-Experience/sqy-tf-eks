@@ -3,3 +3,12 @@
 **/config.toml
 **/secrets.yml
 **/secrets.yaml
+
+# Terraform
+
+.terraform
+.terraform.lock.hcl
+
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
