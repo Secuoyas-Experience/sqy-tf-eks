@@ -48,4 +48,6 @@ jobs:
         run: techdocs-cli generate --no-docker --verbose
 
       - name: Check generated files
-        run: ls -l
+        run: |
+          ls -l docs
+          ls -l site
