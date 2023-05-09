@@ -45,7 +45,7 @@ jobs:
 
       - name: Generate docs site
         shell: bash
-        run: techdocs-cli generate --no-docker --verbose
+        run: techdocs-cli generate --no-docker --verbose --source-dir ./docs
 
       - name: Check generated files
         run: |
