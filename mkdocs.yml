@@ -1,4 +1,5 @@
 site_name: 'secuoyas-k8s'
+
 nav:
   - Home: index.md
   - Clusters: clusters.md
@@ -10,5 +11,6 @@ nav:
   - Certificates: certs.md
   - Griddo: griddo.md
   - Backups: backups.md
+
 plugins:
- - techdocs-core 
+ - techdocs-core
