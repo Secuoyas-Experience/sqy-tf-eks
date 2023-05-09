@@ -29,9 +29,13 @@ It takes around 15 min to create a new cluster. Once the cluster has been create
 
 #### Cluster Domain and Certs
 
-If you cluster is going to serve applications exposed to the outside world it will be
-you may want to provision some domain names and certificates for them. All this it's
-done with Terraform.
+If you cluster is going to serve applications exposed to the outside world you may want to provision some domain names and certificates for them. This is done with Terraform.
+
+```
+terraform init
+terraform validate
+terraform apply
+```
 
 #### AWS Load Balancer
 
@@ -48,7 +52,7 @@ to be exposed to the world via an ALB we can eventually annotate an Ingress depl
 application to K8s and it will create a load balancer in the background.
 
 ```
-kubectl --context <name_of_cluster> apply -f tools/aws/alb
+kubectl --context <name_of_cluster> apply -k tools/aws/alb/overlays/<name_of_cluster>
 ```
 
 #### Prometheus monitoring
@@ -61,18 +65,23 @@ install the deployments.
 
 ```
 kubectl --context <name_of_cluster> create -f tools/prometheus/setup
-kubectl --context <name_of_cluster> create -k tools/prometheus/manifests/overlays/toolbox
+kubectl --context <name_of_cluster> create -k tools/prometheus/manifests/overlays/<name_of_cluster>
 ```
 
 The default username/password for grafana is `admin/admin`. Right after login in Grafana will ask you to change the
 password.
+
+**DNS -> GRAFANA**
+
+At the moment the mapping of the domain name to the grafana instance is done with Terraform. So
+once Grafana is up and running make sure you execute Terraform.
 
 #### ArgoCD
 
 ArgoCD is the reference tool use to operate the rest of the tools & apps. To install it just execute:
 
 ```
-kubectl --context <name_of_cluster> apply -k tools/argocd/overlays/toolbox
+kubectl --context <name_of_cluster> apply -k tools/argocd/overlays/<name_of_cluster>
 ```
 
 This will install argocd in the cluster and will add the ArgoCD's prometheus monitoring as well.
