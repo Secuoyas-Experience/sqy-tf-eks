@@ -125,21 +125,42 @@ type: Opaque
 
 ### Authentication
 
-In order to allow Grafana to use Google authentication you must add the following data to
+In order to allow Grafana to use Secuoyas' Google authentication you must add the following data to
 the grafana secret.
 
 ```toml
-[auth.google]
-enabled = true
-allow_sign_up = true
-auto_login = false
-client_id = CLIENT_ID
-client_secret = CLIENT_SECRET
-scopes = https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
-auth_url = https://accounts.google.com/o/oauth2/auth
-token_url = https://accounts.google.com/o/oauth2/token
-allowed_domains = mycompany.com mycompany.org
-hosted_domain = mycompany.com
+  [server]
+  root_url=https://grafana.toolbox.secuoyas.com/
+
+  [auth.google]
+  enabled=true
+  allow_sign_up=true
+  auto_login=false
+  client_id=<CLIENT_ID>
+  client_secret=<CLIENT_SECRET>
+  scopes=https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email
+  auth_url=https://accounts.google.com/o/oauth2/auth
+  token_url=https://accounts.google.com/o/oauth2/token
+  allowed_domains=grafana.toolbox.secuoyas.com secuoyas.com
+  hosted_domain=secuoyas.com
+```
+
+To apply changes you have to scale down grafana deployment:
+
+```
+kubectl --context <name_of_cluster> -n monitoring scale --replicas 0 deployment/grafana
+```
+
+Then replace configuration with new manifest:
+
+```
+kubectl --context <name_of_cluster> -n monitoring replace -f /path/to/new/grafana-config.yml
+```
+
+And then scale up again:
+
+```
+kubectl --context <name_of_cluster> -n monitoring scale --replicas 1 deployment/grafana
 ```
 
 ## Loki
