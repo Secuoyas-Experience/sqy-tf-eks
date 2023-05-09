@@ -14,6 +14,9 @@ jobs:
     name: Publish TechDocs Site
     runs-on: ubuntu-20.04
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Setup Node
         uses: actions/setup-node@v3
 
@@ -37,15 +40,15 @@ jobs:
             python -m pip install $p
           done
 
-      - name: Fix docs not created
-        run: |
-          pwd
-          ls -l
-          mkdir -p docs
+      # - name: Fix docs not created
+      #   run: |
+      #     pwd
+      #     ls -l
+      #     mkdir -p docs
 
       - name: Generate docs site
         shell: bash
-        run: techdocs-cli generate --no-docker --verbose --source-dir .
+        run: techdocs-cli generate --no-docker --verbose
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
@@ -54,8 +57,3 @@ jobs:
           path: |
             docs
             site 
-
-      - name: Check generated files
-        run: |
-          ls -l docs
-          ls -l site
