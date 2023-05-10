@@ -1,9 +1,9 @@
 provider "aws" {
-  region  = "eu-central-1"
+  region = "eu-central-1"
 }
 
 terraform {
-   cloud {
+  cloud {
     organization = "secuoyas"
 
     workspaces {

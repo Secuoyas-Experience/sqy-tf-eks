@@ -58,9 +58,15 @@ resource "aws_s3_bucket_policy" "backstage_s3_read_policy" {
 
 data "aws_iam_policy_document" "backstage_read_policy_document" {
   statement {
-    actions   = ["s3:GetObject"]
-    resources = ["${aws_s3_bucket.backstage_bucket.arn}/*"]
-    effect    = "Allow"
+    actions = [
+      "s3:GetObject",
+      "s3:ListBucket"
+    ]
+    resources = [
+      "${aws_s3_bucket.backstage_bucket.arn}",
+      "${aws_s3_bucket.backstage_bucket.arn}/*"
+    ]
+    effect = "Allow"
   }
 }
 
@@ -74,8 +80,10 @@ data "aws_iam_policy_document" "backstage_writer_policy_document" {
   version = "2012-10-17"
 
   statement {
-    actions = ["s3:PutObject"]
-    effect  = "Allow"
+    actions = [
+      "s3:PutObject"
+    ]
+    effect = "Allow"
     resources = [
       "${aws_s3_bucket.backstage_bucket.arn}",
       "${aws_s3_bucket.backstage_bucket.arn}/*"
