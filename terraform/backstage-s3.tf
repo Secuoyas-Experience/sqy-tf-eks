@@ -34,7 +34,7 @@ resource "aws_s3_bucket_public_access_block" "block_state_public_access" {
   restrict_public_buckets = true
 }
 
-data "aws_iam_policy_document" "backstage_s3_read_policy_document" {
+data "aws_iam_policy_document" "backstage_s3_bucket_policy_document" {
   statement {
     effect    = "Allow"
     actions   = ["s3:ListBucket"]
@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "backstage_s3_read_policy_document" {
   }
   statement {
     effect    = "Allow"
-    actions   = ["s3:*"]
+    actions   = ["s3:GetObject", "s3:CopyObject", "s3:PutObject"]
     resources = ["${aws_s3_bucket.backstage_bucket.arn}/*"]
 
     principals {
@@ -57,9 +57,9 @@ data "aws_iam_policy_document" "backstage_s3_read_policy_document" {
   }
 }
 
-resource "aws_s3_bucket_policy" "backstage_s3_read_policy" {
+resource "aws_s3_bucket_policy" "backstage_s3_bucket_policy" {
   bucket = aws_s3_bucket.backstage_bucket.id
-  policy = data.aws_iam_policy_document.backstage_s3_read_policy_document.json
+  policy = data.aws_iam_policy_document.backstage_s3_bucket_policy_document.json
 }
 
 # ##################################
@@ -74,7 +74,7 @@ data "aws_iam_policy_document" "backstage_read_policy_document" {
   }
   statement {
     effect    = "Allow"
-    actions   = ["s3:*"]
+    actions   = ["s3:GetObject"]
     resources = ["${aws_s3_bucket.backstage_bucket.arn}/*"]
   }
 }
@@ -89,10 +89,8 @@ data "aws_iam_policy_document" "backstage_writer_policy_document" {
   version = "2012-10-17"
 
   statement {
-    effect = "Allow"
-    actions = [
-      "s3:PutObject"
-    ]
+    effect  = "Allow"
+    actions = ["s3:GetObject", "s3:PutObject", "s3:CopyObject"]
     resources = [
       "${aws_s3_bucket.backstage_bucket.arn}",
       "${aws_s3_bucket.backstage_bucket.arn}/*"
@@ -123,6 +121,7 @@ module "backstage_reader_user_group" {
   name                     = "${local.prefix}-readers"
   group_users              = [module.backstage_reader_iam_user.iam_user_name]
   custom_group_policy_arns = [aws_iam_policy.backstage_read_policy.arn]
+  enable_mfa_enforcment    = false
 }
 
 module "backstage_writer_iam_user" {
@@ -139,4 +138,5 @@ module "backstage_writer_user_group" {
   name                     = "${local.prefix}-writers"
   group_users              = [module.backstage_writer_iam_user.iam_user_name]
   custom_group_policy_arns = [aws_iam_policy.backstage_read_policy.arn]
+  enable_mfa_enforcment    = false
 }
