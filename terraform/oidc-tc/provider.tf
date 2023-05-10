@@ -1,3 +1,8 @@
+# TODO: figure out how change links to the data -> resource
+data "aws_iam_openid_connect_provider" "terraform_cloud_oidc_provider" {
+  url = "https://app.terraform.io"
+}
+
 # resource "aws_iam_openid_connect_provider" "terraform_cloud_oidc_provider" {
 #   url             = "https://app.terraform.io"
 #   client_id_list  = ["aws.workload.identity"]
