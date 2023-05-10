@@ -2,7 +2,7 @@ data "aws_alb" "grafana_alb" {
   name = "grafana-alb"
 }
 
-resource "aws_route53_record" "amqp_pub_dns_entry" {
+resource "aws_route53_record" "grafana" {
   zone_id = data.aws_route53_zone.cluster_hosted_zone.zone_id
   name    = "grafana"
   type    = "A"
