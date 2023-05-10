@@ -34,6 +34,8 @@ resource "aws_s3_bucket_public_access_block" "block_state_public_access" {
   restrict_public_buckets = true
 }
 
+data "aws_caller_identity" "current" {}
+
 data "aws_iam_policy_document" "backstage_s3_bucket_policy_document" {
   statement {
     effect    = "Allow"
