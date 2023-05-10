@@ -36,15 +36,19 @@ resource "aws_s3_bucket_public_access_block" "block_state_public_access" {
 
 data "aws_iam_policy_document" "backstage_s3_read_policy_document" {
   statement {
-    effect = "Allow"
-    actions = [
-      "s3:GetObject",
-      "s3:ListBucket"
-    ]
-    resources = [
-      "${aws_s3_bucket.backstage_bucket.arn}",
-      "${aws_s3_bucket.backstage_bucket.arn}/*"
-    ]
+    effect    = "Allow"
+    actions   = ["s3:ListBucket"]
+    resources = ["${aws_s3_bucket.backstage_bucket.arn}"]
+
+    principals {
+      type        = "AWS"
+      identifiers = [data.aws_caller_identity.current.account_id]
+    }
+  }
+  statement {
+    effect    = "Allow"
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.backstage_bucket.arn}/*"]
 
     principals {
       type        = "AWS"
@@ -64,15 +68,14 @@ resource "aws_s3_bucket_policy" "backstage_s3_read_policy" {
 
 data "aws_iam_policy_document" "backstage_read_policy_document" {
   statement {
-    effect = "Allow"
-    actions = [
-      "s3:GetObject",
-      "s3:ListBucket"
-    ]
-    resources = [
-      "${aws_s3_bucket.backstage_bucket.arn}",
-      "${aws_s3_bucket.backstage_bucket.arn}/*"
-    ]
+    effect    = "Allow"
+    actions   = ["s3:ListBucket"]
+    resources = ["${aws_s3_bucket.backstage_bucket.arn}", ]
+  }
+  statement {
+    effect    = "Allow"
+    actions   = ["s3:GetObject", ]
+    resources = ["${aws_s3_bucket.backstage_bucket.arn}/*"]
   }
 }
 
