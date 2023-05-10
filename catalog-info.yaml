@@ -1,0 +1,12 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: toolbox-k8s
+  description: Toolbox organization kubernetes infrastructure
+  annotations:
+    github.com/project-slug: Secuoyas-Experience/k8s-clusters
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: website
+  lifecycle: production
+  owner: mariogarcia
