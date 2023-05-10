@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "backstage_s3_bucket_policy_document" {
   }
   statement {
     effect    = "Allow"
-    actions   = ["s3:GetObject", "s3:CopyObject", "s3:PutObject"]
+    actions   = ["s3:GetObject", "s3:DeleteObject", "s3:PutObject"]
     resources = ["${aws_s3_bucket.backstage_bucket.arn}/*"]
 
     principals {
