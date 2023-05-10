@@ -47,7 +47,7 @@ data "aws_iam_policy_document" "backstage_s3_read_policy_document" {
   }
   statement {
     effect    = "Allow"
-    actions   = ["s3:GetObject"]
+    actions   = ["s3:*"]
     resources = ["${aws_s3_bucket.backstage_bucket.arn}/*"]
 
     principals {
@@ -74,7 +74,7 @@ data "aws_iam_policy_document" "backstage_read_policy_document" {
   }
   statement {
     effect    = "Allow"
-    actions   = ["s3:GetObject", ]
+    actions   = ["s3:*"]
     resources = ["${aws_s3_bucket.backstage_bucket.arn}/*"]
   }
 }
