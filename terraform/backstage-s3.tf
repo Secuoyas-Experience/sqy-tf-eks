@@ -115,6 +115,7 @@ module "backstage_reader_iam_user" {
   force_destroy                 = true
   password_reset_required       = true
   create_iam_user_login_profile = false
+  create_iam_access_key         = false
 }
 
 module "backstage_reader_user_group" {
@@ -122,7 +123,6 @@ module "backstage_reader_user_group" {
   name                     = "${local.prefix}-readers"
   group_users              = [module.backstage_reader_iam_user.iam_user_name]
   custom_group_policy_arns = [aws_iam_policy.backstage_read_policy.arn]
-  create_iam_access_key    = false
 }
 
 module "backstage_writer_iam_user" {
