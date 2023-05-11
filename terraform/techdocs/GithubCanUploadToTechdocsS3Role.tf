@@ -1,6 +1,10 @@
 data "aws_iam_policy_document" "can_upload_to_s3_policy_document" {
   version = "2012-10-17"
-
+  statement {
+    effect    = "Allow"
+    actions   = ["s3:ListBucket"]
+    resources = ["${aws_s3_bucket.backstage_bucket.arn}", ]
+  }
   statement {
     effect  = "Allow"
     actions = ["s3:GetObject", "s3:PutObject", "s3:CopyObject"]
