@@ -4,7 +4,7 @@ data "aws_iam_policy_document" "web_identity_role_policy" {
 
     principals {
       type        = "Federated"
-      identifiers = [data.aws_iam_openid_connect_provider.terraform_cloud_oidc_provider.arn]
+      identifiers = [var.oidc_arn]
     }
 
     actions = ["sts:AssumeRoleWithWebIdentity"]

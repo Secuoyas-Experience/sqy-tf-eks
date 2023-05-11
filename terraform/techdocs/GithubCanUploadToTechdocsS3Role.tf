@@ -26,7 +26,7 @@ data "aws_iam_policy_document" "web_identity_can_upload_to_s3_policy" {
 
     principals {
       type        = "Federated"
-      identifiers = [data.aws_iam_openid_connect_provider.github_oidc_provider.arn]
+      identifiers = [var.oidc_arn]
     }
 
     actions = ["sts:AssumeRoleWithWebIdentity"]

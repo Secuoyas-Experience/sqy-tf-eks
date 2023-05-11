@@ -21,7 +21,8 @@ module "grafana" {
 
 # Terraform cloud infrastructure file
 module "terraform_cloud" {
-  source = "./terraform-cloud"
+  source   = "./terraform-cloud"
+  oidc_arn = module.oidc-providers.terraform_cloud_oidc_arn
 }
 
 #
@@ -34,4 +35,5 @@ module "terraform_cloud" {
 module "techdocs" {
   source                = "./techdocs"
   allowed_org_repo_list = ["Secuoyas-Experience/toolbox-k8s"]
+  oidc_arn              = module.oidc-providers.github_cloud_oidc_arn
 }
