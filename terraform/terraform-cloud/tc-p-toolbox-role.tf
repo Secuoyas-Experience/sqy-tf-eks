@@ -28,7 +28,7 @@ data "aws_iam_policy" "AdministratorAccess" {
 }
 
 resource "aws_iam_role" "github_role" {
-  name               = "tc-p-toolbox-role"
-  assume_role_policy = data.aws_iam_policy_document.web_identity_role_policy.json
+  name                = "tc-p-toolbox-role"
+  assume_role_policy  = data.aws_iam_policy_document.web_identity_role_policy.json
   managed_policy_arns = [data.aws_iam_policy.AdministratorAccess.arn]
 }
