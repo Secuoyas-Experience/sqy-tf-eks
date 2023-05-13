@@ -70,8 +70,7 @@ resource "helm_release" "loki_app" {
   name              = "loki"
   repository        = "https://grafana.github.io/helm-charts"
   chart             = "grafana/loki"
-  version           = "5.5.1"
-  namespace         = "loki"
+  version           = "5.5.0"
   atomic            = true
   cleanup_on_fail   = true
   reset_values      = true
