@@ -69,7 +69,7 @@ resource "helm_release" "loki_app" {
   depends_on        = [module.loki_bucket]
   name              = "toolbox-loki"
   repository        = "https://grafana.github.io/helm-charts"
-  chart             = "grafana/loki"
+  chart             = "loki"
   version           = "5.5.1"
   namespace         = "loki"
   atomic            = true
