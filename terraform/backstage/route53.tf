@@ -2,11 +2,11 @@ data "aws_route53_zone" "cluster_hosted_zone" {
   name = var.domain
 }
 
-data "aws_alb" "grafana_alb" {
+data "aws_alb" "toolbox_alb" {
   name = "grafana-alb"
 }
 
-resource "aws_route53_record" "grafana" {
+resource "aws_route53_record" "alexandria" {
   zone_id = data.aws_route53_zone.cluster_hosted_zone.zone_id
   name    = "alexandria"
   type    = "A"
