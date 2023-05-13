@@ -75,8 +75,7 @@ resource "helm_release" "loki_app" {
   depends_on = [module.loki_bucket]
   name       = "toolbox-loki"
   chart      = "https://grafana.github.io/helm-charts/loki-5.5.1.tgz"
-  namespace  = "monitoring"
-  repository = "https://grafana.github.io/helm-charts"
+  namespace  = "loki"
 
   set {
     name  = "serviceAccount.name"
