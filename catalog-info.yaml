@@ -4,9 +4,14 @@ metadata:
   name: toolbox-k8s
   description: Toolbox organization kubernetes infrastructure
   annotations:
-    github.com/project-slug: Secuoyas-Experience/k8s-clusters
+    github.com/project-slug: Secuoyas-Experience/toolbox-k8s
     backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://github.com/Secuoyas-Experience/toolbox-k8s
+      title: Toolbox Infrastructure As Code
+      
 spec:
-  type: website
+  type: library  
+  owner: infra-team
+  system: toolbox
   lifecycle: production
-  owner: mariogarcia

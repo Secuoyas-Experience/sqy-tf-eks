@@ -1,0 +1,3 @@
+module "oidc" {
+    source = "./oidc"
+}

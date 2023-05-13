@@ -7,3 +7,9 @@ variable "oidc_arn" {
   type        = string
   description = "arn of the oidc provider required in this module"
 }
+
+variable "backstage_doppler_token" {
+  type        = string
+  description = "Doppler token to sync aws values to Doppler"
+  sensitive   = true
+}

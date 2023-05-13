@@ -2,15 +2,10 @@ locals {
   domain = "toolbox.secuoyas.com"
 }
 
-# SSL certs required by apps deployed in Toolbox org
-module "certificates" {
-  source = "./certificates"
+# Common infrastructure files 
+module "common" {
+  source = "./common"
   domain = local.domain
-}
-
-# Grafana infrastructure files 
-module "oidc-providers" {
-  source = "./oidc-providers"
 }
 
 # Grafana infrastructure files
@@ -19,21 +14,15 @@ module "grafana" {
   domain = local.domain
 }
 
-# Terraform cloud infrastructure file
-module "terraform_cloud" {
-  source   = "./terraform-cloud"
-  oidc_arn = module.oidc-providers.terraform_cloud_oidc_arn
-}
+# Backstage infrastructure files
+module "backstage" {
+  source                  = "./backstage"
+  domain                  = local.domain
+  oidc_arn                = module.common.github_cloud_oidc_arn
+  backstage_doppler_token = var.backstage_doppler_token
 
-#
-# Backstage techdocs infrastructure files
-#
-# allowed_org_repo_list is a list of org/repo strings
-# allowed to push techdocs documentation to the
-# techdocs S3 that will be available through
-# Spotify's Backstage instance
-module "techdocs" {
-  source                = "./techdocs"
-  allowed_org_repo_list = ["Secuoyas-Experience/toolbox-k8s"]
-  oidc_arn              = module.oidc-providers.github_cloud_oidc_arn
+  # list of org/repo pairs allowed to upload files to S3
+  allowed_org_repo_list = [
+    "Secuoyas-Experience/toolbox-k8s"
+  ]
 }

@@ -1,3 +1,14 @@
+variable "domain" {
+  type        = string
+  description = "name of the domain where the cluster will be exposed"
+}
+
+data "aws_route53_zone" "cluster_hosted_zone" {
+  name = var.domain
+}
+
+data "aws_caller_identity" "current" {}
+
 data "aws_alb" "grafana_alb" {
   name = "grafana-alb"
 }
