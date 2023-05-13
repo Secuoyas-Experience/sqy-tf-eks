@@ -57,16 +57,12 @@ provider "helm" {
   kubernetes {
     host                   = data.aws_eks_cluster.cluster.endpoint
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      command     = "aws"
-      args = [
-        "eks",
-        "get-token",
-        "--cluster-name", data.aws_eks_cluster.cluster.name
-      ]
-    }
+    token                  = data.aws_eks_cluster_auth.cluster.token
+    # exec {
+    #   command     = "aws"
+    #   api_version = "client.authentication.k8s.io/v1beta1"
+    #   args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
+    # }
   }
 }
 
@@ -74,7 +70,7 @@ resource "helm_release" "loki_app" {
   depends_on        = [module.loki_bucket]
   name              = "toolbox-loki" # https://github.com/hashicorp/terraform-provider-helm/issues/735
   version           = "5.5.1"
-  chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
+  chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgzbackstage_doppler_token"
   namespace         = "kube-system"
   atomic            = true
   cleanup_on_fail   = true
