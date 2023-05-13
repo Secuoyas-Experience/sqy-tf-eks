@@ -73,9 +73,9 @@ provider "helm" {
 resource "helm_release" "loki_app" {
   depends_on = [module.loki_bucket]
   name       = "toolbox-loki" # https://github.com/hashicorp/terraform-provider-helm/issues/735
-  chart      = "grafana/loki"
+  chart      = "loki"
   version    = "5.5.1"
-  repository = "https://grafana.github.io/helm-charts"
+  repository = "https://grafana.github.io/helm-charts/grafana"
 
   set {
     name  = "serviceAccount.name"
