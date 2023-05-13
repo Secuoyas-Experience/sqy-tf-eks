@@ -74,7 +74,7 @@ resource "helm_release" "loki_app" {
   depends_on        = [module.loki_bucket]
   name              = "toolbox-loki" # https://github.com/hashicorp/terraform-provider-helm/issues/735
   version           = "5.5.1"
-  chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgzbackstage_doppler_token"
+  chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
   namespace         = "kube-system"
   atomic            = true
   cleanup_on_fail   = true
