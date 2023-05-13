@@ -72,7 +72,7 @@ provider "helm" {
 
 resource "helm_release" "loki_app" {
   depends_on = [module.loki_bucket]
-  name       = "loki"
+  name       = "toolbox-loki" # https://github.com/hashicorp/terraform-provider-helm/issues/735
   chart      = "loki"
   version    = "5.5.1"
   namespace  = "monitoring"
