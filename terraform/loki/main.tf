@@ -75,7 +75,6 @@ resource "helm_release" "loki_app" {
   name       = "loki"
   namespace  = "monitoring"
   repository = "https://grafana.github.io/helm-charts"
-  chart      = "grafana/loki-simple-scalable"
 
   set {
     name  = "serviceAccount.name"
