@@ -75,4 +75,20 @@ resource "helm_release" "loki_app" {
   name       = "loki"
   repository = "https://grafana.github.io/helm-charts"
   chart      = "loki"
+
+  set {
+    name  = "serviceAccount.name"
+    value = "loki"
+  }
+
+  set {
+    name  = "serviceAccount.create"
+    value = true
+  }
+
+  set {
+    name  = "serviceAccount.annotations"
+    value = "[eks.amazonaws.com/role-arn:${module.service_account_can_write_s3.role_arn}]"
+    type  = "auto"
+  }
 }

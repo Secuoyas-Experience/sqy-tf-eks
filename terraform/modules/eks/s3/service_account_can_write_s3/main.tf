@@ -23,6 +23,10 @@ variable "role_name" {
   description = "IAM role name associated with the K8S ServiceAccount"
 }
 
+output "role_arn" {
+  value = aws_iam_role.service_account_can_write_to_s3.arn
+}
+
 data "aws_s3_bucket" "bucket" {
   bucket = var.bucket_name
 }
