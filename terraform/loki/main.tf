@@ -30,6 +30,7 @@ module "loki_bucket" {
 }
 
 module "service_account_can_read_s3" {
+  depends_on           = [module.loki_bucket]
   source               = "../modules/eks/s3/service_account_can_read_s3"
   cluster_oidc_arn     = data.aws_iam_openid_connect_provider.eks_cluster_oidc.arn
   cluster_oidc_name    = data.aws_iam_openid_connect_provider.eks_cluster_oidc.id
@@ -39,6 +40,7 @@ module "service_account_can_read_s3" {
 }
 
 module "service_account_can_write_s3" {
+  depends_on           = [module.loki_bucket]
   source               = "../modules/eks/s3/service_account_can_write_s3"
   cluster_oidc_arn     = data.aws_iam_openid_connect_provider.eks_cluster_oidc.arn
   cluster_oidc_name    = data.aws_iam_openid_connect_provider.eks_cluster_oidc.id
