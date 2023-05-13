@@ -26,3 +26,8 @@ module "backstage" {
     "Secuoyas-Experience/toolbox-k8s"
   ]
 }
+
+module "loki" {
+  source       = "./loki"
+  cluster_name = "toolbox"
+}
