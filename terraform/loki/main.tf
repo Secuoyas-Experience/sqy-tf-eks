@@ -71,11 +71,15 @@ provider "helm" {
 }
 
 resource "helm_release" "loki_app" {
-  depends_on = [module.loki_bucket]
-  name       = "toolbox-loki" # https://github.com/hashicorp/terraform-provider-helm/issues/735
-  chart      = "loki"
-  version    = "5.5.1"
-  repository = "https://grafana.github.io/helm-charts/grafana"
+  depends_on        = [module.loki_bucket]
+  name              = "toolbox-loki" # https://github.com/hashicorp/terraform-provider-helm/issues/735
+  version           = "5.5.1"
+  chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
+  namespace         = "kube-system"
+  atomic            = true
+  cleanup_on_fail   = true
+  reset_values      = true
+  dependency_update = true
 
   set {
     name  = "serviceAccount.name"
