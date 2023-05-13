@@ -14,7 +14,7 @@ data "aws_eks_cluster" "cluster" {
 }
 
 data "aws_iam_openid_connect_provider" "eks_cluster_oidc" {
-  arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/oidc.eks.eu-central-1.amazonaws.com/id/${data.aws_eks_cluster.cluster.id}"
+  url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
 }
 
 ##################################
