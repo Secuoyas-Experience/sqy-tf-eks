@@ -3,7 +3,7 @@ data "aws_route53_zone" "cluster_hosted_zone" {
 }
 
 data "aws_alb" "grafana_alb" {
-  name = "toolbox-alb"
+  name = "grafana-alb"
 }
 
 resource "aws_route53_record" "grafana" {
