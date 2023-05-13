@@ -73,6 +73,7 @@ provider "helm" {
 resource "helm_release" "loki_app" {
   depends_on = [module.loki_bucket]
   name       = "loki"
+  namespace  = "monitoring"
   repository = "https://grafana.github.io/helm-charts"
   chart      = "loki"
 
