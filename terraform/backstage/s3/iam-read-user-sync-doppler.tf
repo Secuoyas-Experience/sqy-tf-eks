@@ -9,7 +9,7 @@ resource "doppler_secret" "backstage_read_aws_secret_access_key" {
   project = "toolbox-backstage"
   config  = "gh"
   name    = "AWS_SECRET_ACCESS_KEY"
-  value   = module.backstage_reader_iam_user.iam_access_key_id
+  value   = module.backstage_reader_iam_user.iam_access_key_secret
 }
 
 resource "doppler_secret" "backstage_read_aws_s3_bucket" {
