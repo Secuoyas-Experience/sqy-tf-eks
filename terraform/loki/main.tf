@@ -64,10 +64,7 @@ provider "aws" {
 
 resource "null_resource" "name" {
   provisioner "local-exec" {
-    inline = [
-      #"rm -r ~/.aws/cli/cache"
-      "ls -l ~/.aws/cli/cache"
-    ]
+    command = "ls -l ~/.aws/cli/cache"
   }
 }
 
