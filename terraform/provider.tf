@@ -17,8 +17,15 @@ provider "kubernetes" {
   # token                  = data.aws_eks_cluster_auth.cluster.token
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.id]
     command     = "aws"
+    args = [
+      "eks",
+      "get-token",
+      "--cluster-name",
+      data.aws_eks_cluster.cluster.id,
+      "--role-arn",
+      "arn:aws:iam::015817276163:role/TerraformCloudRole"
+    ]
   }
 }
 
