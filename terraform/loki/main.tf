@@ -63,38 +63,42 @@ provider "kubernetes" {
   token                  = data.aws_eks_cluster_auth.cluster.token
 }
 
-provider "helm" {
-  alias = "toolbox-cluster"
-  kubernetes {
-    host                   = data.aws_eks_cluster.cluster.endpoint
-    cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-    token                  = data.aws_eks_cluster_auth.cluster.token
-  }
+resource "kubernetes_namespace" "todelete" {
+  name = "todelete"
 }
 
-resource "helm_release" "loki_app" {
-  depends_on        = [module.loki_bucket]
-  provider          = helm.toolbox-cluster
-  name              = "loki"
-  chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
-  atomic            = true
-  cleanup_on_fail   = true
-  reset_values      = true
-  dependency_update = true
+# provider "helm" {
+#   alias = "toolbox-cluster"
+#   kubernetes {
+#     host                   = data.aws_eks_cluster.cluster.endpoint
+#     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+#     token                  = data.aws_eks_cluster_auth.cluster.token
+#   }
+# }
 
-  set {
-    name  = "serviceAccount.name"
-    value = "loki"
-  }
+# resource "helm_release" "loki_app" {
+#   depends_on        = [module.loki_bucket]
+#   provider          = helm.toolbox-cluster
+#   name              = "loki"
+#   chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
+#   atomic            = true
+#   cleanup_on_fail   = true
+#   reset_values      = true
+#   dependency_update = true
 
-  set {
-    name  = "serviceAccount.create"
-    value = true
-  }
+#   set {
+#     name  = "serviceAccount.name"
+#     value = "loki"
+#   }
 
-  set {
-    name  = "serviceAccount.annotations"
-    value = "[eks.amazonaws.com/role-arn:${module.service_account_can_write_s3.role_arn}]"
-    type  = "auto"
-  }
-}
+#   set {
+#     name  = "serviceAccount.create"
+#     value = true
+#   }
+
+#   set {
+#     name  = "serviceAccount.annotations"
+#     value = "[eks.amazonaws.com/role-arn:${module.service_account_can_write_s3.role_arn}]"
+#     type  = "auto"
+#   }
+# }
