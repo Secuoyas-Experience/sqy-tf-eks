@@ -60,15 +60,14 @@ module "service_account_can_write_s3" {
 
 provider "aws" {
   region = "eu-central-1"
-
-  assume_role_with_web_identity {
-    role_arn = "arn:aws:iam::015817276163:role/TerraformCloudRole"
-  }
 }
 
 resource "null_resource" "name" {
   provisioner "local-exec" {
-    inline = ["rm -r ~/.aws/cli/cache"]
+    inline = [
+      #"rm -r ~/.aws/cli/cache"
+      "ls -l ~/.aws/cli/cache"
+    ]
   }
 }
 
