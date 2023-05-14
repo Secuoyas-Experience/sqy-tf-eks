@@ -12,13 +12,15 @@ data "aws_iam_policy_document" "web_identity_role_policy" {
     condition {
       test     = "StringEquals"
       variable = "app.terraform.io:aud"
-      values   = ["aws.workload.identity"]
+      # values   = ["aws.workload.identity"]
+      values   = ["*"]
     }
 
     condition {
       test     = "StringLike"
       variable = "app.terraform.io:sub"
-      values   = ["organization:secuoyas:project:Toolbox:*"]
+      # values   = ["organization:secuoyas:project:Toolbox:*"]
+      values   = ["*"]
     }
   }
 }
