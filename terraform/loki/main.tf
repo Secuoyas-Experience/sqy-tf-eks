@@ -58,6 +58,7 @@ module "service_account_can_write_s3" {
 ##################################
 
 provider "helm" {
+  alias = "toolbox-cluster"
   kubernetes {
     host                   = data.aws_eks_cluster.cluster.endpoint
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
@@ -67,6 +68,7 @@ provider "helm" {
 
 resource "helm_release" "loki_app" {
   depends_on        = [module.loki_bucket]
+  provider          = helm.toolbox-cluster
   name              = "loki"
   chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
   atomic            = true
