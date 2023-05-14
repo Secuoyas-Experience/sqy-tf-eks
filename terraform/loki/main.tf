@@ -64,7 +64,9 @@ provider "kubernetes" {
 }
 
 resource "kubernetes_namespace" "todelete" {
-  name = "todelete"
+  metadata {
+    name = "todelete"
+  }
 }
 
 # provider "helm" {
