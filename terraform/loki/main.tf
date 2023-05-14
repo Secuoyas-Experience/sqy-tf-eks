@@ -9,18 +9,6 @@ variable "cluster_name" {
 
 data "aws_caller_identity" "current" {}
 
-data "aws_eks_cluster" "cluster" {
-  name = var.cluster_name
-}
-
-data "aws_eks_cluster_auth" "cluster" {
-  depends_on = [data.aws_eks_cluster.cluster]
-  name       = data.aws_eks_cluster.cluster.name
-}
-
-data "aws_iam_openid_connect_provider" "eks_cluster_oidc" {
-  url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
-}
 
 ##################################
 ############ S3 BUCKET ###########
@@ -58,35 +46,6 @@ module "service_account_can_write_s3" {
 ############## HELM ##############
 ##################################
 
-provider "aws" {
-  region = "eu-central-1"
-}
-
-resource "null_resource" "name" {
-  provisioner "local-exec" {
-    command = "ls -l ~/.aws/cli/cache"
-  }
-}
-
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  token                  = data.aws_eks_cluster_auth.cluster.token
-  exec {
-    api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.id]
-    command     = "aws"
-  }
-}
-
-provider "helm" {
-  alias = "toolbox-cluster"
-  kubernetes {
-    host                   = data.aws_eks_cluster.cluster.endpoint
-    cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-    token                  = data.aws_eks_cluster_auth.cluster.token
-  }
-}
 
 resource "helm_release" "loki_app" {
   depends_on        = [null_resource.name,module.loki_bucket]
