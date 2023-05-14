@@ -24,7 +24,7 @@ provider "kubernetes" {
       "--cluster-name",
       data.aws_eks_cluster.cluster.id,
       "--role-arn",
-      "arn:aws:iam::015817276163:role/TerraformCloudRole"
+      "arn:aws:iam::015817276163:role/eksctl-toolbox-nodegroup-apps-NodeInstanceRole-1LHGTVNWVUW8M"
     ]
   }
 }
