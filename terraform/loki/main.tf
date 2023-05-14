@@ -57,6 +57,12 @@ module "service_account_can_write_s3" {
 ############## HELM ##############
 ##################################
 
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
+}
+
 provider "helm" {
   alias = "toolbox-cluster"
   kubernetes {
