@@ -27,8 +27,8 @@ module "backstage" {
   ]
 }
 
-module "loki" {
-  source       = "./loki"
-  cluster_name = "toolbox"
-  cluster_url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
-}
+# module "loki" {
+#   source       = "./loki"
+#   cluster_name = "toolbox"
+#   cluster_url = data.aws_eks_cluster.cluster.identity[0].oidc[0].issuer
+# }
