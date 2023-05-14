@@ -14,25 +14,17 @@ provider "aws" {
 provider "kubernetes" {
   host                   = data.aws_eks_cluster.cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  token                  = data.aws_eks_cluster_auth.cluster.token
-  # exec {
-  #   api_version = "client.authentication.k8s.io/v1beta1"
-  #   args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.id]
-  #   command     = "aws"
-  # }
+  # token                  = data.aws_eks_cluster_auth.cluster.token
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.id]
+    command     = "aws"
+  }
 }
 
-resource "kubernetes_namespace" "example" {
+resource "kubernetes_namespace" "samples" {
   metadata {
-    annotations = {
-      name = "example-annotation"
-    }
-
-    labels = {
-      mylabel = "label-value"
-    }
-
-    name = "terraform-example-namespace"
+    name = "samples"
   }
 }
 
