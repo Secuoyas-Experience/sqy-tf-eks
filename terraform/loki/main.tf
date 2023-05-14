@@ -3,6 +3,10 @@ variable "cluster_name" {
   description = "eks cluster name"
 }
 
+variable "cluster_url" {
+  type = string
+}
+
 ##################################
 ############## DATA ##############
 ##################################
