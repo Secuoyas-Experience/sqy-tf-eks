@@ -60,6 +60,16 @@ module "service_account_can_write_s3" {
 
 provider "aws" {
   region = "eu-central-1"
+
+  assume_role_with_web_identity {
+    role_arn = "arn:aws:iam::015817276163:role/TerraformCloudRole"
+  }
+}
+
+resource "null_resource" "name" {
+  provisioner "local-exec" {
+    inline = ["rm -r ~/.aws/cli/cache"]
+  }
 }
 
 provider "kubernetes" {
@@ -78,17 +88,12 @@ provider "helm" {
   kubernetes {
     host                   = data.aws_eks_cluster.cluster.endpoint
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-    # token                  = data.aws_eks_cluster_auth.cluster.token
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", "toolbox"]
-      command     = "aws"
-    }
+    token                  = data.aws_eks_cluster_auth.cluster.token
   }
 }
 
 resource "helm_release" "loki_app" {
-  depends_on        = [module.loki_bucket]
+  depends_on        = [null_resource.name,module.loki_bucket]
   provider          = helm.toolbox-cluster
   name              = "loki"
   chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
