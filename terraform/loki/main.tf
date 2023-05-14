@@ -14,7 +14,8 @@ data "aws_eks_cluster" "cluster" {
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = var.cluster_name
+  depends_on = [data.aws_eks_cluster.cluster]
+  name       = data.aws_eks_cluster.cluster.name
 }
 
 data "aws_iam_openid_connect_provider" "eks_cluster_oidc" {
@@ -57,19 +58,21 @@ module "service_account_can_write_s3" {
 ############## HELM ##############
 ##################################
 
+provider "aws" {
+  region = "eu-central-1"
+}
+
 provider "helm" {
   alias = "toolbox-cluster"
-
   kubernetes {
     host                   = data.aws_eks_cluster.cluster.endpoint
     cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
     token                  = data.aws_eks_cluster_auth.cluster.token
-
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.id]
-      command     = "aws"
-    }
+    # exec {
+    #   api_version = "client.authentication.k8s.io/v1beta1"
+    #   args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.id]
+    #   command     = "aws"
+    # }
   }
 }
 
