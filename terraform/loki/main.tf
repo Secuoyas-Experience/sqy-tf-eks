@@ -9,6 +9,9 @@ variable "cluster_name" {
 
 data "aws_caller_identity" "current" {}
 
+data "aws_iam_openid_connect_provider" "eks_cluster_oidc" {
+  url = var.cluster_url
+}
 
 ##################################
 ############ S3 BUCKET ###########
@@ -47,29 +50,29 @@ module "service_account_can_write_s3" {
 ##################################
 
 
-resource "helm_release" "loki_app" {
-  depends_on        = [null_resource.name,module.loki_bucket]
-  provider          = helm.toolbox-cluster
-  name              = "loki"
-  chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
-  atomic            = true
-  cleanup_on_fail   = true
-  reset_values      = true
-  dependency_update = true
+# resource "helm_release" "loki_app" {
+#   depends_on        = [null_resource.name,module.loki_bucket]
+#   provider          = helm.toolbox-cluster
+#   name              = "loki"
+#   chart             = "https://github.com/grafana/helm-charts/releases/download/helm-loki-5.5.1/loki-5.5.1.tgz"
+#   atomic            = true
+#   cleanup_on_fail   = true
+#   reset_values      = true
+#   dependency_update = true
 
-  set {
-    name  = "serviceAccount.name"
-    value = "loki"
-  }
+#   set {
+#     name  = "serviceAccount.name"
+#     value = "loki"
+#   }
 
-  set {
-    name  = "serviceAccount.create"
-    value = true
-  }
+#   set {
+#     name  = "serviceAccount.create"
+#     value = true
+#   }
 
-  set {
-    name  = "serviceAccount.annotations"
-    value = "[eks.amazonaws.com/role-arn:${module.service_account_can_write_s3.role_arn}]"
-    type  = "auto"
-  }
-}
+#   set {
+#     name  = "serviceAccount.annotations"
+#     value = "[eks.amazonaws.com/role-arn:${module.service_account_can_write_s3.role_arn}]"
+#     type  = "auto"
+#   }
+# }
