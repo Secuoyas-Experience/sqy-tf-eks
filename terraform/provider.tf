@@ -16,7 +16,7 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   # token                  = data.aws_eks_cluster_auth.cluster.token
   exec {
-    api_version = "client.authentication.k8s.io/v1"
+    api_version = "client.authentication.k8s.io/v1alpha1"
     command     = "aws"
     args = [
       "eks",
@@ -24,7 +24,7 @@ provider "kubernetes" {
       "--cluster-name",
       data.aws_eks_cluster.cluster.id,
       "--role-arn",
-      "arn:aws:iam::015817276163:role/eksctl-toolbox-nodegroup-apps-NodeInstanceRole-1LHGTVNWVUW8M"
+      "arn:aws:iam::015817276163:role/TODELETE"
     ]
   }
 }
