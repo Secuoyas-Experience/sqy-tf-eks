@@ -12,14 +12,12 @@ provider "aws" {
 }
 
 provider "kubernetes" {
-  alias                  = "k8s"
   host                   = data.aws_eks_cluster.cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   token                  = data.aws_eks_cluster_auth.cluster.token
 }
 
 resource "kubernetes_namespace" "samples" {
-  provider = kubernetes.k8s
   metadata {
     name = "samples"
   }
@@ -35,7 +33,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "3.74.0"
+      version = ">=4.62.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
