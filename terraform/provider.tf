@@ -29,7 +29,9 @@ provider "kubernetes" {
 }
 
 resource "null_resource" "name" {
-  command = "rm -rf ~/.aws/cli/cache"
+  provisioner "local-exec" {
+    command = "rm -rf ~/.aws/cli/cache"
+  }
 }
 
 resource "kubernetes_namespace" "samples" {
