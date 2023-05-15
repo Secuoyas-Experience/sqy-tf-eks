@@ -9,7 +9,6 @@ data "aws_eks_cluster_auth" "cluster" {
 
 provider "aws" {
   region   = "eu-central-1"
-  role_arn = "arn:aws:iam::015817276163:role/TODELETE"
 }
 
 provider "kubernetes" {
@@ -29,7 +28,12 @@ provider "kubernetes" {
   }
 }
 
+resource "null_resource" "name" {
+  command = "rm -rf ~/.aws/cli/cache"
+}
+
 resource "kubernetes_namespace" "samples" {
+  depends_on = [ null_resource.name ]
   provider = kubernetes.k8s
   metadata {
     name = "samples"
