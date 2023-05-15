@@ -19,7 +19,6 @@ provider "kubernetes" {
 }
 
 resource "kubernetes_namespace" "samples" {
-  depends_on = [ null_resource.name ]
   provider = kubernetes.k8s
   metadata {
     name = "samples"
