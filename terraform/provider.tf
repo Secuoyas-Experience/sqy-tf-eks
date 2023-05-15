@@ -11,23 +11,6 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  # token                  = data.aws_eks_cluster_auth.cluster.token
-  exec {
-    api_version = "client.authentication.k8s.io/v1"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster.name]
-    command     = "aws"
-  }
-}
-
-resource "kubernetes_namespace" "samples" {
-  metadata {
-    name = "samples"
-  }
-}
-
 terraform {
   cloud {
     organization = "secuoyas"
