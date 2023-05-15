@@ -8,11 +8,12 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 provider "aws" {
-  region = "eu-central-1"
+  region   = "eu-central-1"
+  role_arn = "arn:aws:iam::015817276163:role/TODELETE"
 }
 
 provider "kubernetes" {
-  alias = "k8s"
+  alias                  = "k8s"
   host                   = data.aws_eks_cluster.cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   # token                  = data.aws_eks_cluster_auth.cluster.token
@@ -23,9 +24,7 @@ provider "kubernetes" {
       "eks",
       "get-token",
       "--cluster-name",
-      data.aws_eks_cluster.cluster.id,
-      "--role-arn",
-      "arn:aws:iam::015817276163:role/TODELETE"
+      data.aws_eks_cluster.cluster.id
     ]
   }
 }
