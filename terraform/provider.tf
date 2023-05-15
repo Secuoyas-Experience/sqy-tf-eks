@@ -8,7 +8,7 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 provider "aws" {
-  region   = "eu-central-1"
+  region = "eu-central-1"
 }
 
 provider "kubernetes" {
@@ -35,7 +35,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.12.0"
+      version = "3.74.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
