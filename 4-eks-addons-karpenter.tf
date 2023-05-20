@@ -39,7 +39,7 @@ resource "kubectl_manifest" "karpenter_provisioner" {
 
 # karpenter default new node instance template
 resource "kubectl_manifest" "karpenter_template" {
-  yaml_body = templatefile("${path.module}/manifests/karpenter/template.yaml", {
+  yaml_body = templatefile("${path.module}/manifests/karpenter/aws-node-template.yaml", {
     cluster_name          = module.eks_blueprints.cluster_name
     instance_profile_name = module.karpenter.instance_profile_name
   })
