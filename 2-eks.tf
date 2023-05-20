@@ -1,35 +1,75 @@
-module "eks-blueprints" {
-  source             = "github.com/aws-ia/terraform-aws-eks-blueprints?ref=v4.25.0"
-  cluster_name       = "toolbox"
-  cluster_version    = "1.25"
-  enable_irsa        = true
-  vpc_id             = module.vpc.vpc_id
-  private_subnet_ids = module.vpc.private_subnets
+module "eks_blueprints" {
+  source                         = "terraform-aws-modules/eks/aws"
+  version                        = "19.14.0"
+  cluster_name                   = "toolbox"
+  cluster_version                = "1.25"
+  cluster_endpoint_public_access = true
+  vpc_id                         = module.vpc.vpc_id
+  subnet_ids                     = module.vpc.private_subnets
 
-  # ONLY 1 node as we will be handling autoscaling
-  # with Karpenter
-  managed_node_groups = {
-    role = {
+  # Node Group
+  # ----------
+  # Just one because we are using karpenter to scale up/down
+  # the cluster nodes
+  eks_managed_node_groups = {
+    inception = {
       capacity_type   = "ON_DEMAND"
-      node_group_name = "general"
-      instance_types  = ["t3a.medium"]
+      node_group_name = "inception"
+      instance_types  = ["t3a.medium"] # c5a.large
       desired_size    = "1"
       max_size        = "1"
       min_size        = "1"
+      public_subnets  = module.vpc.public_subnets
+      private_subnets = module.vpc.private_subnets
     }
   }
+
+  # aws_auth
+  # --------
+  # We are handling aws_auth entries here to allow
+  # pods via ServiceAccount to access AWS services
+  # without having to pass credentials
+
+  # aws_auth (create ConfigMap)
+  manage_aws_auth_configmap = true
+
+  # aws_auth (roles)
+  aws_auth_roles = [
+    {
+      rolearn  = module.karpenter.role_arn
+      username = "system:node:{{EC2PrivateDNSName}}"
+      groups = [
+        "system:bootstrappers",
+        "system:nodes"
+      ]
+    }
+  ]
+}
+
+data "aws_eks_cluster_auth" "cluster" {
+  name = module.eks_blueprints.cluster_name
 }
 
 provider "kubernetes" {
-  host                   = module.eks-blueprints.aws_eks_cluster_endpoint
-  cluster_ca_certificate = base64decode(module.eks-blueprints.aws_eks_cluster_certificate_authority_data)
-  token                  = module.eks-blueprints.aws_eks_cluster_token
+  host                   = module.eks_blueprints.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks_blueprints.cluster_certificate_authority_data)
+  # token                  = data.aws_eks_cluster_auth.cluster.token
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    args        = ["eks", "get-token", "--cluster-name", module.eks_blueprints.cluster_name]
+    command     = "aws"
+  }
 }
 
 provider "helm" {
   kubernetes {
-    host                   = module.eks-blueprints.aws_eks_cluster_endpoint
-    cluster_ca_certificate = base64decode(module.eks-blueprints.aws_eks_cluster_certificate_authority_data)
-    token                  = module.eks-blueprints.aws_eks_cluster_token
+    host                   = module.eks_blueprints.cluster_endpoint
+    cluster_ca_certificate = base64decode(module.eks_blueprints.cluster_certificate_authority_data)
+    # token                  = data.aws_eks_cluster_auth.cluster.token
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      args        = ["eks", "get-token", "--cluster-name", module.eks_blueprints.cluster_name]
+      command     = "aws"
+    }
   }
 }
