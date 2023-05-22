@@ -6,10 +6,10 @@ spec:
   labels:
     vpc.amazonaws.com/has-trunk-attached: "false"
   tags:
-    "kubernetes.io/cluster/${cluster_name}": "owned"
+    "kubernetes.io/cluster": "${cluster_name}"
   subnetSelector:
-    "kubernetes.io/cluster/${cluster_name}": "owned"
+    "kubernetes.io/cluster": "${cluster_name}"
     "Name": "*private*"
   securityGroupSelector:
-    "kubernetes.io/cluster/${cluster_name}": "owned"
+    "kubernetes.io/cluster": "${cluster_name}"
   instanceProfile: ${instance_profile_name}
