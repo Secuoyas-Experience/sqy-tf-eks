@@ -2,7 +2,7 @@ module "eks_blueprints" {
   source                         = "terraform-aws-modules/eks/aws"
   version                        = "19.14.0"
   cluster_name                   = "toolbox"
-  cluster_version                = "1.25"
+  cluster_version                = "1.24"
   cluster_endpoint_public_access = true
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.private_subnets
@@ -44,6 +44,13 @@ module "eks_blueprints" {
       ]
     }
   ]
+
+  # it's importat that only one security group
+  # matches provisioner. Otherwise pods won't
+  # be eligible to be scheduled
+  node_security_group_tags = {
+    "karpenter.sh/discovery" = "toolbox"
+  }
 }
 
 data "aws_eks_cluster_auth" "cluster" {
@@ -53,7 +60,6 @@ data "aws_eks_cluster_auth" "cluster" {
 provider "kubernetes" {
   host                   = module.eks_blueprints.cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks_blueprints.cluster_certificate_authority_data)
-  # token                  = data.aws_eks_cluster_auth.cluster.token
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
     args        = ["eks", "get-token", "--cluster-name", module.eks_blueprints.cluster_name]
@@ -65,7 +71,6 @@ provider "helm" {
   kubernetes {
     host                   = module.eks_blueprints.cluster_endpoint
     cluster_ca_certificate = base64decode(module.eks_blueprints.cluster_certificate_authority_data)
-    # token                  = data.aws_eks_cluster_auth.cluster.token
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
       args        = ["eks", "get-token", "--cluster-name", module.eks_blueprints.cluster_name]

@@ -27,17 +27,10 @@ module "vpc" {
   # when creating a new node
   private_subnet_tags = {
     "kubernetes.io/role/internal-elb" = "1"
-    "kubernetes.io/cluster"           = "toolbox"
-  }
-
-  # karpenter needs to know which security group to use
-  # when creating a new node
-  default_security_group_tags = {
-    "kubernetes.io/cluster" : "toolbox"
+    "karpenter.sh/discovery" : "toolbox"
   }
 
   public_subnet_tags = {
     "kubernetes.io/role/elb" = "1"
-    "kubernetes.io/cluster"  = "toolbox"
   }
 }
