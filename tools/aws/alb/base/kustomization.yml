@@ -1,6 +1,0 @@
-apiVersion: kustomize.config.k8s.io/v1beta1
-kind: Kustomization
-resources:
-  - v1_5_4_cert-manager.yaml
-  - v2_5_1_alb.yaml
-  - v2_5_1_ingclass.yaml
