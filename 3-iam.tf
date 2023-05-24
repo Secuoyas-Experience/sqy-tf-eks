@@ -30,7 +30,7 @@ data "aws_iam_policy_document" "eks_read_policy_document" {
 data "aws_iam_policy_document" "assume_role_policy_document" {
   statement {
     effect  = "Allow"
-    actions = ["AssumeRole"]
+    actions = ["sts:AssumeRole"]
     principals {
       type        = "AWS"
       identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"]
