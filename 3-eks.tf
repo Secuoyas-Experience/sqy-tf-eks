@@ -1,5 +1,3 @@
-data "aws_caller_identity" "current" {}
-
 module "eks_blueprints" {
   source                         = "terraform-aws-modules/eks/aws"
   version                        = "19.14.0"
@@ -49,7 +47,7 @@ module "eks_blueprints" {
 
   aws_auth_users = [
     {
-      userarn  = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"
+      userarn  = "arn:aws:sts::015817276163:assumed-role/AWSReservedSSO_AdministratorAccess_b320f43dea422846/mario.garcia@secuoyas.com"
       groups   = ["system:masters"]
     }
   ]
