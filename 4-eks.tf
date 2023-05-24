@@ -36,19 +36,19 @@ module "eks_blueprints" {
   # aws_auth (roles)
   aws_auth_roles = [
     {
+      rolearn  = aws_iam_role.kube_admin_role.arn
+      username = "KubeAdmin"
+      groups = [
+        "system:masters"
+      ]
+    },
+    {
       rolearn  = module.karpenter.role_arn
       username = "system:node:{{EC2PrivateDNSName}}"
       groups = [
         "system:bootstrappers",
         "system:nodes"
       ]
-    }
-  ]
-
-  aws_auth_users = [
-    {
-      userarn  = "arn:aws:sts::015817276163:assumed-role/AWSReservedSSO_AdministratorAccess_b320f43dea422846/mario.garcia@secuoyas.com"
-      groups   = ["system:masters"]
     }
   ]
 
