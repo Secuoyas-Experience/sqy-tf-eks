@@ -1,12 +1,3 @@
-terraform {
-  required_providers {
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = ">= 1.14.0"
-    }
-  }
-}
-
 provider "kubectl" {
   host                   = module.eks_blueprints.cluster_endpoint
   cluster_ca_certificate = base64decode(module.eks_blueprints.cluster_certificate_authority_data)
