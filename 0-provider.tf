@@ -2,7 +2,7 @@ terraform {
   cloud {
     organization = "secuoyas"
     workspaces {
-      name = "toolbox"
+      name = "toolbox-k8s"
     }
   }
   required_providers {
