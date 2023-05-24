@@ -1,11 +1,7 @@
-locals {
-  region = "eu-central-1"
-}
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "4.0.2"
-  name    = "toolbox"
+  name    = local.cluster_name
 
   cidr            = "10.0.0.0/16"
   azs             = ["${local.region}a", "${local.region}b", "${local.region}c"]
@@ -20,14 +16,14 @@ module "vpc" {
 
   tags = {
     Terraform   = "true"
-    Environment = "toolbox"
+    Environment = local.cluster_name
   }
 
   # karpenter needs to know which subnet to use
   # when creating a new node
   private_subnet_tags = {
     "kubernetes.io/role/internal-elb" = "1"
-    "karpenter.sh/discovery" : "toolbox"
+    "karpenter.sh/discovery"          = local.cluster_name
   }
 
   public_subnet_tags = {

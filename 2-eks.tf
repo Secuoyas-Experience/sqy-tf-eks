@@ -1,7 +1,7 @@
 module "eks_blueprints" {
   source                         = "terraform-aws-modules/eks/aws"
   version                        = "19.14.0"
-  cluster_name                   = "toolbox"
+  cluster_name                   = local.cluster_name
   cluster_version                = "1.24"
   cluster_endpoint_public_access = true
   vpc_id                         = module.vpc.vpc_id
@@ -49,7 +49,7 @@ module "eks_blueprints" {
   # matches provisioner. Otherwise pods won't
   # be eligible to be scheduled
   node_security_group_tags = {
-    "karpenter.sh/discovery" = "toolbox"
+    "karpenter.sh/discovery" = local.cluster_name
   }
 }
 
