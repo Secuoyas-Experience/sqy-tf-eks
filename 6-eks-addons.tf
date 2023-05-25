@@ -42,3 +42,15 @@ module "kubernetes_addons" {
     kubectl_manifest.karpenter_provisioner
   ]
 }
+
+# EXPOSING GRAFANA TO THE WORLD
+data "kubectl_file_documents" "grafana_service_and_ingress" {
+  content = file("${path.module}/manifests/grafana/ingress.yaml")
+}
+
+resource "kubectl_manifest" "grafana_service_and_ingress_apply" {
+  for_each           = data.kubectl_file_documents.grafana_service_and_ingress.manifests
+  override_namespace = "kube-prometheus-stack"
+  yaml_body          = each.value
+  depends_on         = [kubernetes_namespace.argocd_namespace]
+}
