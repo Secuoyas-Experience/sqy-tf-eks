@@ -15,6 +15,7 @@ module "kubernetes_addons" {
   enable_amazon_eks_aws_ebs_csi_driver = true # volume auto provisioning
   enable_aws_load_balancer_controller  = true # load balancer auto provisioning
   enable_metrics_server                = true # getting cluster metrics
+  enable_external_dns                  = true # updates DNS entries
   enable_cert_manager                  = true # certs auto provisioning (ACME)   
   enable_kube_prometheus_stack         = true # monitoring (prometheus/grafana)
   enable_velero                        = true # backup tool
