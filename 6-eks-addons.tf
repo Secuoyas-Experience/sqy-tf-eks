@@ -27,44 +27,6 @@ module "kubernetes_addons" {
   cert_manager_domain_names      = ["toolbox.secuoyas.com"]
   cert_manager_letsencrypt_email = "hola@secuoyas.com"
 
-  # ADDONS CUSTOMIZATION (kube-prometheus-stack)
-  kube_prometheus_stack_helm_config = {
-    set = [
-      {
-        name  = "extraSecretMounts[0].name"
-        value = "toolbox-secrets"
-      },
-      {
-        name  = "extraSecretMounts[0].mountPath"
-        value = "/etc/secrets/toolbox-secrets"
-      },
-      {
-        name  = "extraSecretMounts[0].defaultMode"
-        value = "0440"
-      },
-      {
-        name  = "extraSecretMounts[0].secretName"
-        value = "kube-prometheus-stack-grafana"
-      },
-      {
-        name  = "extraSecretMounts[0].readOnly"
-        value = true
-      },
-      {
-        name  = "extraSecretMounts[0].subPath"
-        value = "grafana.ini"
-      },
-      {
-        name  = "auth.google.client_id"
-        value = "$__file{/etc/secrets/toolbox-secrets/auth_google_client_id}"
-      },
-      {
-        name  = "client_secret"
-        value = "$__file{/etc/secrets/toolbox-secrets/auth_google_client_secret}"
-      }
-    ]
-  }
-
   # ADDONS CUSTOMIZATION (velero)
   velero_helm_config = {
     backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id                 # required by IAM policy
