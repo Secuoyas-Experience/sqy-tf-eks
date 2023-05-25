@@ -21,6 +21,8 @@ module "kubernetes_addons" {
   enable_velero                        = true # backup tool
 
   # ADDONS CUSTOMIZATION
+  eks_cluster_domain = "toolbox.secuoyas.com"
+
   velero_helm_config = {
     backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id                 # required by IAM policy
     values = [templatefile("${path.module}/manifests/velero/values.yaml", { # required for helm values.yaml
