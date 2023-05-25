@@ -20,9 +20,14 @@ module "kubernetes_addons" {
   enable_kube_prometheus_stack         = true # monitoring (prometheus/grafana)
   enable_velero                        = true # backup tool
 
-  # ADDONS CUSTOMIZATION
+  # ADDONS CUSTOMIZATION (aws-lb)
   eks_cluster_domain = "toolbox.secuoyas.com"
 
+  # ADDONS CUSTOMIZATION (cert-manager)
+  cert_manager_domain_names      = ["toolbox.secuoyas.com"]
+  cert_manager_letsencrypt_email = "hola@secuoyas.com"
+
+  # ADDONS CUSTOMIZATION (velero)
   velero_helm_config = {
     backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id                 # required by IAM policy
     values = [templatefile("${path.module}/manifests/velero/values.yaml", { # required for helm values.yaml
