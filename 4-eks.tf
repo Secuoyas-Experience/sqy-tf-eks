@@ -11,6 +11,12 @@ module "eks_blueprints" {
   # ----------
   # Just one because we are using karpenter to scale up/down
   # the cluster nodes
+  eks_managed_node_group_defaults = {
+    iam_role_additional_policies = {
+      AmazonEC2ContainerRegistryReadOnly = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+    }
+  }
+
   eks_managed_node_groups = {
     inception = {
       capacity_type   = "ON_DEMAND"
