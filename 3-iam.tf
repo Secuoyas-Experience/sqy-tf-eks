@@ -25,6 +25,20 @@ data "aws_iam_policy_document" "eks_read_policy_document" {
 
     resources = ["*"]
   }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:BatchGetImage",
+      "ecr:DescribeImages",
+      "ecr:DescribeRepositories",
+      "ecr:GetDownloadUrlForLayer"
+    ]
+
+    resources = ["*"]
+  }
 }
 
 data "aws_iam_policy_document" "assume_role_policy_document" {
