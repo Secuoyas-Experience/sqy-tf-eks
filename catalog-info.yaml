@@ -12,6 +12,6 @@ metadata:
       
 spec:
   type: library  
-  owner: infra-team
+  owner: infrastructure
   system: toolbox
   lifecycle: production
