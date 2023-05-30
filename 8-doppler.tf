@@ -1,11 +1,11 @@
-# resource "helm_release" "doppler_operator" {
-#   namespace  = "doppler-operator-system"
-#   name       = "doppler"
-#   repository = "https://helm.doppler.com"
-#   chart      = "doppler-kubernetes-operator"
-#   version    = "1.2.5"
+resource "helm_release" "doppler_operator" {
+  namespace  = "doppler-operator-system"
+  name       = "doppler"
+  repository = "https://helm.doppler.com"
+  chart      = "doppler-kubernetes-operator"
+  version    = "1.2.5"
 
-#   depends_on = [
-#     kubernetes_namespace.argocd_namespace
-#   ]
-# }
+  depends_on = [
+    kubernetes_namespace.argocd_namespace
+  ]
+}
