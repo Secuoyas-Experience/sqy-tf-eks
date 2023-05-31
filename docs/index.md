@@ -1,9 +1,10 @@
-# Secuoyas K8S
+# Toolbox K8S
 
-This repository centralizes the practices to create Kubernetes clusters in Secuoyas.
+Este repositorio quiere resolver la mayoria de dudas sobre el despliegue en produccion de Kubernetes en Secuoyas.
 
-- How to create a cluster
-- Tools recommended in all clusters
-- How to deploy new applications
-- How to document
-- ...
+- [Crear un cluster](./cluster.md)
+- [Desplegar applicaciones en el cluster](./deployments.md)
+- [Crear secretos integrados con Doppler](./secrets.md)
+- [Autoescalado del cluster](./scaling.md)
+- [Creacion y restauracion de backups](./backups.md)
+- [Monitorizacion de nuestras aplicaciones en el cluster](./monitoring.md)
