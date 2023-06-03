@@ -13,6 +13,12 @@ metadata:
     - url: https://backstage.toolbox.secuoyas.com/catalog/default/component/toolbox-k8s/docs
       title: Documentacion
       icon: Article
+  tags:
+    - k8s
+    - k8s-cluster
+    - infrastructure
+    - terraform
+    - helm
       
 spec:
   type: library  
