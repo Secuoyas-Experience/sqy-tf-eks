@@ -8,7 +8,11 @@ metadata:
     backstage.io/techdocs-ref: dir:.
   links:
     - url: https://github.com/Secuoyas-Experience/toolbox-k8s
-      title: Toolbox Infrastructure As Code
+      title: Github
+      icon: github
+    - url: https://backstage.toolbox.secuoyas.com/catalog/default/component/toolbox-k8s/docs
+      title: Documentacion
+      icon: article
       
 spec:
   type: library  
