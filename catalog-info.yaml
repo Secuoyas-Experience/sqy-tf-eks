@@ -12,7 +12,7 @@ metadata:
       icon: github
     - url: https://backstage.toolbox.secuoyas.com/catalog/default/component/toolbox-k8s/docs
       title: Documentacion
-      icon: menu_book
+      icon: Article
       
 spec:
   type: library  
