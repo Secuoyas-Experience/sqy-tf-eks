@@ -20,22 +20,28 @@ module "kubernetes_addons" {
   enable_kube_prometheus_stack         = true # monitoring (prometheus/grafana)
   enable_velero                        = true # backup tool
 
-  # ADDONS CUSTOMIZATION (kube-prometheus-stack)
+  # kube-prometheus-stack
   kube_prometheus_stack_helm_config = {
-    set = [{
-      name  = "grafana.enabled"
-      value = false
-    }]
+    set = [
+      {
+        name  = "grafana.envFromSecret"
+        value = "toolbox-grafana"
+      },
+      {
+        name  = "grafana.annotations"
+        value = "secrets.doppler.com/reload: 'true'"
+      }
+    ]
   }
 
-  # ADDONS CUSTOMIZATION (aws-lb)
+  # aws-lb
   eks_cluster_domain = "toolbox.secuoyas.com"
 
-  # ADDONS CUSTOMIZATION (cert-manager)
+  # cert-manager
   cert_manager_domain_names      = ["toolbox.secuoyas.com"]
   cert_manager_letsencrypt_email = "hola@secuoyas.com"
 
-  # ADDONS CUSTOMIZATION (velero)
+  # velero
   velero_helm_config = {
     backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id                 # required by IAM policy
     values = [templatefile("${path.module}/manifests/velero/values.yaml", { # required for helm values.yaml
@@ -51,14 +57,13 @@ module "kubernetes_addons" {
   ]
 }
 
-# EXPOSING GRAFANA TO THE WORLD
-# data "kubectl_file_documents" "grafana_service_and_ingress" {
-#   content = file("${path.module}/manifests/grafana/ingress.yaml")
-# }
+# ADDONS CUSTOMIZATION (kube-prometheus-stack/grafana)
+data "kubectl_path_documents" "grafana_manifests" {
+  pattern = "${path.module}/manifests/grafana/*.yaml"
+}
 
-# resource "kubectl_manifest" "grafana_service_and_ingress_apply" {
-#   for_each           = data.kubectl_file_documents.grafana_service_and_ingress.manifests
-#   override_namespace = "kube-prometheus-stack"
-#   yaml_body          = each.value
-#   depends_on         = [kubernetes_namespace.argocd_namespace]
-# }
+resource "kubectl_manifest" "grafana_service_and_ingress_apply" {
+  for_each   = data.kubectl_file_documents.grafana_manifests.manifests
+  yaml_body  = each.value
+  depends_on = [kubernetes_namespace.argocd_namespace]
+}

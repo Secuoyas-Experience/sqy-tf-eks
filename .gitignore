@@ -4,6 +4,9 @@
 **/secrets.yml
 **/secrets.yaml
 
+# Grafana secrets doesn't contain sensitive information
+!manifests/grafana/secrets.yaml
+
 # Terraform
 
 .terraform
