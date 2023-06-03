@@ -28,8 +28,10 @@ module "kubernetes_addons" {
         value = "toolbox-grafana"
       },
       {
-        name  = "grafana.annotations"
-        value = "secrets.doppler.com/reload: 'true'"
+        name = "grafana.annotations"
+        value = {
+          "secrets.doppler.com/reload" = "true"
+        }
       }
     ]
   }
