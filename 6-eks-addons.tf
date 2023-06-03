@@ -30,6 +30,7 @@ module "kubernetes_addons" {
       {
         name  = "grafana.annotations.secrets\\.doppler\\.com/reload"
         value = "true"
+        type  = "string"
       }
     ]
   }
