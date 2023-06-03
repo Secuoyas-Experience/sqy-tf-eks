@@ -20,6 +20,14 @@ module "kubernetes_addons" {
   enable_kube_prometheus_stack         = true # monitoring (prometheus/grafana)
   enable_velero                        = true # backup tool
 
+  # ADDONS CUSTOMIZATION (kube-prometheus-stack)
+  kube_prometheus_stack_helm_config = {
+    set = [{
+      name  = "grafana.enabled"
+      value = false
+    }]
+  }
+
   # ADDONS CUSTOMIZATION (aws-lb)
   eks_cluster_domain = "toolbox.secuoyas.com"
 
@@ -44,13 +52,13 @@ module "kubernetes_addons" {
 }
 
 # EXPOSING GRAFANA TO THE WORLD
-data "kubectl_file_documents" "grafana_service_and_ingress" {
-  content = file("${path.module}/manifests/grafana/ingress.yaml")
-}
+# data "kubectl_file_documents" "grafana_service_and_ingress" {
+#   content = file("${path.module}/manifests/grafana/ingress.yaml")
+# }
 
-resource "kubectl_manifest" "grafana_service_and_ingress_apply" {
-  for_each           = data.kubectl_file_documents.grafana_service_and_ingress.manifests
-  override_namespace = "kube-prometheus-stack"
-  yaml_body          = each.value
-  depends_on         = [kubernetes_namespace.argocd_namespace]
-}
+# resource "kubectl_manifest" "grafana_service_and_ingress_apply" {
+#   for_each           = data.kubectl_file_documents.grafana_service_and_ingress.manifests
+#   override_namespace = "kube-prometheus-stack"
+#   yaml_body          = each.value
+#   depends_on         = [kubernetes_namespace.argocd_namespace]
+# }
