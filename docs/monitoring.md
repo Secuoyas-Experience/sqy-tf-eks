@@ -84,8 +84,8 @@ GF_AUTH_GOOGLE_ALLOWED_DOMAINS="grafana.toolbox.secuoyas.com secuoyas.com"
 GF_AUTH_GOOGLE_HOSTED_DOMAIN="secuoyas.com"
 
 GF_SECURITY_ADMIN_EMAIL="support@secuoyas.com"
-GF_SECURITY_ADMIN_PASSWORD="adminpassword"
-GF_SECURITY_ADMIN_USER="admin"
+GF_SECURITY_ADMIN_PASSWORD="<PASSWORD>"
+GF_SECURITY_ADMIN_USER="<ADMIN_USER>"
 
 GF_SERVER_ROOT_URL="https://grafana.toolbox.secuoyas.com/"
 ```

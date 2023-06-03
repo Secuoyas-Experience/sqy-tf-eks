@@ -63,7 +63,7 @@ data "kubectl_path_documents" "grafana_manifests" {
 }
 
 resource "kubectl_manifest" "grafana_service_and_ingress_apply" {
-  for_each   = data.kubectl_file_documents.grafana_manifests.manifests
+  for_each   = data.kubectl_path_documents.grafana_manifests.manifests
   yaml_body  = each.value
   depends_on = [kubernetes_namespace.argocd_namespace]
 }
