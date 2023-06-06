@@ -16,7 +16,6 @@ module "kubernetes_addons" {
   enable_aws_load_balancer_controller  = true # load balancer auto provisioning
   enable_metrics_server                = true # getting cluster metrics
   enable_external_dns                  = true # updates DNS entries
-  enable_cert_manager                  = true # certs auto provisioning (ACME)   
   enable_kube_prometheus_stack         = true # monitoring (prometheus/grafana)
   enable_velero                        = true # backup tool
 
@@ -37,10 +36,6 @@ module "kubernetes_addons" {
 
   # aws-lb
   eks_cluster_domain = "toolbox.secuoyas.com"
-
-  # cert-manager
-  cert_manager_domain_names      = ["toolbox.secuoyas.com"]
-  cert_manager_letsencrypt_email = "hola@secuoyas.com"
 
   # velero
   velero_helm_config = {
