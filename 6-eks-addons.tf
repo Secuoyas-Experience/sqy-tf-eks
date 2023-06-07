@@ -17,7 +17,7 @@ module "kubernetes_addons" {
   enable_metrics_server                = true # getting cluster metrics
   enable_external_dns                  = true # updates DNS entries
   enable_kube_prometheus_stack         = true # monitoring (prometheus/grafana)
-  enable_velero                        = true # backup tool
+  # enable_velero                        = true # backup tool
 
   # kube-prometheus-stack
   kube_prometheus_stack_helm_config = {
@@ -38,13 +38,13 @@ module "kubernetes_addons" {
   eks_cluster_domain = "toolbox.secuoyas.com"
 
   # velero
-  velero_helm_config = {
-    backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id                 # required by IAM policy
-    values = [templatefile("${path.module}/manifests/velero/values.yaml", { # required for helm values.yaml
-      bucket = module.velero_s3_bucket.s3_bucket_id
-      region = "eu-central-1"
-    })]
-  }
+  # velero_helm_config = {
+  #   backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id                 # required by IAM policy
+  #   values = [templatefile("${path.module}/manifests/velero/values.yaml", { # required for helm values.yaml
+  #     bucket = module.velero_s3_bucket.s3_bucket_id
+  #     region = "eu-central-1"
+  #   })]
+  # }
 
   depends_on = [
     module.velero_s3_bucket,
