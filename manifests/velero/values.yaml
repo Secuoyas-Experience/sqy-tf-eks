@@ -6,13 +6,16 @@ initContainers:
         name: plugins
 
 configuration:
-  provider: aws
   backupStorageLocation:
-    bucket: ${bucket}
-    default: true
+    - name: default
+      provider: aws
+      bucket: ${bucket}
+      default: true
   volumeSnapshotLocation:
-    config:
-      region: ${region}
+    - name: default
+      provider: aws
+      config:
+        region: ${region}
 
 credentials:
   useSecret: false

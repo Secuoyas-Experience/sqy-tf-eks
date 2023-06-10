@@ -40,6 +40,7 @@ module "kubernetes_addons" {
   # velero
   velero_backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id # redundant but required because of bug
   velero_helm_config = {
+    version          = "4.3.0"
     backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id                 # required by IAM policy
     values = [templatefile("${path.module}/manifests/velero/values.yaml", { # required for helm values.yaml
       bucket = module.velero_s3_bucket.s3_bucket_id
