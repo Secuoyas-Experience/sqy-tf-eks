@@ -16,23 +16,7 @@ module "kubernetes_addons" {
   enable_aws_load_balancer_controller  = true # load balancer auto provisioning
   enable_metrics_server                = true # getting cluster metrics
   enable_external_dns                  = true # updates DNS entries
-  enable_kube_prometheus_stack         = true # monitoring (prometheus/grafana)
   enable_velero                        = true # backup tool
-
-  # kube-prometheus-stack
-  kube_prometheus_stack_helm_config = {
-    set = [
-      {
-        name  = "grafana.envFromSecret"
-        value = "toolbox-grafana"
-      },
-      {
-        name  = "grafana.annotations.secrets\\.doppler\\.com/reload"
-        value = "true"
-        type  = "string"
-      }
-    ]
-  }
 
   # aws-lb
   eks_cluster_domain = "toolbox.secuoyas.com"
@@ -53,15 +37,4 @@ module "kubernetes_addons" {
     kubectl_manifest.karpenter_template,
     kubectl_manifest.karpenter_provisioner
   ]
-}
-
-# ADDONS CUSTOMIZATION (kube-prometheus-stack/grafana)
-data "kubectl_path_documents" "grafana_manifests" {
-  pattern = "${path.module}/manifests/grafana/*.yaml"
-}
-
-resource "kubectl_manifest" "grafana_service_and_ingress_apply" {
-  for_each   = data.kubectl_path_documents.grafana_manifests.manifests
-  yaml_body  = each.value
-  depends_on = [kubernetes_namespace.argocd_namespace]
 }
