@@ -1,11 +1,8 @@
 # Secuoyas K8S
 
-- [Creating a new cluster](./docs/clusters.md)
-- [AWS](./docs/aws.md)
-- [Monitoring](./docs/monitoring.md)
-- [ArgoCD](./docs/argocd.md)
-- [Deploying Griddo on K8s](./docs/griddo.md)
-- [Deploying new Tools on K8s](./docs/tools.md)
-- [Deploying new Apps on k8s](./docs/apps.md)
-- [Certificates](./docs//certs.md)
-- [Backups](./docs/backups.md)
+[![docs](https://github.com/Secuoyas-Experience/toolbox-k8s/actions/workflows/techdocs.yml/badge.svg)](https://github.com/Secuoyas-Experience/toolbox-k8s/actions/workflows/techdocs.yml)
+
+Este repositorio contiene la creacion de la infrastructura del entorno Toolbox utilizando Terraform. Mas informacion:
+
+- [En el directorio /docs](./docs/)
+- En el [Backstage de Secuoyas](https://backstage.toolbox.secuoyas.com)

@@ -10,7 +10,7 @@ on:
 
 jobs:
   docs:
-    runs-on: ubuntu-latest
+    runs-on: toolbox-secuoyas
     name: docs
     permissions:
       id-token: write
