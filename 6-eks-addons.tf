@@ -7,7 +7,7 @@ module "velero_s3_bucket" {
 }
 
 module "kubernetes_addons" {
-  source         = "github.com/aws-ia/terraform-aws-eks-blueprints//modules/kubernetes-addons?ref=v4.31.0"
+  source         = "github.com/aws-ia/terraform-aws-eks-blueprints//modules/kubernetes-addons?ref=v4.32.1"
   eks_cluster_id = module.eks_blueprints.cluster_name
 
   # ADDONS
