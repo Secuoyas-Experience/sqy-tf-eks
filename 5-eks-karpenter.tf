@@ -58,20 +58,9 @@ resource "time_sleep" "wait_30_secs_after_helm_karpenter" {
   create_duration = "30s"
 }
 
-data "kubectl_path_documents" "provisioner_yamls" {
-  pattern = "${path.module}/manifests/karpenter/provisioners/*.yaml"
-}
-
-# karpenter default provisioner
-resource "kubectl_manifest" "karpenter_provisioner" {
-  for_each   = toset(data.kubectl_path_documents.provisioner_yamls.documents)
-  yaml_body  = each.value
-  depends_on = [time_sleep.wait_30_secs_after_helm_karpenter]
-}
-
 # karpenter default new node instance template
 resource "kubectl_manifest" "karpenter_template" {
-  yaml_body = templatefile("${path.module}/manifests/karpenter/nodes/default.yaml", {
+  yaml_body = templatefile("${path.module}/manifests/karpenter/default-node-template.yaml", {
     cluster_name          = module.eks_blueprints.cluster_name
     instance_profile_name = module.karpenter.instance_profile_name
   })
