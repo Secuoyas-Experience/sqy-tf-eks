@@ -34,7 +34,6 @@ module "kubernetes_addons" {
 
   depends_on = [
     module.velero_s3_bucket,
-    kubectl_manifest.karpenter_template,
-    kubectl_manifest.karpenter_provisioner
+    kubectl_manifest.karpenter_template
   ]
 }
