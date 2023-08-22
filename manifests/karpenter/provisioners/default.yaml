@@ -5,8 +5,8 @@ metadata:
 spec:
   limits:
     resources:
-      cpu: "20"
-      memory: "24Gi"
+      cpu: "18"
+      memory: "20Gi"
   requirements:
     - key: node.kubernetes.io/instance-type
       operator: In
