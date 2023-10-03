@@ -19,7 +19,7 @@ module "kubernetes_addons" {
   enable_velero                        = true # backup tool
 
   # aws-lb
-  eks_cluster_domain = "toolbox.secuoyas.com"
+  eks_cluster_domain = local.eks_domain_name
 
   # velero
   velero_backup_s3_bucket = module.velero_s3_bucket.s3_bucket_id # redundant but required because of bug
