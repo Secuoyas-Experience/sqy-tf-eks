@@ -1,10 +1,12 @@
 terraform {
-  cloud {
-    organization = "secuoyas"
-    workspaces {
-      name = "toolbox-k8s"
-    }
+  backend "s3" {
+    bucket  = "griddo-dev-tf-states"
+    key     = "griddo-dev"
+    region  = "eu-west-1"
+    profile = "griddo.dev"
+    encrypt = true
   }
+
   required_providers {
     kubectl = {
       source  = "gavinbunney/kubectl"
@@ -26,5 +28,6 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-central-1"
+  region  = "eu-west-1"
+  profile = "griddo.dev"
 }
