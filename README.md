@@ -1,8 +1,8 @@
 # Secuoyas K8S
 
-[![docs](https://github.com/Secuoyas-Experience/toolbox-k8s/actions/workflows/techdocs.yml/badge.svg)](https://github.com/Secuoyas-Experience/toolbox-k8s/actions/workflows/techdocs.yml)
+[![docs](https://github.com/Secuoyas-Experience/secuoyas-tf-eks/actions/workflows/techdocs.yml/badge.svg)](https://github.com/Secuoyas-Experience/secuoyas-tf-eks/actions/workflows/techdocs.yml)
 
-Este repositorio contiene la creacion de la infrastructura del entorno Toolbox utilizando Terraform. Mas informacion:
+Este repositorio es un modulo de Terraform para crear clusters de Kubernetes para AWS EKS:
 
 - [En el directorio /docs](./docs/)
 - En el [Backstage de Secuoyas](https://backstage.toolbox.secuoyas.com)

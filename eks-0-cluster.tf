@@ -1,8 +1,8 @@
-module "eks_blueprints" {
+module "cluster_eks" {
   source                         = "terraform-aws-modules/eks/aws"
-  version                        = "19.14.0"
-  cluster_name                   = local.cluster_name
-  cluster_version                = "1.24"
+  version                        = "19.16.0"
+  cluster_name                   = var.cluster_name
+  cluster_version                = var.cluster_kubernetes_version
   cluster_endpoint_public_access = true
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.private_subnets
@@ -22,11 +22,23 @@ module "eks_blueprints" {
       capacity_type   = "ON_DEMAND"
       node_group_name = "inception"
       instance_types  = ["t3a.medium"] # c5a.large
-      desired_size    = "1"
-      max_size        = "1"
-      min_size        = "1"
+      desired_size    = "3"
+      max_size        = "3"
+      min_size        = "3"
       public_subnets  = module.vpc.public_subnets
       private_subnets = module.vpc.private_subnets
+
+      labels = {
+        "organization"      = var.organization
+        "environment"       = var.environment
+        "sqy.es/node-group" = "inception"
+      }
+
+      tags = {
+        Environment  = var.organization
+        Organization = var.environment
+        Terraform    = true
+      }
     }
   }
 
@@ -48,56 +60,56 @@ module "eks_blueprints" {
         "system:masters"
       ]
     },
-    {
-      rolearn  = module.karpenter.role_arn
-      username = "system:node:{{EC2PrivateDNSName}}"
-      groups = [
-        "system:bootstrappers",
-        "system:nodes"
-      ]
-    }
+    # {
+    #   rolearn  = module.karpenter.role_arn
+    #   username = "system:node:{{EC2PrivateDNSName}}"
+    #   groups = [
+    #     "system:bootstrappers",
+    #     "system:nodes"
+    #   ]
+    # }
   ]
 
   # it's importat that only one security group
   # matches provisioner. Otherwise pods won't
   # be eligible to be scheduled
   node_security_group_tags = {
-    "karpenter.sh/discovery" = local.cluster_name
+    "karpenter.sh/discovery" = var.cluster_name
   }
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.eks_blueprints.cluster_name
+  name = module.cluster_eks.cluster_name
 }
 
 provider "kubernetes" {
-  host                   = module.eks_blueprints.cluster_endpoint
-  cluster_ca_certificate = base64decode(module.eks_blueprints.cluster_certificate_authority_data)
+  host                   = module.cluster_eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", module.eks_blueprints.cluster_name]
+    args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name]
     command     = "aws"
   }
 }
 
 provider "helm" {
   kubernetes {
-    host                   = module.eks_blueprints.cluster_endpoint
-    cluster_ca_certificate = base64decode(module.eks_blueprints.cluster_certificate_authority_data)
+    host                   = module.cluster_eks.cluster_endpoint
+    cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", module.eks_blueprints.cluster_name]
+      args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name]
       command     = "aws"
     }
   }
 }
 
 provider "kubectl" {
-  host                   = module.eks_blueprints.cluster_endpoint
-  cluster_ca_certificate = base64decode(module.eks_blueprints.cluster_certificate_authority_data)
+  host                   = module.cluster_eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", module.eks_blueprints.cluster_name]
+    args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name]
     command     = "aws"
   }
 }

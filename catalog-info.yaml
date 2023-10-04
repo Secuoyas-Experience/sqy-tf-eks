@@ -1,16 +1,16 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: toolbox-k8s
-  description: Toolbox organization kubernetes infrastructure
+  name: secuoyas-tf-eks
+  description: Terraform module to create EKS clusters
   annotations:
-    github.com/project-slug: Secuoyas-Experience/toolbox-k8s
+    github.com/project-slug: Secuoyas-Experience/secuoyas-tf-eks
     backstage.io/techdocs-ref: dir:.
   links:
-    - url: https://github.com/Secuoyas-Experience/toolbox-k8s
+    - url: https://github.com/Secuoyas-Experience/secuoyas-tf-eks
       title: Github
       icon: github
-    - url: https://backstage.toolbox.secuoyas.com/catalog/default/component/toolbox-k8s/docs
+    - url: https://backstage.toolbox.secuoyas.com/catalog/default/component/secuoyas-tf-eks/docs
       title: Documentacion
       icon: Article
   tags:

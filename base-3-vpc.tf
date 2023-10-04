@@ -1,10 +1,10 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "4.0.2"
-  name    = local.cluster_name
+  version = "5.1.2"
+  name    = var.cluster_name
 
   cidr            = "10.0.0.0/16"
-  azs             = ["${local.region}a", "${local.region}b", "${local.region}c"]
+  azs             = ["${var.cluster_region}a", "${var.cluster_region}b", "${var.cluster_region}c"]
   private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
@@ -15,15 +15,16 @@ module "vpc" {
   enable_dns_hostnames   = true
 
   tags = {
-    Terraform   = "true"
-    Environment = local.cluster_name
+    Terraform    = "true"
+    Organization = var.organization
+    Environment  = var.environment
   }
 
   # karpenter needs to know which subnet to use
   # when creating a new node
   private_subnet_tags = {
     "kubernetes.io/role/internal-elb" = "1"
-    "karpenter.sh/discovery"          = local.cluster_name
+    "karpenter.sh/discovery"          = var.cluster_name
   }
 
   public_subnet_tags = {

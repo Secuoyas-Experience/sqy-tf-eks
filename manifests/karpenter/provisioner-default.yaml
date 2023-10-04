@@ -1,0 +1,18 @@
+apiVersion: karpenter.sh/v1alpha5
+kind: Provisioner
+metadata:
+  name: default
+spec:
+  limits:
+    resources:
+      cpu: "16"
+      memory: "32Gi"
+  requirements:
+    - key: node.kubernetes.io/instance-type
+      operator: In
+      values:
+        - "t3.medium"
+  ttlSecondsAfterEmpty: 60
+  ttlSecondsUntilExpired: 604800        
+  providerRef:
+    name: default

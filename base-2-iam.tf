@@ -53,11 +53,11 @@ data "aws_iam_policy_document" "assume_role_policy_document" {
 }
 
 resource "aws_iam_role" "kube_admin_role" {
-  name               = "${local.cluster_name}-kube-admin"
+  name               = "${var.cluster_name}-kube-admin"
   assume_role_policy = data.aws_iam_policy_document.assume_role_policy_document.json
 
   inline_policy {
-    name   = "${local.cluster_name}-kube-allowed-to-read"
+    name   = "${var.cluster_name}-kube-allowed-to-read"
     policy = data.aws_iam_policy_document.eks_read_policy_document.json
   }
 }
