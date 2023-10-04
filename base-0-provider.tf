@@ -1,8 +1,8 @@
 terraform {
   backend "s3" {
-    bucket  = "griddo-dev-tf-states"
-    key     = "griddo-dev"
-    region  = "eu-west-1"
+    bucket = "griddo-dev-tf-states"
+    key    = "griddo-dev"
+    region = "eu-west-1"
     #profile = "griddo.dev"
     encrypt = true
   }
@@ -28,6 +28,6 @@ terraform {
 }
 
 provider "aws" {
-  region  = "eu-central-1"
+  region = "eu-central-1"
   #profile = "griddo.dev"
 }
