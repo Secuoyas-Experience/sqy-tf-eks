@@ -25,7 +25,13 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         with:
           terraform_version: 1.5.7
-      - name:  Execute TF plan
-        run: |
-          terraform init
-          terraform validate
+      - name: TF init
+        run: terraform init
+      - name: TF check
+        run: terraform fmt -check
+      - name: TF validate
+        run: terraform validate
+      - name: TF plan
+        run: terraform plan
+      - name: TF apply
+        run: terraform apply -auto-approve
