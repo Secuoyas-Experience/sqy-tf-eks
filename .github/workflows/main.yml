@@ -6,12 +6,12 @@ on:
   workflow_dispatch:
 
 env: 
-  cluster_domain : ${{ secrets.CLUSTER_DOMAIN }} 
-  cluster_region : ${{ secrets.CLUSTER_REGION }} 
-  cluster_name : ${{ secrets.CLUSTER_NAME }} 
-  cluster_kubernetes_version : ${{ secrets.CLUSTER_KUBERNETES_VERSION }} 
-  organization : ${{ secrets.ORGANIZATION }}
-  environment : ${{ secrets.ENVIRONMENT }} 
+  TF_VAR_cluster_domain : ${{ secrets.CLUSTER_DOMAIN }} 
+  TF_VAR_cluster_region : ${{ secrets.CLUSTER_REGION }} 
+  TF_VAR_cluster_name : ${{ secrets.CLUSTER_NAME }} 
+  TF_VAR_cluster_kubernetes_version : ${{ secrets.CLUSTER_KUBERNETES_VERSION }} 
+  TF_VAR_organization : ${{ secrets.ORGANIZATION }}
+  TF_VAR_environment : ${{ secrets.ENVIRONMENT }} 
 
 permissions:
   id-token: write   # This is required for requesting the JWT
