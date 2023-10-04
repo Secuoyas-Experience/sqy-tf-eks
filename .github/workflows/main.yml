@@ -1,7 +1,8 @@
 name: Push main
 on:
-  #push:
-  #  - main
+  push:
+    branches:
+      - main
   workflow_dispatch:
   
 permissions:
@@ -9,7 +10,7 @@ permissions:
   contents: read    # This is required for actions/checkout
   
 jobs:
-  S3PackageUpload:
+  TerraformPlan:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone the repository
