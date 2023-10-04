@@ -4,7 +4,15 @@ on:
     branches:
       - main
   workflow_dispatch:
-  
+
+env: 
+  cluster_domain : ${{ secrets.CLUSTER_DOMAIN }} 
+  cluster_region : ${{ secrets.CLUSTER_REGION }} 
+  cluster_name : ${{ secrets.CLUSTER_NAME }} 
+  cluster_kubernetes_version : ${{ secrets.CLUSTER_KUBERNETES_VERSION }} 
+  organization : ${{ secrets.ORGANIZATION }}
+  environment : ${{ secrets.ENVIRONMENT }} 
+
 permissions:
   id-token: write   # This is required for requesting the JWT
   contents: read    # This is required for actions/checkout
