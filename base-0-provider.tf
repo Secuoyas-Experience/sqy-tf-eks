@@ -3,7 +3,7 @@ terraform {
     bucket  = "griddo-dev-tf-states"
     key     = "griddo-dev"
     region  = "eu-west-1"
-    profile = "griddo.dev"
+    #profile = "griddo.dev"
     encrypt = true
   }
 
@@ -29,5 +29,5 @@ terraform {
 
 provider "aws" {
   region  = "eu-central-1"
-  profile = "griddo.dev"
+  #profile = "griddo.dev"
 }
