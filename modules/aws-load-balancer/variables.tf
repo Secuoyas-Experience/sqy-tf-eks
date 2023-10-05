@@ -11,3 +11,9 @@ variable "helm_version" {
   description = "helm chart version"
   default     = "1.5.4"
 }
+
+variable "timeout" {
+  type        = number
+  description = "helm release timout (sec)"
+  default     = 60
+}

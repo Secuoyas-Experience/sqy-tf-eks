@@ -14,6 +14,9 @@ module "aws_load_balancer_controller_addon" {
   source         = "aws-ia/eks-blueprints-addon/aws"
   chart          = "aws-load-balancer-controller"
   chart_version  = var.helm_version
+  wait           = true
+  wait_for_jobs  = true
+  timeout        = var.timeout
   repository     = "https://aws.github.io/eks-charts"
   description    = "aws-load-balancer-controller Helm Chart for ingress resources"
   namespace      = "kube-system"

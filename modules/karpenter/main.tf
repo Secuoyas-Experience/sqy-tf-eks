@@ -12,7 +12,9 @@ resource "helm_release" "karpenter" {
   name             = "karpenter"
   repository       = "oci://public.ecr.aws/karpenter"
   chart            = "karpenter"
+  timeout          = var.timeout
   version          = var.helm_version
+  wait_for_jobs    = true
 
   set {
     name  = "settings.aws.clusterName"
@@ -55,17 +57,17 @@ resource "helm_release" "karpenter" {
 # webhook doesn't pickup and I can't set the liveProbeness
 # to last longer so that's why I'm creating a terraform
 # timeout
-resource "time_sleep" "wait_60_secs_after_helm_karpenter" {
+resource "time_sleep" "wait_after_helm_karpenter" {
   depends_on      = [helm_release.karpenter]
-  create_duration = "60s"
+  create_duration = "120s"
 }
 
 resource "kubectl_manifest" "karpenter_node_template" {
-  yaml_body  = templatefile("${path.module}/default-node.yaml", {
+  yaml_body = templatefile("${path.module}/default-node.yaml", {
     cluster_name          = var.cluster_name
     instance_profile_name = module.karpenter.instance_profile_name
   })
-  depends_on = [time_sleep.wait_60_secs_after_helm_karpenter]
+  depends_on = [time_sleep.wait_after_helm_karpenter]
 }
 
 data "kubectl_path_documents" "karpenter_providers_path" {

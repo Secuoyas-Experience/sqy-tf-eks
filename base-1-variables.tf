@@ -29,6 +29,12 @@ variable "environment" {
   description = "Type of environment (dev,stg,prod)"
 }
 
+variable "addons_helm_timeout" {
+  type        = number
+  description = "helm release timeout seconds"
+  default     = 600
+}
+
 variable "addons_velero_version" {
   type        = string
   description = "Velero Helm Chart version"

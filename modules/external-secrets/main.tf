@@ -4,6 +4,7 @@ resource "helm_release" "external-secrets" {
   name             = "external-secrets"
   repository       = "https://charts.external-secrets.io"
   chart            = "external-secrets"
+  timeout          = var.timeout
   version          = var.helm_version
 }
 

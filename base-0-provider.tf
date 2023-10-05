@@ -1,16 +1,15 @@
 terraform {
   backend "s3" {
-    bucket = "griddo-dev-tf-states"
-    key    = "griddo-dev"
-    region = "eu-west-1"
-    #profile = "griddo.dev"
+    bucket  = "griddo-dev-tf-states"
+    key     = "griddo-dev"
+    region  = "eu-west-1"
     encrypt = true
   }
 
   required_providers {
     kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = ">=1.14.0"
+      source  = "alekc/kubectl"
+      version = "~> 2.0"
     }
     aws = {
       source  = "hashicorp/aws"
@@ -28,6 +27,5 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-central-1"
-  #profile = "griddo.dev"
+  region  = "eu-central-1"
 }

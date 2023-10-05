@@ -20,6 +20,12 @@ variable "helm_version" {
   default = "v0.31.0"
 }
 
+variable "timeout" {
+  type        = number
+  description = "helm release timout (sec)"
+  default     = 60
+}
+
 variable "provisioners_dir" {
   type        = string
   description = "directory where manifests of provisioners can be found"
