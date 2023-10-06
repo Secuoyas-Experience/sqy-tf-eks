@@ -1,22 +1,22 @@
-name: Push main
+name: Create/Update K8S Cluster
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 
-env: 
-  TF_VAR_cluster_domain : ${{ secrets.CLUSTER_DOMAIN }} 
-  TF_VAR_cluster_region : ${{ secrets.CLUSTER_REGION }} 
-  TF_VAR_cluster_name : ${{ secrets.CLUSTER_NAME }} 
-  TF_VAR_cluster_kubernetes_version : ${{ secrets.CLUSTER_KUBERNETES_VERSION }} 
-  TF_VAR_organization : ${{ secrets.ORGANIZATION }}
-  TF_VAR_environment : ${{ secrets.ENVIRONMENT }} 
+env:
+  TF_VAR_cluster_domain: ${{ secrets.CLUSTER_DOMAIN }}
+  TF_VAR_cluster_region: ${{ secrets.CLUSTER_REGION }}
+  TF_VAR_cluster_name: ${{ secrets.CLUSTER_NAME }}
+  TF_VAR_cluster_kubernetes_version: ${{ secrets.CLUSTER_KUBERNETES_VERSION }}
+  TF_VAR_organization: ${{ secrets.ORGANIZATION }}
+  TF_VAR_environment: ${{ secrets.ENVIRONMENT }}
 
 permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
-  
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
 jobs:
   TerraformPlan:
     runs-on: ubuntu-latest

@@ -1,0 +1,45 @@
+name: Destroy K8S cluster
+on:
+  workflow_dispatch:
+
+env:
+  TF_VAR_cluster_domain: ${{ secrets.CLUSTER_DOMAIN }}
+  TF_VAR_cluster_region: ${{ secrets.CLUSTER_REGION }}
+  TF_VAR_cluster_name: ${{ secrets.CLUSTER_NAME }}
+  TF_VAR_cluster_kubernetes_version: ${{ secrets.CLUSTER_KUBERNETES_VERSION }}
+  TF_VAR_organization: ${{ secrets.ORGANIZATION }}
+  TF_VAR_environment: ${{ secrets.ENVIRONMENT }}
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+jobs:
+  TerraformPlan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::756537058243:role/GriddoGithubCanExecTF_role
+          role-session-name: terraformPlanning
+          aws-region: eu-central-1
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.7
+      - name: TF init
+        run: terraform init
+      - name: TF destroy
+        run: terraform destroy -auto-approve
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1.23.0
+        if: steps.tfapply.outcome == 'success'
+        with:
+          payload: '{"text": "🎉 Destruido correctamente el plan en secuoyas-tf-eks"}'
+        env:
+          #TODO: poner este valor en un secret
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
