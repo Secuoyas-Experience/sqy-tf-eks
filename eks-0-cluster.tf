@@ -7,6 +7,12 @@ module "cluster_eks" {
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.private_subnets
 
+  # required for using the cluster KMS keys
+  kms_key_users = ["arn:aws:iam::756537058243:role/GriddoGithubCanExecTF_role"]
+
+  # required for managing the cluster KMS keys
+  # kms_key_owners = []
+
   # Node Group
   # ----------
   # Just one because we are using karpenter to scale up/down

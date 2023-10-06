@@ -46,11 +46,11 @@ jobs:
       - name: TF apply
         id: tfapply
         run: terraform apply -auto-approve
-      - name: Notify Slack
-        uses: slackapi/slack-github-action@v1.23.0
-        if: steps.tfapply.outcome == 'success'
-        with:
-          payload: '{"text": "🎉  Aplicado correctamente el plan en secuoyas-tf-eks"}'
-        env:
-          #TODO: poner este valor en un secret
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+      # - name: Notify Slack
+      #   uses: slackapi/slack-github-action@v1.23.0
+      #   if: steps.tfapply.outcome == 'success'
+      #   with:
+      #     payload: '{"text": "🎉  Aplicado correctamente el plan en secuoyas-tf-eks"}'
+      #   env:
+      #     #TODO: poner este valor en un secret
+      #     SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
