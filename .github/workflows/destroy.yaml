@@ -34,10 +34,11 @@ jobs:
       - name: TF init
         run: terraform init
       - name: TF destroy
+        id: tfdestroy
         run: terraform destroy -auto-approve
       - name: Notify Slack
         uses: slackapi/slack-github-action@v1.23.0
-        if: steps.tfapply.outcome == 'success'
+        if: steps.tfdestroy.outcome == 'success'
         with:
           payload: '{"text": "🎉 Destruido correctamente el plan en secuoyas-tf-eks"}'
         env:
