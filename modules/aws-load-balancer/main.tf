@@ -1,7 +1,9 @@
 resource "aws_iam_policy" "aws_load_balancer_controller" {
   name        = "${var.cluster_name}-lb-irsa"
   description = "Allows lb controller to manage ALB and NLB"
-  policy      = data.aws_iam_policy_document.aws_lb.json
+  policy = templatefile("${path.module}/iam-policy.json", {
+    aws_partition = data.aws_partition.current.partition
+  })
 
   tags = {
     Terraform = true
@@ -29,6 +31,7 @@ module "aws_load_balancer_controller_addon" {
     <<-EOT
         clusterName: ${var.cluster_name}
         region: ${data.aws_region.current.name}
+        enableServiceMutatorWebhook: false
     EOT
   ]
 

@@ -3,6 +3,7 @@ terraform {
     bucket  = "griddo-dev-tf-states"
     key     = "griddo-dev"
     region  = "eu-west-1"
+    profile = "griddo.dev"
     encrypt = true
   }
 
@@ -13,7 +14,7 @@ terraform {
     }
     aws = {
       source  = "hashicorp/aws"
-      version = ">=4.67.0"
+      version = ">=5.19.0"
     }
     kubernetes = {
       source  = "hashicorp/kubernetes"
@@ -21,11 +22,12 @@ terraform {
     }
     helm = {
       source  = "hashicorp/helm"
-      version = ">=2.9.0"
+      version = ">=2.11.0"
     }
   }
 }
 
 provider "aws" {
-  region = "eu-central-1"
+  region  = "eu-central-1"
+  profile = "griddo.dev"
 }

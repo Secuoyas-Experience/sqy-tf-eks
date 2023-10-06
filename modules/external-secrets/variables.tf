@@ -17,7 +17,7 @@ variable "use_ssm" {
 variable "helm_version" {
   type        = string
   description = "version of external-secret helm chart version"
-  default     = "0.9.4"
+  default     = "0.9.5"
 }
 
 variable "timeout" {

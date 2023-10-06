@@ -1,17 +1,12 @@
 # sensitive information
-
 **/config.toml
 **/secrets.yml
 **/secrets.yaml
+**/config.yaml
 
-# Grafana secrets doesn't contain sensitive information
-!manifests/grafana/secrets.yaml
-
-# Terraform
-
+# terraform
 .terraform
 .terraform.lock.hcl
-
 terraform.tfstate
 terraform.tfstate.backup
 terraform.tfvars
@@ -19,3 +14,6 @@ terraform.tfvars
 # mkdocs
 .env
 site
+
+# ides
+.vscode

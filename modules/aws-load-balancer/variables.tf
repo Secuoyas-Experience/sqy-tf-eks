@@ -9,7 +9,7 @@ variable "cluster_oidc_provider_arn" {
 variable "helm_version" {
   type        = string
   description = "helm chart version"
-  default     = "1.5.4"
+  default     = "1.6.1"
 }
 
 variable "timeout" {

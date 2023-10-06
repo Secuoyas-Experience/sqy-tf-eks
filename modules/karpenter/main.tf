@@ -1,6 +1,6 @@
 module "karpenter" {
   source                 = "terraform-aws-modules/eks/aws//modules/karpenter"
-  version                = "19.15.3"
+  version                = "19.16.0"
   cluster_name           = var.cluster_name
   irsa_oidc_provider_arn = var.cluster_oidc_provider_arn
   create_irsa            = true
@@ -62,7 +62,7 @@ resource "time_sleep" "wait_after_helm_karpenter" {
   create_duration = "120s"
 }
 
-resource "kubectl_manifest" "karpenter_node_template" {
+resource "kubectl_manifest" "karpenter_default_node_template" {
   yaml_body = templatefile("${path.module}/default-node.yaml", {
     cluster_name          = var.cluster_name
     instance_profile_name = module.karpenter.instance_profile_name
@@ -70,12 +70,7 @@ resource "kubectl_manifest" "karpenter_node_template" {
   depends_on = [time_sleep.wait_after_helm_karpenter]
 }
 
-data "kubectl_path_documents" "karpenter_providers_path" {
-  pattern = "${var.provisioners_dir}/*.yaml"
-}
-
-resource "kubectl_manifest" "karpenter_providers" {
-  for_each   = toset(data.kubectl_path_documents.karpenter_providers_path.documents)
-  yaml_body  = each.value
-  depends_on = [kubectl_manifest.karpenter_node_template]
+resource "kubectl_manifest" "karpenter_default_provider" {
+  yaml_body  = file("${path.module}/default-provisioner.yaml")
+  depends_on = [kubectl_manifest.karpenter_default_node_template]
 }

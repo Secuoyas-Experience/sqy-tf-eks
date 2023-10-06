@@ -56,17 +56,17 @@ variable "addons_argocd_version" {
 variable "addons_aws_load_balancer_version" {
   type        = string
   description = "EKS AWS Load Balancer Helm Chart version"
-  default     = "1.5.4"
+  default     = "1.6.1"
 }
 
 variable "addons_external_secrets_version" {
   type        = string
   description = "External Secrets Helm Chart version"
-  default     = "0.9.0"
+  default     = "0.9.5"
 }
 
 variable "addons_reloader_version" {
   type        = string
   description = "Stakater Reloader Helm Chart version"
-  default     = "1.0.38"
+  default     = "1.0.42"
 }
