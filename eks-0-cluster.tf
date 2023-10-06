@@ -7,11 +7,6 @@ module "cluster_eks" {
   vpc_id                         = module.vpc.vpc_id
   subnet_ids                     = module.vpc.private_subnets
 
-  # required for managing the cluster KMS keys
-  kms_key_owners = [
-    "arn:aws:sts::756537058243:assumed-role/GriddoGithubCanExecTF_role/terraformPlanning"
-  ]
-
   # Node Group
   # ----------
   # Just one because we are using karpenter to scale up/down
@@ -83,66 +78,34 @@ module "cluster_eks" {
   }
 }
 
-# data "aws_eks_cluster_auth" "cluster" {
-#   name = module.cluster_eks.cluster_name
-# }
-
-data "aws_eks_cluster" "default" {
-  name = module.cluster_eks.cluster_name
-}
-
-data "aws_eks_cluster_auth" "default" {
-  name = module.cluster_eks.cluster_name
-}
-
 provider "kubernetes" {
-  host                   = data.aws_eks_cluster.default.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
-  token                  = data.aws_eks_cluster_auth.default.token
+  host                   = module.cluster_eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "aws"
+    args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name]
+  }
 }
 
 provider "helm" {
   kubernetes {
     host                   = module.cluster_eks.cluster_endpoint
     cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
-    token                  = data.aws_eks_cluster_auth.default.token
+    exec {
+      api_version = "client.authentication.k8s.io/v1beta1"
+      command     = "aws"
+      args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name, ]
+    }
   }
 }
 
 provider "kubectl" {
   host                   = module.cluster_eks.cluster_endpoint
   cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
-  token                  = data.aws_eks_cluster_auth.default.token
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "aws"
+    args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name]
+  }
 }
-
-# provider "kubernetes" {
-#   host                   = module.cluster_eks.cluster_endpoint
-#   cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
-#   exec {
-#     api_version = "client.authentication.k8s.io/v1beta1"
-#     args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name]
-#     command     = "aws"
-#   }
-# }
-
-# provider "helm" {
-#   kubernetes {
-#     host                   = module.cluster_eks.cluster_endpoint
-#     cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
-#     exec {
-#       api_version = "client.authentication.k8s.io/v1beta1"
-#       args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name]
-#       command     = "aws"
-#     }
-#   }
-# }
-
-# provider "kubectl" {
-#   host                   = module.cluster_eks.cluster_endpoint
-#   cluster_ca_certificate = base64decode(module.cluster_eks.cluster_certificate_authority_data)
-#   exec {
-#     api_version = "client.authentication.k8s.io/v1beta1"
-#     args        = ["eks", "get-token", "--cluster-name", module.cluster_eks.cluster_name]
-#     command     = "aws"
-#   }
-# }
