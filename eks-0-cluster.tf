@@ -22,9 +22,9 @@ module "cluster_eks" {
       capacity_type   = "ON_DEMAND"
       node_group_name = "inception"
       instance_types  = ["t3a.medium"] # c5a.large
-      desired_size    = "1"
-      max_size        = "1"
-      min_size        = "1"
+      desired_size    = "2"
+      max_size        = "2"
+      min_size        = "2"
       public_subnets  = module.vpc.public_subnets
       private_subnets = module.vpc.private_subnets
 
@@ -60,14 +60,14 @@ module "cluster_eks" {
         "system:masters"
       ]
     },
-    {
-      rolearn  = module.karpenter.role_arn
-      username = "system:node:{{EC2PrivateDNSName}}"
-      groups = [
-        "system:bootstrappers",
-        "system:nodes"
-      ]
-    }
+    # {
+    #   rolearn  = module.karpenter.role_arn
+    #   username = "system:node:{{EC2PrivateDNSName}}"
+    #   groups = [
+    #     "system:bootstrappers",
+    #     "system:nodes"
+    #   ]
+    # }
   ]
 
   # it's importat that only one security group

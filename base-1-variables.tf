@@ -16,7 +16,7 @@ variable "cluster_name" {
 variable "cluster_kubernetes_version" {
   type        = string
   description = "Cluster kubernetes version"
-  default     = "1.28"
+  default     = "1.27"
 }
 
 variable "organization" {
@@ -31,8 +31,8 @@ variable "environment" {
 
 variable "addons_helm_timeout" {
   type        = number
-  description = "helm release timeout seconds"
-  default     = 600
+  description = "helm release timeout seconds (default 1200 sec -> 20 min)"
+  default     = 1500
 }
 
 variable "addons_velero_version" {
@@ -51,6 +51,13 @@ variable "addons_argocd_version" {
   type        = string
   description = "ArgoCD Helm Chart version"
   default     = "5.46.7"
+}
+
+# https://github.com/argoproj/argo-helm/tree/main/charts/argo-events
+variable "addons_argo_events_version" {
+  type        = string
+  description = "Argo Events Helm Chart version"
+  default     = "2.4.1"
 }
 
 variable "addons_aws_load_balancer_version" {
