@@ -7,13 +7,11 @@ module "eks_addons" {
   cluster_version   = module.cluster_eks.cluster_version
   oidc_provider_arn = module.cluster_eks.oidc_provider_arn
 
-  enable_metrics_server               = true
-  enable_external_dns                 = true
-  enable_external_secrets             = true
-  enable_argocd                       = true
-  enable_argo_events                  = true
-  enable_aws_load_balancer_controller = true
-  enable_karpenter                    = true
+  enable_metrics_server   = true
+  enable_external_dns     = true
+  enable_external_secrets = true
+  enable_argocd           = true
+  enable_argo_events      = true
 
   ################################## 
   ######### AWS EKS ADDONS #########
@@ -49,22 +47,6 @@ module "eks_addons" {
   ################################## 
   ######### OSS EKS ADDONS #########
   ##################################
-  karpenter = {
-    chart_version = var.addons_karpenter_version
-    timeout       = var.addons_helm_timeout
-  }
-
-  aws_load_balancer_controller = {
-    chart_version = var.addons_aws_load_balancer_version
-    timeout       = var.addons_helm_timeout
-    set = [
-      {
-        name  = "enableServiceMutatorWebhook"
-        value = "false"
-      }
-    ]
-  }
-
   argocd = {
     chart_version = var.addons_argocd_version
     timeout       = var.addons_helm_timeout
@@ -100,11 +82,38 @@ module "eks_addons" {
   }
 }
 
+# resource "helm_release" "argocd" {
+#   name             = "argo-cd"
+#   repository       = "https://argoproj.github.io/argo-helm"
+#   chart            = "argo-cd"
+#   version          = var.addons_argocd_version
+#   create_namespace = true
+#   depends_on       = [module.eks_addons]
+# }
+
+module "karpenter" {
+  source                    = "./modules/karpenter"
+  helm_version              = var.addons_karpenter_version
+  cluster_name              = module.cluster_eks.cluster_name
+  cluster_endpoint          = module.cluster_eks.cluster_endpoint
+  cluster_oidc_provider_arn = module.cluster_eks.oidc_provider_arn
+  node_group_name           = "inception"
+  depends_on                = [module.eks_addons]
+}
+
+module "eks-aws-load-balancer" {
+  source                    = "./modules/aws-load-balancer"
+  cluster_name              = module.cluster_eks.cluster_name
+  cluster_oidc_provider_arn = module.cluster_eks.oidc_provider_arn
+  helm_version              = var.addons_aws_load_balancer_version
+  depends_on                = [module.karpenter]
+}
+
 resource "helm_release" "reloader" {
   name       = "stakater"
   repository = "https://stakater.github.io/stakater-charts"
   chart      = "reloader"
   version    = var.addons_reloader_version
   timeout    = var.addons_helm_timeout
-  depends_on = [module.eks_addons]
+  depends_on = [module.eks-aws-load-balancer]
 }
