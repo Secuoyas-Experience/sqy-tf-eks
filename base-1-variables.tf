@@ -31,8 +31,8 @@ variable "environment" {
 
 variable "addons_helm_timeout" {
   type        = number
-  description = "helm release timeout seconds (default 1200 sec -> 20 min)"
-  default     = 1500
+  description = "helm release timeout seconds (default 1800 sec -> 30 min)"
+  default     = 1800
 }
 
 variable "addons_velero_version" {
