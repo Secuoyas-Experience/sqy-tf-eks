@@ -1,3 +1,0 @@
-# Autoescalado (Karpenter)
-
-TODO

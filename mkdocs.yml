@@ -1,13 +1,8 @@
-site_name: 'toolbox-k8s'
+site_name: 'secuoyas-tf-eks'
 
 nav:
   - index.md
-  - cluster.md
-  - applications.md
-  - secrets.md
-  - scaling.md
-  - monitoring.md
-  - backups.md
+
 
 plugins:
  - techdocs-core
