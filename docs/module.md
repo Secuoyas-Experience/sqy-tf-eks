@@ -1,8 +1,8 @@
-Este módulo consta de unos archivos de configuración inicial de terraform con los que se crean los recursos de AWS necesarios.
+# Estructura
 
-A continuación se marcan los campos que hay que especificar para la creación de un clúster nuevo para un proyecto en concreto.
+Este módulo consta de unos archivos de configuración inicial de terraform con los que se crean los recursos de AWS necesarios. A continuación se marcan los campos que hay que especificar para la creación de un clúster nuevo para un proyecto en concreto.
 
-#### base-0-provider.tf
+## base-0-provider.tf
 
 ```
 terraform {
@@ -39,7 +39,7 @@ provider "aws" {
 
 ```
 
-#### base-1-variables.tf
+## base-1-variables.tf
 
 ```
 variable "cluster_domain" {
@@ -123,10 +123,13 @@ variable "addons_reloader_version" {
 }
 
 ```
-#### base-2-iam.tf
-#### base-3-vpc.tf
-#### base-4-dns.tf
-#### eks-0-cluster.tf
-#### eks-1-addons.tf
 
+## base-2-iam.tf
 
+## base-3-vpc.tf
+
+## base-4-dns.tf
+
+## eks-0-cluster.tf
+
+## eks-1-addons.tf
