@@ -1,4 +1,4 @@
-### Intro
+# Intro
 
 Este repositorio es un módulo de Terraform para el aprovisionamiento de un clúster de Amazon EKS básico.
 
@@ -6,7 +6,7 @@ Este repositorio es un módulo de Terraform para el aprovisionamiento de un clú
 <img src="images/terraform_logo.png" width="100"/>
 <img src="images/kubernetes_logo.png" width="100"/>
 
-### Requisitos previos
+## Requisitos previos
 
 - Cuenta de AWS
 - [Instalar Terraform](https://developer.hashicorp.com/terraform/downloads)
