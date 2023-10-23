@@ -105,7 +105,7 @@ module "karpenter" {
   cluster_endpoint          = module.cluster_eks.cluster_endpoint
   cluster_oidc_provider_arn = module.cluster_eks.oidc_provider_arn
   node_group_name           = "inception"
-  depends_on                = [module.eks_addons]
+  # depends_on                = [module.eks_addons]
 }
 
 module "eks-aws-load-balancer" {
