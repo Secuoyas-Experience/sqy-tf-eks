@@ -77,3 +77,9 @@ variable "addons_reloader_version" {
   description = "Stakater Reloader Helm Chart version"
   default     = "1.0.42"
 }
+
+variable "addons_cert_manager_version" {
+  type        = string
+  description = "Cert Manager operator Helm Chart version"
+  default     = "1.13"
+}

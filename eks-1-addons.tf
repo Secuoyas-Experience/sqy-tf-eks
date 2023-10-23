@@ -12,6 +12,7 @@ module "eks_addons" {
   enable_external_secrets = true
   enable_argocd           = true
   enable_argo_events      = true
+  enable_cert_manager     = true
 
   ################################## 
   ######### AWS EKS ADDONS #########
@@ -79,6 +80,12 @@ module "eks_addons" {
         value = "sync"
       }
     ]
+  }
+
+  cert_manager = {
+    chart_version = var.addons_cert_manager_version
+    timeout       = var.addons_helm_timeout
+    wait          = false
   }
 }
 
