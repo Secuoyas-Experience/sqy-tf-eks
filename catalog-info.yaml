@@ -21,5 +21,5 @@ metadata:
 spec:
   type: library  
   owner: infrastructure
-  system: griddo-dev
+  system: secuoyas-experience
   lifecycle: experimental
