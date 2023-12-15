@@ -41,7 +41,7 @@ Una vez establezcas los valores deseados, puedes pasar a [instalar](#instalacion
 Las variables de configuracion
 
 ```ruby
---8<-- "base-0-variables.tf"
+--8<-- "base-1-variables.tf"
 ```
 
 ## Instalar
