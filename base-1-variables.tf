@@ -81,5 +81,5 @@ variable "addons_reloader_version" {
 variable "addons_cert_manager_version" {
   type        = string
   description = "Cert Manager operator Helm Chart version"
-  default     = "1.13"
+  default     = "1.13.3"
 }
