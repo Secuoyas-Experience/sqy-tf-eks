@@ -105,15 +105,6 @@ module "eks_addons" {
   }
 }
 
-# resource "helm_release" "argocd" {
-#   name             = "argo-cd"
-#   repository       = "https://argoproj.github.io/argo-helm"
-#   chart            = "argo-cd"
-#   version          = var.addons_argocd_version
-#   create_namespace = true
-#   depends_on       = [module.eks_addons]
-# }
-
 module "karpenter" {
   source                    = "./modules/karpenter"
   helm_version              = var.addons_karpenter_version
@@ -121,7 +112,6 @@ module "karpenter" {
   cluster_endpoint          = module.cluster_eks.cluster_endpoint
   cluster_oidc_provider_arn = module.cluster_eks.oidc_provider_arn
   node_group_name           = "inception"
-  # depends_on                = [module.eks_addons]
 }
 
 module "eks-aws-load-balancer" {
