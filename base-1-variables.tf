@@ -1,3 +1,24 @@
+variable "cluster_cidr" {
+  type        = string
+  default     = "10.0.0.0/16"
+  description = "VPC cidr"
+}
+
+variable "cluster_azs" {
+  type        = list(string)
+  description = "VPC azs"
+}
+
+variable "cluster_private_subnets" {
+  type        = list(string)
+  description = "VPC private subnets. Normally used by nodes and pods"
+}
+
+variable "cluster_public_subnets" {
+  type        = list(string)
+  description = "VPC public subnets. Normally used by the AWS load balancers to expose services"
+}
+
 variable "cluster_domain" {
   type        = string
   description = "DNS Host Zone. Normally the NS domain name where ingresses are under (e.g dev.mycompany.com)"

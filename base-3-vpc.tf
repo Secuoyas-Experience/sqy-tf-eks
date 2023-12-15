@@ -3,10 +3,10 @@ module "vpc" {
   version = "5.1.2"
   name    = var.cluster_name
 
-  cidr            = "10.0.0.0/16"
-  azs             = ["${var.cluster_region}a", "${var.cluster_region}b", "${var.cluster_region}c"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+  cidr            = var.cluster_cidr
+  azs             = var.cluster_azs
+  private_subnets = var.cluster_private_subnets
+  public_subnets  = var.cluster_public_subnets
 
   enable_nat_gateway     = true
   single_nat_gateway     = true
