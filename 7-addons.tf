@@ -13,6 +13,28 @@ module "ebs_csi_driver_irsa" {
   }
 }
 
+module "velero_backup_s3_bucket" {
+  source  = "terraform-aws-modules/s3-bucket/aws"
+  version = "3.15.1"
+  bucket  = "${var.cluster_name}-velero-backup"
+  acl     = "private"
+
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
+
+  versioning = {
+    enabled = true
+  }
+
+  server_side_encryption_configuration = {
+    rule = {
+      apply_server_side_encryption_by_default = {
+        sse_algorithm = "aws:kms"
+      }
+    }
+  }
+}
+
 module "eks_addons" {
   source  = "aws-ia/eks-blueprints-addons/aws"
   version = "1.12.0"
@@ -28,6 +50,7 @@ module "eks_addons" {
   enable_argocd           = true
   enable_argo_events      = true
   enable_cert_manager     = true
+  enable_velero           = true
 
   ################################## 
   ######### AWS EKS ADDONS #########
@@ -102,6 +125,13 @@ module "eks_addons" {
     chart_version = var.addons_cert_manager_version
     timeout       = var.addons_helm_timeout
     wait          = false
+  }
+
+  velero = {
+    chart_version      = var.addons_velero_version
+    timeout            = var.addons_helm_timeout
+    wait               = false
+    s3_backup_location = "${module.velero_backup_s3_bucket.s3_bucket_arn}/backups"
   }
 }
 
