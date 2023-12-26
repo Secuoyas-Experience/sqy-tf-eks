@@ -9,6 +9,18 @@ variable "cluster_azs" {
   description = "VPC azs"
 }
 
+variable "inception_instances_count" {
+  type        = number
+  description = "number of initial cluster node group instances"
+  default     = 1
+}
+
+variable "inception_instances_types" {
+  type        = list(string)
+  description = "list of types of initial cluster node group instances"
+  default     = ["t3a.medium"]
+}
+
 variable "cluster_private_subnets" {
   type        = list(string)
   description = "VPC private subnets. Normally used by nodes and pods"
@@ -90,13 +102,13 @@ variable "addons_aws_load_balancer_version" {
 variable "addons_external_secrets_version" {
   type        = string
   description = "External Secrets Helm Chart version"
-  default     = "0.9.5"
+  default     = "0.9.11"
 }
 
 variable "addons_reloader_version" {
   type        = string
   description = "Stakater Reloader Helm Chart version"
-  default     = "1.0.42"
+  default     = "1.0.56"
 }
 
 variable "addons_cert_manager_version" {

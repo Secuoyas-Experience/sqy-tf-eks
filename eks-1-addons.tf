@@ -1,6 +1,6 @@
 module "ebs_csi_driver_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "~> 5.20"
+  version = "~> 5.33.0"
 
   role_name_prefix      = "${module.cluster_eks.cluster_name}-ebs-csi-driver-"
   attach_ebs_csi_policy = true
@@ -15,7 +15,7 @@ module "ebs_csi_driver_irsa" {
 
 module "eks_addons" {
   source  = "aws-ia/eks-blueprints-addons/aws"
-  version = "1.9.2"
+  version = "1.12.0"
 
   cluster_name      = module.cluster_eks.cluster_name
   cluster_endpoint  = module.cluster_eks.cluster_endpoint

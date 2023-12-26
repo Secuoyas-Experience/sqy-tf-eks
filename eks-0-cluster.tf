@@ -1,6 +1,6 @@
 module "cluster_eks" {
   source                         = "terraform-aws-modules/eks/aws"
-  version                        = "19.16.0"
+  version                        = "19.21.0"
   cluster_name                   = var.cluster_name
   cluster_version                = var.cluster_kubernetes_version
   cluster_endpoint_public_access = true
@@ -17,14 +17,15 @@ module "cluster_eks" {
     }
   }
 
+
   eks_managed_node_groups = {
     inception = {
       capacity_type   = "ON_DEMAND"
       node_group_name = "inception"
-      instance_types  = ["t3.medium"]
-      desired_size    = "2"
-      max_size        = "2"
-      min_size        = "2"
+      instance_types  = var.inception_instances_types
+      desired_size    = "${var.inception_instances_count}"
+      max_size        = "${var.inception_instances_count}"
+      min_size        = "${var.inception_instances_count}"
       public_subnets  = module.vpc.public_subnets
       private_subnets = module.vpc.private_subnets
 
