@@ -1,3 +1,6 @@
+data "aws_partition" "current" {}
+data "aws_region" "current" {}
+
 resource "aws_iam_policy" "aws_load_balancer_controller" {
   name        = "${var.cluster_name}-lb-irsa"
   description = "Allows lb controller to manage ALB and NLB"
