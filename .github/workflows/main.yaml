@@ -24,7 +24,6 @@ jobs:
         with:
           node-version: 18
           cache: "npm"
-      - run: npm install
-      - run: npm run release
+      - run: npx standard-version
       - run: git push
       - run: git push --tags
