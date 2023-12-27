@@ -29,6 +29,7 @@ jobs:
     needs:
       - techdocs
     steps:
+      - uses: actions/checkout@v3
       - run: |
           git config --global user.email "mario.garcia@secuoyas.com"
           git config --global user.name "Devops Team"      
