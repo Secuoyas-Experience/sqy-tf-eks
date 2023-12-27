@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.2.1 (2023-12-27)
+
+
+### Bug Fixes
+
+* ci when regenerating terraform docs ([ee30f20](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/ee30f20b1def3d033750492324cb5186d2f7a36b))
+
 ## 1.2.0 (2023-12-27)
 
 
