@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.3.3 (2023-12-27)
+
+
+### Bug Fixes
+
+* missing .terraform-docs.yml reference in workflow ([5f3eca8](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/5f3eca81e9a5b80ac6d2ef47e1cffce92b101fca))
+
 ### 1.3.2 (2023-12-27)
 
 ### 1.3.1 (2023-12-27)
