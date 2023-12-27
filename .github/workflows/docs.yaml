@@ -7,7 +7,7 @@ on:
     paths:
       - "docs/**"
       - "mkdocs.yml"
-      - ".github/workflows/techdocs.yml"
+      - ".github/workflows/docs.yml"
 
 jobs:
   techdocs:
@@ -37,3 +37,4 @@ jobs:
       - uses: terraform-docs/gh-actions@main
         with:
           working-dir: .
+          git-push: "true"
