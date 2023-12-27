@@ -16,14 +16,14 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v3
+      - run: |
+          git config --global user.email "mario.garcia@secuoyas.com"
+          git config --global user.name "Devops Team"
       - uses: actions/setup-node@v3
         with:
           node-version: 18
           cache: "npm"
       - run: npm install
-      - run: |
-          git config --global user.email "mario.garcia@secuoyas.com"
-          git config --global user.name "Devops Team"
       - run: npm run release
       - run: git push
       - run: git push --tags

@@ -22,7 +22,7 @@ Para usar este modulo declara el modulo en tu proyecto pasandole las variables o
 
 ```ruby
 module "secuoyas-dev-eks" {
-    source                  = "Secuoyas-Experience/secuoyas-tf-eks"
+    source                  = "git@github.com:Secuoyas-Experience/sqy-tf-eks.git?ref=v1.1.1"
     cluster_domain          = "k8s.domain.com"
     cluster_region          = "eu-central-1"
     cluster_name            = "k8s-domain-com"

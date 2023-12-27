@@ -9,9 +9,9 @@ on:
       - ".github/workflows/techdocs.yml"
 
 jobs:
-  docs:
+  techdocs:
     runs-on: toolbox-secuoyas
-    name: docs
+    name: techdocs
     permissions:
       id-token: write
       contents: read
@@ -22,3 +22,16 @@ jobs:
           aws_bucket: ${{ secrets.AWS_BUCKET_BACKSTAGE }}
           aws_region: ${{ secrets.AWS_REGION_BACKSTAGE }}
           aws_role_to_assume_arn: ${{ secrets.AWS_ROLE_TO_ASSUME_ARN_BACKSTAGE }}
+
+  terraform-docs:
+    runs-on: toolbox-secuoyas
+    name: terraform-docs
+    needs:
+      - techdocs
+    steps:
+      - run: |
+          git config --global user.email "mario.garcia@secuoyas.com"
+          git config --global user.name "Devops Team"      
+      - uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: .
