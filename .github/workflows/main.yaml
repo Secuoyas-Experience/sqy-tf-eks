@@ -7,6 +7,7 @@ on:
       - 'docs/**'
       - 'mkdocs.yml'
       - 'catalog-info.yaml'
+      - ".github/workflows/docs.yml"
 
 jobs:
   main:
