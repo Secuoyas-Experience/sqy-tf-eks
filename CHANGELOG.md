@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.1.1 (2023-12-27)
+
+
+### Bug Fixes
+
+* using temporal email for tag push ([200e92c](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/200e92cec5968cd5087b78b04a63697780931156))
+
 ## 1.1.0 (2023-12-27)
 
 
