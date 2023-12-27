@@ -1,7 +1,6 @@
 <!-- BEGIN_TF_DOCS -->
 # sqy-tf-eks
 
-[![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/techdocs.yml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/techdocs.yml)
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
 
