@@ -17,3 +17,6 @@ site
 
 # ides
 .vscode
+
+# node
+node_modules

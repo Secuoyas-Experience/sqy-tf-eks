@@ -1,0 +1,26 @@
+name: 'main'
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'catalog-info.yaml'
+
+jobs:
+  main:
+    name: main
+    runs-on: toolbox-secuoyas
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+      - run: npm run release
+      - run: git push
+      - run: git push --tags          
