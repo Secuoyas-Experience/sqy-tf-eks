@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.4.0 (2023-12-27)
+
+
+### Features
+
+* getting rid of node related files ([85281e5](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/85281e574f80e756effb0f2b54d4b2505e400b58))
+
 ### 1.3.3 (2023-12-27)
 
 
