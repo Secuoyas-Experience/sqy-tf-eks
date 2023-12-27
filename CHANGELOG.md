@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.3.0 (2023-12-27)
+
+
+### Features
+
+* adding workflow dispatch for docs pipelines ([ad423c2](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/ad423c2ec38edc3980c6a3196eeb75d586c612d4))
+
 ### 1.2.1 (2023-12-27)
 
 
