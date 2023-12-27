@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0 (2023-12-27)
+
+
+### Features
+
+* adding auto generated docs ([6cb7d59](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/6cb7d5998ef3618ebfd8a61a438e0b42bfe47d71))
+
 ### 1.1.1 (2023-12-27)
 
 
