@@ -21,6 +21,9 @@ jobs:
           node-version: 18
           cache: "npm"
       - run: npm install
+      - run: |
+          git config --global user.email "mario.garcia@secuoyas.com"
+          git config --global user.name "Devops Team"
       - run: npm run release
       - run: git push
       - run: git push --tags
