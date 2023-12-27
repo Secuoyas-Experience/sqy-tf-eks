@@ -1,4 +1,18 @@
 <!-- BEGIN_TF_DOCS -->
+# sqy-tf-eks
+
+[![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/techdocs.yml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/techdocs.yml)
+[![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
+[![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
+
+## Intro
+
+Este repositorio es un modulo de Terraform para crear un cluster de Kubernetes para AWS (EKS). Puedes buscar mas informacion del proyecto en:
+
+- [En el directorio /docs](./docs/)
+- [En el Backstage de Secuoyas](https://backstage.toolbox.secuoyas.com)
+
+A continuacion se muestra la documentacion de Terraform generada con [Terraform Docs](https://terraform-docs.io/)
 ## Requirements
 
 | Name | Version |
@@ -67,4 +81,5 @@
 ## Outputs
 
 No outputs.
+
 <!-- END_TF_DOCS -->
