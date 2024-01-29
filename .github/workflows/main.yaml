@@ -17,34 +17,25 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - run: |
+      - name: Setting Git Globals
+        run: |
           git config --global user.email "systems@secuoyas.com"
           git config --global user.name "Devops Team"
-      - uses: actions/setup-node@v4
+      - name: Setup Node 18
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: "npm"
-      - run: npx standard-version
-      - run: git push
-      - run: git push --tags
-
-  terraform-docs:
-    runs-on: toolbox-secuoyas
-    name: terraform-docs
-    needs:
-      - main
-    steps:
-      - uses: actions/checkout@v4
-      - name: Extract latest tag
+      - name: Versioning & Pushing New Tag
         run: |
-          git fetch --prune --unshallow --tags
-          echo "tag=$(git tag -l | tail -n 1)" >> $GITHUB_OUTPUT
+          npx standard-version
+          git push
+          git push --tags
+      - name: Extract Latest Tag
+        run: echo "tag=$(git tag -l | tail -n 1)" >> $GITHUB_OUTPUT
         id: latest_tag
-      - uses: actions/checkout@v4
-      - run: |
-          git config --global user.email "systems@secuoyas.com"
-          git config --global user.name "Devops Team"
-      - uses: terraform-docs/gh-actions@main
+      - name: Generate Terraform Docs
+        uses: terraform-docs/gh-actions@main
         with:
           working-dir: .
           git-push: "true"
