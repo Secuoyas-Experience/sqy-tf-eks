@@ -1,11 +1,4 @@
 terraform {
-  backend "s3" {
-    bucket  = "griddo-dev-tf-states"
-    key     = "griddo-dev"
-    region  = "eu-west-1"
-    encrypt = true
-  }
-
   required_providers {
     kubectl = {
       source  = "alekc/kubectl"
@@ -27,5 +20,5 @@ terraform {
 }
 
 provider "aws" {
-  region = "eu-central-1"
+  region = var.cluster_region
 }
