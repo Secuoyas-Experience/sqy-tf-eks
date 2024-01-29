@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.4.4 (2024-01-29)
+
+
+### Bug Fixes
+
+* terraform docs pipeline in main ([89e76d0](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/89e76d005156ab46ce02c69bc5620bf29d7a24a2))
+
 ### 1.4.3 (2024-01-29)
 
 ### 1.4.2 (2023-12-27)
