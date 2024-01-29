@@ -22,39 +22,3 @@ jobs:
           aws_bucket: ${{ secrets.AWS_BUCKET_BACKSTAGE }}
           aws_region: ${{ secrets.AWS_REGION_BACKSTAGE }}
           aws_role_to_assume_arn: ${{ secrets.AWS_ROLE_TO_ASSUME_ARN_BACKSTAGE }}
-
-  terraform-docs:
-    runs-on: toolbox-secuoyas
-    name: terraform-docs
-    needs:
-      - techdocs
-    steps:
-      - uses: actions/checkout@v4
-      - run: |
-          git config --global user.email "systems@secuoyas.com"
-          git config --global user.name "Devops Team"
-      - name: Extract latest tag
-        run: echo "tag=$(git tag -l | tail -n 1)" >> $GITHUB_OUTPUT
-        id: latest_tag
-      - uses: terraform-docs/gh-actions@main
-        with:
-          working-dir: .
-          git-push: "true"
-          output-file: README.md
-          output-method: inject
-          git-commit-message: "docs: re-generating terraform-docs"
-          template: |
-            <!-- BEGIN_TF_DOCS -->
-            # sqy-tf-eks
-
-            [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
-            [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-            ![version](https://img.shields.io/badge/version-${{ steps.latest_tag.outputs.tag }}-blue)
-
-            ## Intro
-
-            Este repositorio es un modulo de Terraform para crear un cluster de Kubernetes para AWS (EKS). Puedes buscar mas informacion del proyecto [en el directorio /docs](./docs/).
-            A continuacion se muestra la documentacion de Terraform generada con [Terraform Docs](https://terraform-docs.io/)
-            {{ .Content }}
-
-            <!-- END_TF_DOCS -->
