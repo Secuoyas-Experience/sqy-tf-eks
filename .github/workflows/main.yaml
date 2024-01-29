@@ -16,11 +16,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: |
-          git config --global user.email "mario.garcia@secuoyas.com"
+          git config --global user.email "systems@secuoyas.com"
           git config --global user.name "Devops Team"
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: "npm"
