@@ -35,14 +35,15 @@ jobs:
       - main
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          git config --global user.email "systems@secuoyas.com"
-          git config --global user.name "Devops Team"
       - name: Extract latest tag
         run: |
           git fetch --prune --unshallow --tags
           echo "tag=$(git tag -l | tail -n 1)" >> $GITHUB_OUTPUT
         id: latest_tag
+      - uses: actions/checkout@v4
+      - run: |
+          git config --global user.email "systems@secuoyas.com"
+          git config --global user.name "Devops Team"
       - uses: terraform-docs/gh-actions@main
         with:
           working-dir: .
