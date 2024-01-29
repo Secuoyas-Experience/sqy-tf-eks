@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.4.6 (2024-01-29)
+
+
+### Bug Fixes
+
+* git pushing and checkout in different jobs fails ([88b596d](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/88b596d89d1dc2d0e1d6d04cea4c44d5fd1b249c))
+
 ### 1.4.5 (2024-01-29)
 
 
