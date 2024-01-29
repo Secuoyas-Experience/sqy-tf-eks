@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.4.5 (2024-01-29)
+
+
+### Bug Fixes
+
+* getting latest tag corrupts the git checkout ([b532ac2](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/b532ac2c0a47eb028c53b7d6dc5c8a89e6f9f20e))
+
 ### 1.4.4 (2024-01-29)
 
 
