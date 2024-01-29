@@ -31,8 +31,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: |
-          git config --global user.email "mario.garcia@secuoyas.com"
-          git config --global user.name "Devops Team"      
+          git config --global user.email "systems@secuoyas.com"
+          git config --global user.name "Devops Team"
+      - name: Extract latest tag
+        run: echo "tag=$(git tag -l | tail -n 1)" >> $GITHUB_OUTPUT
+        id: latest_tag
       - uses: terraform-docs/gh-actions@main
         with:
           working-dir: .
@@ -46,14 +49,11 @@ jobs:
 
             [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
             [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
+            ![version](https://img.shields.io/badge/version-${{ steps.latest_tag.outputs.tag }}-blue)
 
             ## Intro
 
-            Este repositorio es un modulo de Terraform para crear un cluster de Kubernetes para AWS (EKS). Puedes buscar mas informacion del proyecto en:
-
-            - [En el directorio /docs](./docs/)
-            - [En el Backstage de Secuoyas](https://backstage.toolbox.secuoyas.com)
-
+            Este repositorio es un modulo de Terraform para crear un cluster de Kubernetes para AWS (EKS). Puedes buscar mas informacion del proyecto [en el directorio /docs](./docs/).
             A continuacion se muestra la documentacion de Terraform generada con [Terraform Docs](https://terraform-docs.io/)
             {{ .Content }}
 
