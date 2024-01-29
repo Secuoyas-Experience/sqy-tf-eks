@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.4.7 (2024-01-29)
+
+
+### Bug Fixes
+
+* get rid of backend and parametrize aws region ([2750d2d](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/2750d2dbf8ed8beb80008f4efbc2a8e01cb51621))
+
 ### 1.4.6 (2024-01-29)
 
 
