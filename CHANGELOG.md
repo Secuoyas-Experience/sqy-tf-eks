@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.4.8 (2024-01-29)
+
+
+### Bug Fixes
+
+* example is not correct ([bcc34fe](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/bcc34fe486ae2bf1fd4d526cb9c353612b394ed4))
+
 ### 1.4.7 (2024-01-29)
 
 
