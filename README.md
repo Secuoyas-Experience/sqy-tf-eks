@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.4.7-blue)
+![version](https://img.shields.io/badge/version-v1.4.8-blue)
 
 ## Intro
 
@@ -12,18 +12,19 @@ Este repositorio es un modulo de Terraform para crear un cluster de Kubernetes p
 ## Ejemplo
 
 ```ruby
-module "sqy-eks-example" {
-  source                    = "git@github.com:Secuoyas-Experience/sqy-tf-eks.git"
-  cluster_name              = "sqy-tf-eks-example"
-  cluster_domain            = "yourdomain.com"
-  cidr                      = "192.0.0.0/16"
-  cluster_private_subnets   = ["192.0.0.0/18", "192.0.0.64.0/18", "192.0.128.0/18"]
-  cluster_public_subnets    = ["192.0.192.0/24", "192.0.193.0/24", "192.0.194.0/24"]
-  cluster_region            = "eu-central-1"
-  inception_instances_count = 2
-  kubernetes_version        = "1.28"
-  environment               = "prod"
-  organization              = "yourorganizationname"
+module "my-eks-cluster" {
+  source                     = "git@github.com:Secuoyas-Experience/sqy-tf-eks.git"
+  cluster_name               = "my-cluster"
+  cluster_domain             = "yourdomain.com"
+  cluster_kubernetes_version = "1.28"
+  cluster_cidr               = "10.0.0.0/16"
+  cluster_private_subnets    = ["10.0.0.0/18", "10.0.64.0/18", "10.0.128.0/18"]
+  cluster_public_subnets     = ["10.0.192.0/24", "10.0.193.0/24", "10.0.194.0/24"]
+  cluster_azs                = ["us-west-1a"]
+  cluster_region             = "us-west-1"
+  inception_instances_count  = 2
+  environment                = "stg"
+  organization               = "yourorganizationname"
 }
 ```
 
