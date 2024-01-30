@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.4.9-blue)
+![version](https://img.shields.io/badge/version-v1.5.0-blue)
 
 ## Intro
 
@@ -55,6 +55,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="module_eks-aws-load-balancer"></a> [eks-aws-load-balancer](#module\_eks-aws-load-balancer) | ./modules/aws-load-balancer | n/a |
 | <a name="module_eks_addons"></a> [eks\_addons](#module\_eks\_addons) | aws-ia/eks-blueprints-addons/aws | 1.12.0 |
 | <a name="module_karpenter"></a> [karpenter](#module\_karpenter) | ./modules/karpenter | n/a |
+| <a name="module_velero"></a> [velero](#module\_velero) | ./modules/velero | n/a |
 | <a name="module_velero_backup_s3_bucket"></a> [velero\_backup\_s3\_bucket](#module\_velero\_backup\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | 3.15.1 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | 5.4.0 |
 | <a name="module_zones"></a> [zones](#module\_zones) | terraform-aws-modules/route53/aws//modules/zones | ~> 2.11.0 |
