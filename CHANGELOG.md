@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.5.0 (2024-01-30)
+
+
+### Features
+
+* forking velero from aws addons terraform project as new module ([f109ffe](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/f109ffe0b0fd45cb596b0735116abc635c2b9944))
+
 ### 1.4.9 (2024-01-30)
 
 
