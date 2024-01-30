@@ -131,7 +131,7 @@ module "eks_addons" {
     chart_version      = var.addons_velero_version
     timeout            = var.addons_helm_timeout
     wait               = false
-    s3_backup_location = "${module.velero_backup_s3_bucket.s3_bucket_arn}/backups"
+    s3_backup_location = ["${module.velero_backup_s3_bucket.s3_bucket_arn}/backups"]
   }
 }
 
