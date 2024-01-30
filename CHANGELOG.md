@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.4.9 (2024-01-30)
+
+
+### Bug Fixes
+
+* velero s3_backup_location should be a slice ([cce8df2](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/cce8df2912e726a8d6400bf62fdd085fbd92da87))
+
 ### 1.4.8 (2024-01-29)
 
 
