@@ -50,7 +50,6 @@ module "eks_addons" {
   enable_argocd           = true
   enable_argo_events      = true
   enable_cert_manager     = true
-  enable_velero           = true
 
   ################################## 
   ######### AWS EKS ADDONS #########
@@ -126,13 +125,6 @@ module "eks_addons" {
     timeout       = var.addons_helm_timeout
     wait          = false
   }
-
-  velero = {
-    chart_version      = var.addons_velero_version
-    timeout            = var.addons_helm_timeout
-    wait               = false
-    s3_backup_location = ["${module.velero_backup_s3_bucket.s3_bucket_arn}/backups"]
-  }
 }
 
 module "karpenter" {
@@ -159,4 +151,17 @@ resource "helm_release" "reloader" {
   version    = var.addons_reloader_version
   timeout    = var.addons_helm_timeout
   depends_on = [module.eks-aws-load-balancer]
+}
+
+module "velero" {
+  source = "./modules/velero"
+
+  velero = {
+    chart_version      = var.addons_velero_version
+    timeout            = var.addons_helm_timeout
+    wait               = false
+    s3_backup_location = module.velero_backup_s3_bucket.s3_bucket_arn
+  }
+
+  oidc_provider_arn = module.cluster_eks.oidc_provider_arn
 }

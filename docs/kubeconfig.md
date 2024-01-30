@@ -6,6 +6,7 @@ Una vez se ha instalado el cluster para acceder al cluster debemos conseguir las
 aws eks update-kubeconfig \
     --name <cluster_name> \
     --profile <aws_profile> \
+    --region <aws_region> \
     --role-arn arn:aws:iam::{account-id}:role/<cluster_name>-kube-admin \
     --alias <kube_config_alias>
 ```
