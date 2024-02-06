@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.6.0 (2024-02-06)
+
+
+### Features
+
+* adding outputs to interact with other dependant modules ([3ff87a0](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/3ff87a012760c9b00be1fb83418af61ebd7ee7d9))
+
 ### 1.5.1 (2024-02-06)
 
 
