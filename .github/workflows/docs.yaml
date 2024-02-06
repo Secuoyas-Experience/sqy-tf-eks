@@ -11,7 +11,7 @@ on:
 
 jobs:
   techdocs:
-    runs-on: toolbox-secuoyas
+    runs-on: ubuntu-latest
     name: techdocs
     permissions:
       id-token: write

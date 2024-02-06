@@ -12,7 +12,7 @@ on:
 jobs:
   main:
     name: main
-    runs-on: toolbox-secuoyas
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
