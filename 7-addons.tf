@@ -134,6 +134,7 @@ module "karpenter" {
   cluster_endpoint          = module.cluster_eks.cluster_endpoint
   cluster_oidc_provider_arn = module.cluster_eks.oidc_provider_arn
   node_group_name           = "inception"
+  provisioners_path         = var.addons_karpenter_provisioners_path
 }
 
 module "eks-aws-load-balancer" {

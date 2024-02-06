@@ -80,6 +80,11 @@ variable "addons_karpenter_version" {
   default     = "v0.31.0"
 }
 
+variable "addons_karpenter_provisioners_path" {
+  type        = string
+  description = "Karpenter's provisioners path"
+}
+
 variable "addons_argocd_version" {
   type        = string
   description = "ArgoCD Helm Chart version"

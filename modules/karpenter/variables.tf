@@ -25,3 +25,8 @@ variable "timeout" {
   description = "helm release timout (sec)"
   default     = 60
 }
+
+variable "provisioners_path" {
+  type        = string
+  description = "path where to find provisioners' descriptors"
+}

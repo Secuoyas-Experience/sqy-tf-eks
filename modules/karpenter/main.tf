@@ -63,14 +63,19 @@ resource "time_sleep" "wait_after_helm_karpenter" {
 }
 
 resource "kubectl_manifest" "karpenter_default_node_template" {
-  yaml_body = templatefile("${path.module}/default-node.yaml", {
+  yaml_body = templatefile("${path.module}/nodes/default-node.yaml", {
     cluster_name          = var.cluster_name
     instance_profile_name = module.karpenter.instance_profile_name
   })
   depends_on = [time_sleep.wait_after_helm_karpenter]
 }
 
-resource "kubectl_manifest" "karpenter_default_provider" {
-  yaml_body  = file("${path.module}/default-provisioner.yaml")
+data "kubectl_path_documents" "provisioners_path" {
+  pattern = var.provisioners_path != null ? "${var.provisioners_path}/*.yaml" : "${path.module}/provisioners/*.yaml"
+}
+
+resource "kubectl_manifest" "directory-yaml" {
+  for_each   = data.kubectl_path_documents.provisioners_path.manifests
+  yaml_body  = each.value
   depends_on = [kubectl_manifest.karpenter_default_node_template]
 }
