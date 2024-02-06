@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.5.1 (2024-02-06)
+
+
+### Bug Fixes
+
+* public repositories can't use private runners ([dcb0420](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/dcb04203aca8d656e1ab57a3dea943f5964b15c3))
+
 ## 1.5.0 (2024-01-30)
 
 
