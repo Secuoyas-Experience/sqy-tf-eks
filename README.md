@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.5.0-blue)
+![version](https://img.shields.io/badge/version-v1.5.1-blue)
 
 ## Intro
 
@@ -80,6 +80,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_addons_cert_manager_version"></a> [addons\_cert\_manager\_version](#input\_addons\_cert\_manager\_version) | Cert Manager operator Helm Chart version | `string` | `"1.13.3"` | no |
 | <a name="input_addons_external_secrets_version"></a> [addons\_external\_secrets\_version](#input\_addons\_external\_secrets\_version) | External Secrets Helm Chart version | `string` | `"0.9.11"` | no |
 | <a name="input_addons_helm_timeout"></a> [addons\_helm\_timeout](#input\_addons\_helm\_timeout) | helm release timeout seconds (default 1800 sec -> 30 min) | `number` | `1800` | no |
+| <a name="input_addons_karpenter_provisioners_path"></a> [addons\_karpenter\_provisioners\_path](#input\_addons\_karpenter\_provisioners\_path) | Karpenter's provisioners path | `string` | n/a | yes |
 | <a name="input_addons_karpenter_version"></a> [addons\_karpenter\_version](#input\_addons\_karpenter\_version) | Karpenter Helm Chart version | `string` | `"v0.31.0"` | no |
 | <a name="input_addons_reloader_version"></a> [addons\_reloader\_version](#input\_addons\_reloader\_version) | Stakater Reloader Helm Chart version | `string` | `"1.0.56"` | no |
 | <a name="input_addons_velero_version"></a> [addons\_velero\_version](#input\_addons\_velero\_version) | Velero Helm Chart version | `string` | `"4.0.3"` | no |
