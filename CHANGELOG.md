@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.7.0 (2024-02-07)
+
+
+### Features
+
+* adding posibility for adding extra storage classes ([6202c89](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/6202c89d8b2785a5fd1993e7a722b7832c307c5d))
+
 ## 1.6.0 (2024-02-06)
 
 
