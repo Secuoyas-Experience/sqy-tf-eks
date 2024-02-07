@@ -44,12 +44,13 @@ module "eks_addons" {
   cluster_version   = module.cluster_eks.cluster_version
   oidc_provider_arn = module.cluster_eks.oidc_provider_arn
 
-  enable_metrics_server   = true
-  enable_external_dns     = true
-  enable_external_secrets = true
-  enable_argocd           = true
-  enable_argo_events      = true
-  enable_cert_manager     = true
+  enable_metrics_server     = true
+  enable_external_dns       = true
+  enable_external_secrets   = true
+  enable_argocd             = true
+  enable_argo_events        = true
+  enable_cert_manager       = true
+  enable_aws_efs_csi_driver = true
 
   ################################## 
   ######### AWS EKS ADDONS #########
