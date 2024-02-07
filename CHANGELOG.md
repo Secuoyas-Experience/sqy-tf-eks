@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.7.1 (2024-02-07)
+
+
+### Bug Fixes
+
+* adding efs driver by default ([0fba509](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/0fba509f10cffb2050dea93aace9ffc889ee9445))
+
 ## 1.7.0 (2024-02-07)
 
 
