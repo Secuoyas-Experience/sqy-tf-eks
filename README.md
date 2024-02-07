@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.6.0-blue)
+![version](https://img.shields.io/badge/version-v1.7.0-blue)
 
 ## Intro
 
@@ -54,6 +54,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="module_ebs_csi_driver_irsa"></a> [ebs\_csi\_driver\_irsa](#module\_ebs\_csi\_driver\_irsa) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | ~> 5.33.0 |
 | <a name="module_eks-aws-load-balancer"></a> [eks-aws-load-balancer](#module\_eks-aws-load-balancer) | ./modules/aws-load-balancer | n/a |
 | <a name="module_eks_addons"></a> [eks\_addons](#module\_eks\_addons) | aws-ia/eks-blueprints-addons/aws | 1.12.0 |
+| <a name="module_extra-storage-classes"></a> [extra-storage-classes](#module\_extra-storage-classes) | ./modules/aws-extra-storageclasses | n/a |
 | <a name="module_karpenter"></a> [karpenter](#module\_karpenter) | ./modules/karpenter | n/a |
 | <a name="module_velero"></a> [velero](#module\_velero) | ./modules/velero | n/a |
 | <a name="module_velero_backup_s3_bucket"></a> [velero\_backup\_s3\_bucket](#module\_velero\_backup\_s3\_bucket) | terraform-aws-modules/s3-bucket/aws | 3.15.1 |
@@ -93,6 +94,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_public_subnets"></a> [cluster\_public\_subnets](#input\_cluster\_public\_subnets) | VPC public subnets. Normally used by the AWS load balancers to expose services | `list(string)` | n/a | yes |
 | <a name="input_cluster_region"></a> [cluster\_region](#input\_cluster\_region) | AWS region where the EKS cluster is located | `string` | n/a | yes |
 | <a name="input_environment"></a> [environment](#input\_environment) | Type of environment (dev,stg,prod) | `string` | n/a | yes |
+| <a name="input_extra_storage_classes_path"></a> [extra\_storage\_classes\_path](#input\_extra\_storage\_classes\_path) | path where to find extra StorageClass descriptors | `string` | n/a | yes |
 | <a name="input_inception_instances_count"></a> [inception\_instances\_count](#input\_inception\_instances\_count) | number of initial cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_instances_types"></a> [inception\_instances\_types](#input\_inception\_instances\_types) | list of types of initial cluster node group instances | `list(string)` | <pre>[<br>  "t3a.medium"<br>]</pre> | no |
 | <a name="input_organization"></a> [organization](#input\_organization) | Organization the cluster is used for | `string` | n/a | yes |
