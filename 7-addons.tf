@@ -166,3 +166,9 @@ module "velero" {
 
   oidc_provider_arn = module.cluster_eks.oidc_provider_arn
 }
+
+module "extra-storage-classes" {
+  source                     = "./modules/aws-extra-storageclasses"
+  count                      = var.extra_storage_classes_path != null ? 1 : 0
+  extra_storage_classes_path = var.extra_storage_classes_path
+}

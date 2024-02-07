@@ -121,3 +121,8 @@ variable "addons_cert_manager_version" {
   description = "Cert Manager operator Helm Chart version"
   default     = "1.13.3"
 }
+
+variable "extra_storage_classes_path" {
+  type        = string
+  description = "path where to find extra StorageClass descriptors"
+}
