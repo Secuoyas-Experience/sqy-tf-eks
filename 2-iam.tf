@@ -2,27 +2,8 @@ data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "eks_read_policy_document" {
   statement {
-    effect = "Allow"
-
-    actions = [
-      "eks:ListAddons",
-      "eks:ListUpdates",
-      "eks:ListClusters",
-      "eks:ListFargateProfiles",
-      "eks:ListIdentityProviderConfigs",
-      "eks:ListNodegroups",
-      "eks:ListTagsForResource",
-      "eks:AccessKubernetesApi",
-      "eks:DescribeAddon",
-      "eks:DescribeAddonConfiguration",
-      "eks:DescribeAddonVersions",
-      "eks:DescribeCluster",
-      "eks:DescribeFargateProfile",
-      "eks:DescribeIdentityProviderConfig",
-      "eks:DescribeNodegroup",
-      "eks:DescribeUpdate"
-    ]
-
+    effect    = "Allow"
+    actions   = ["eks:*"]
     resources = ["*"]
   }
 

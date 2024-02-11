@@ -21,16 +21,20 @@ Independientemente del metodo de autenticacion que utilices, a partir de este mo
 Para usar este modulo declara el modulo en tu proyecto pasandole las variables obligatorias (ver [Inputs](#inputs)):
 
 ```ruby
-module "secuoyas-dev-eks" {
-    source                  = "git@github.com:Secuoyas-Experience/sqy-tf-eks.git?ref=v1.1.1"
-    cluster_domain          = "k8s.domain.com"
-    cluster_region          = "eu-central-1"
-    cluster_name            = "k8s-domain-com"
-    organization            = "k8s"
-    environment             = "dev"
-    cluster_azs             = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
-    cluster_private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-    cluster_public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+module "cluster" {
+  source                     = "git@github.com:Secuoyas-Experience/sqy-tf-eks.git?ref=v1.8.0"
+  cluster_name               = "my-domain-es"
+  cluster_kubernetes_version = "1.29"
+  cluster_cidr               = "10.0.0.0/16"
+  cluster_region             = "eu-central-1"
+  cluster_azs                = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
+  cluster_private_subnets    = ["10.0.0.0/18", "10.0.64.0/18", "10.0.128.0/24"]
+  cluster_public_subnets     = ["10.0.192.0/24", "10.0.193.0/24", "10.0.194.0/24"]
+  inception_min_size         = 1
+  inception_max_size         = 2
+  inception_desired_size     = 2
+  environment                = "dev"
+  organization               = "my.domain.es"
 }
 ```
 
@@ -73,3 +77,28 @@ Si estamos conformes con el resultado del plan podemos ejecutar `terraform apply
 ```shell
 AWS_PROFILE=profileName terraform apply
 ```
+
+## Modulos
+
+El modulo principal crea un cluster EKS con una serie de addons:
+
+- vpc-cni
+- aws-ebs-csi-driver
+- coredns
+- kube-proxy
+
+Ademas de inicializar con worker nodes el numero de nodegroups que se haya configurado por parametros. Pero si se quiere instalar los addons extras:
+
+- velero
+- argocd
+- argocd-events
+- aws-load-balancer
+- external-dns
+- external-secrets
+- reloader
+
+Se deben utilizar otra serie de modulos que se encuentran en la carpeta [modules][../../modules]
+
+## Ejemplos
+
+Puedes ver ejemplos en https://github.com/Secuoyas-Experience/sqy-tf-eks/tree/feat/extract_velero_bucket_and_dns_zones/examples/cluster-with-addons
