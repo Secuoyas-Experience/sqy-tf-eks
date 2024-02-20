@@ -8,9 +8,9 @@ Este repositorio es un módulo de Terraform para el aprovisionamiento de un clú
 
 ## Requisitos previos
 
-- Cuenta de AWS
+- Tener credenciales de administrador de AWS
 - [Instalar Terraform](https://developer.hashicorp.com/terraform/downloads)
-- Clonar este repositorio
-- Modificar las variables descritas en esta documentación.
-- Crear un repositorio para el nuevo clúster.
-- Subir el repo clonado con las modificaciones de las variables.
+- Usar el/los modulos descritos en [install.md](./install.md)
+- Modificar las variables descritas en el [README.md](../README.md).
+
+Puedes echar un vistazo a los ejemplos en https://github.com/Secuoyas-Experience/sqy-tf-eks/tree/feat/extract_velero_bucket_and_dns_zones/examples/cluster-with-addons
