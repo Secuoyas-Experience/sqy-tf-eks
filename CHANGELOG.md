@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.8.0 (2024-02-20)
+
+
+### Features
+
+* get rid of unused modules ([51d999b](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/51d999bf246142774c8d90d4a9d06985a20df3cb))
+
 ### 1.7.3 (2024-02-20)
 
 ### 1.7.2 (2024-02-20)
