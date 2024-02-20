@@ -41,6 +41,7 @@ jobs:
           git-push: "true"
           output-file: README.md
           output-method: inject
+          recursive: true
           git-commit-message: "docs: re-generating terraform-docs"
           template: |
             <!-- BEGIN_TF_DOCS -->
@@ -57,19 +58,20 @@ jobs:
             ## Ejemplo
 
             ```ruby
-            module "my-eks-cluster" {
-              source                     = "git@github.com:Secuoyas-Experience/sqy-tf-eks.git"
-              cluster_name               = "my-cluster"
-              cluster_domain             = "yourdomain.com"
-              cluster_kubernetes_version = "1.28"
+            module "cluster" {
+              source                     = "git@github.com:Secuoyas-Experience/sqy-tf-eks.git?ref=1.8.0"
+              cluster_name               = "my-domain-es"
+              cluster_kubernetes_version = "1.29"
               cluster_cidr               = "10.0.0.0/16"
-              cluster_private_subnets    = ["10.0.0.0/18", "10.0.64.0/18", "10.0.128.0/18"]
+              cluster_region             = "eu-central-1"
+              cluster_azs                = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
+              cluster_private_subnets    = ["10.0.0.0/18", "10.0.64.0/18", "10.0.128.0/24"]
               cluster_public_subnets     = ["10.0.192.0/24", "10.0.193.0/24", "10.0.194.0/24"]
-              cluster_azs                = ["us-west-1a"]
-              cluster_region             = "us-west-1"
-              inception_instances_count  = 2
-              environment                = "stg"
-              organization               = "yourorganizationname"
+              inception_min_size         = 1
+              inception_max_size         = 1
+              inception_desired_size     = 1
+              environment                = "dev"
+              organization               = "my.domain.es"
             }
             ```
 
