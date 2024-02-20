@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.7.2 (2024-02-20)
+
+
+### Bug Fixes
+
+* keep same aws versions for all addons ([bb1441a](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/bb1441a434c4552fbc9b7284745979dfb9271168))
+
 ### 1.7.1 (2024-02-07)
 
 
