@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.8.0-blue)
+![version](https://img.shields.io/badge/version-v1.8.1-blue)
 
 ## Intro
 
@@ -68,6 +68,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_access_entries"></a> [access\_entries](#input\_access\_entries) | EKS access entries (https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html) | `any` | `{}` | no |
 | <a name="input_cluster_azs"></a> [cluster\_azs](#input\_cluster\_azs) | VPC azs | `list(string)` | n/a | yes |
 | <a name="input_cluster_cidr"></a> [cluster\_cidr](#input\_cluster\_cidr) | VPC cidr | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_cluster_domains"></a> [cluster\_domains](#input\_cluster\_domains) | Domain names handled by this cluster. Normally the NS domain name where ingresses are under (e.g dev.mycompany.com) | `list(string)` | `[]` | no |
