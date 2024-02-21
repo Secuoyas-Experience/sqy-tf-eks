@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.8.1 (2024-02-21)
+
+
+### Bug Fixes
+
+* wrong default policy for cluster admins ([f1280c7](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/f1280c7ecc1dc49d5f6181c28f6bc25e49d2c73f))
+
 ## 1.8.0 (2024-02-20)
 
 
