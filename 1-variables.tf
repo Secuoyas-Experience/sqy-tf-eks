@@ -80,3 +80,9 @@ variable "environment" {
   type        = string
   description = "Type of environment (dev,stg,prod)"
 }
+
+variable "access_entries" {
+  type = any
+  description = "EKS access entries (https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html)"
+  default = {}
+}

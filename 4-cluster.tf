@@ -71,19 +71,18 @@ module "cluster_eks" {
   }
 
   # https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html
-  access_entries = {
+  access_entries = merge({
     admins = {
       username      = "KubeAdmin"
       principal_arn = aws_iam_role.kube_admin_role.arn
-
       policy_associations = {
         admins = {
-          policy_arn   = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSEditPolicy"
+          policy_arn   = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
           access_scope = { type = "cluster" }
         }
       }
     }
-  }
+  }, var.access_entries)
 
   # it's importat that only one security group
   # matches provisioner. Otherwise pods won't
