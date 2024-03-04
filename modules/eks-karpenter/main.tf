@@ -69,9 +69,3 @@ resource "kubectl_manifest" "karpenter_default_nodeclass" {
     role_name    = module.karpenter.node_iam_role_name
   })
 }
-
-resource "kubectl_manifest" "karpenter_default_nodepool" {
-  depends_on        = [time_sleep.wait_after_helm_karpenter]
-  server_side_apply = true
-  yaml_body         = file("${path.module}/manifests/nodepool/default.yaml")
-}
