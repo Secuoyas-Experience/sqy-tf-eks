@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.9.0 (2024-03-04)
+
+
+### Features
+
+* avoid adding default karpenter nodepool ([ecb955d](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/ecb955d00f6ab7595f25c9b0b4a9ffcb0e22d1da))
+
 ### 1.8.1 (2024-02-21)
 
 
