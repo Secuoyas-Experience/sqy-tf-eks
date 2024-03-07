@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.10.0 (2024-03-07)
+
+
+### Features
+
+* adding variables to control cluster visibility public/private ([0bdbee1](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/0bdbee12d692648be9088cb495a359e8d5948747))
+
 ## 1.9.0 (2024-03-04)
 
 
