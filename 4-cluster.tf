@@ -19,7 +19,9 @@ module "cluster_eks" {
 
   cluster_name                             = var.cluster_name
   cluster_version                          = var.cluster_kubernetes_version
-  cluster_endpoint_public_access           = true
+  cluster_endpoint_public_access           = var.cluster_public_endpoint_enabled
+  cluster_endpoint_public_access_cidrs     = var.cluster_public_endpoint_whitelist_cidrs
+  cluster_endpoint_private_access          = var.cluster_private_endpoint_enabled
   vpc_id                                   = module.vpc.vpc_id
   subnet_ids                               = module.vpc.private_subnets
   enable_cluster_creator_admin_permissions = true

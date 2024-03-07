@@ -33,6 +33,24 @@ variable "inception_types" {
   default     = ["t3a.medium"]
 }
 
+variable "cluster_public_endpoint_enabled" {
+  type        = bool
+  description = "if true enables public EKS endpoint"
+  default     = true
+}
+
+variable "cluster_public_endpoint_whitelist_cidrs" {
+  type        = list(string)
+  description = "network cidrs from which EKS endpoint is accessible. By default if enable is accessible from anywhere"
+  default     = ["0.0.0.0/0"]
+}
+
+variable "cluster_private_endpoint_enabled" {
+  type        = bool
+  description = "if true enables private EKS endpoint"
+  default     = true
+}
+
 variable "cluster_private_subnets" {
   type        = list(string)
   description = "VPC private subnets. Normally used by nodes and pods"
@@ -82,7 +100,7 @@ variable "environment" {
 }
 
 variable "access_entries" {
-  type = any
+  type        = any
   description = "EKS access entries (https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html)"
-  default = {}
+  default     = {}
 }
