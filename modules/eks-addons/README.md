@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.10.0-blue)
+![version](https://img.shields.io/badge/version-v1.11.0-blue)
 
 ## Intro
 
@@ -65,9 +65,13 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_addons_argo_events_enabled"></a> [addons\_argo\_events\_enabled](#input\_addons\_argo\_events\_enabled) | if true argo-events is enabled | `bool` | `true` | no |
 | <a name="input_addons_argo_events_version"></a> [addons\_argo\_events\_version](#input\_addons\_argo\_events\_version) | Argo Events Helm Chart version | `string` | `"2.4.1"` | no |
+| <a name="input_addons_argocd_enabled"></a> [addons\_argocd\_enabled](#input\_addons\_argocd\_enabled) | if true ArgoCD is enabled | `bool` | `true` | no |
 | <a name="input_addons_argocd_version"></a> [addons\_argocd\_version](#input\_addons\_argocd\_version) | ArgoCD Helm Chart version | `string` | `"5.46.7"` | no |
+| <a name="input_addons_aws_efs_csi_driver_enabled"></a> [addons\_aws\_efs\_csi\_driver\_enabled](#input\_addons\_aws\_efs\_csi\_driver\_enabled) | if true aws-efs-csi-driver is enabled | `bool` | `false` | no |
 | <a name="input_addons_aws_load_balancer_version"></a> [addons\_aws\_load\_balancer\_version](#input\_addons\_aws\_load\_balancer\_version) | EKS AWS Load Balancer Helm Chart version | `string` | `"1.6.2"` | no |
+| <a name="input_addons_cert_manager_enabled"></a> [addons\_cert\_manager\_enabled](#input\_addons\_cert\_manager\_enabled) | if true cert-manager is enabled | `bool` | `true` | no |
 | <a name="input_addons_cert_manager_version"></a> [addons\_cert\_manager\_version](#input\_addons\_cert\_manager\_version) | Cert Manager operator Helm Chart version | `string` | `"1.13.3"` | no |
 | <a name="input_addons_external_dns_version"></a> [addons\_external\_dns\_version](#input\_addons\_external\_dns\_version) | n/a | `string` | `"1.14.3"` | no |
 | <a name="input_addons_external_secrets_version"></a> [addons\_external\_secrets\_version](#input\_addons\_external\_secrets\_version) | n/a | `string` | `"0.9.11"` | no |
