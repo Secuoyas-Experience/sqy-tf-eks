@@ -61,10 +61,10 @@ module "eks_addons_extra" {
   enable_external_dns                 = true
   enable_aws_load_balancer_controller = true
   enable_external_secrets             = true
-  enable_cert_manager                 = true
-  enable_aws_efs_csi_driver           = true
-  enable_argocd                       = true
-  enable_argo_events                  = true
+  enable_cert_manager                 = var.addons_cert_manager_enabled
+  enable_aws_efs_csi_driver           = var.addons_aws_efs_csi_driver_enabled
+  enable_argocd                       = var.addons_argocd_enabled
+  enable_argo_events                  = var.addons_argo_events_enabled
 
   external_dns_route53_zone_arns = var.cluster_domains_zones_arns
 

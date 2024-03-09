@@ -45,6 +45,12 @@ variable "addons_argocd_version" {
   default     = "5.46.7"
 }
 
+variable "addons_argocd_enabled" {
+  type        = bool
+  default     = true
+  description = "if true ArgoCD is enabled"
+}
+
 variable "addons_external_secrets_version" {
   type    = string
   default = "0.9.11"
@@ -67,6 +73,12 @@ variable "addons_argo_events_version" {
   default     = "2.4.1"
 }
 
+variable "addons_argo_events_enabled" {
+  type        = bool
+  description = "if true argo-events is enabled"
+  default     = true
+}
+
 variable "addons_aws_load_balancer_version" {
   type        = string
   description = "EKS AWS Load Balancer Helm Chart version"
@@ -83,6 +95,12 @@ variable "addons_cert_manager_version" {
   type        = string
   description = "Cert Manager operator Helm Chart version"
   default     = "1.13.3"
+}
+
+variable "addons_cert_manager_enabled" {
+  type        = bool
+  default     = true
+  description = "if true cert-manager is enabled"
 }
 
 variable "addons_velero_version" {
@@ -106,4 +124,10 @@ variable "addons_helm_repository_password" {
   type        = string
   description = "credentials (password) for helm repositories hosted in github.com"
   default     = null
+}
+
+variable "addons_aws_efs_csi_driver_enabled" {
+  type        = bool
+  description = "if true aws-efs-csi-driver is enabled"
+  default     = false
 }
