@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.11.0 (2024-03-09)
+
+
+### Features
+
+* increase addons exposure ([ec19245](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/ec19245593a63fde20cea177773eaa22518bdccc))
+
 ## 1.10.0 (2024-03-07)
 
 
