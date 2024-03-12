@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.12.0 (2024-03-12)
+
+
+### Features
+
+* optionally adding cluster sg rules to allow private endpoint access ([f9cb388](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/f9cb388a9ac84cfe90e0b1f968a3e895f3b65cfd))
+
 ## 1.11.0 (2024-03-09)
 
 
