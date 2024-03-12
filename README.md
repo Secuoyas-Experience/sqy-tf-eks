@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.11.0-blue)
+![version](https://img.shields.io/badge/version-v1.12.0-blue)
 
 ## Intro
 
@@ -81,6 +81,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_public_endpoint_whitelist_cidrs"></a> [cluster\_public\_endpoint\_whitelist\_cidrs](#input\_cluster\_public\_endpoint\_whitelist\_cidrs) | network cidrs from which EKS endpoint is accessible. By default if enable is accessible from anywhere | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
 | <a name="input_cluster_public_subnets"></a> [cluster\_public\_subnets](#input\_cluster\_public\_subnets) | VPC public subnets. Normally used by the AWS load balancers to expose services | `list(string)` | n/a | yes |
 | <a name="input_cluster_region"></a> [cluster\_region](#input\_cluster\_region) | AWS region where the EKS cluster is located | `string` | n/a | yes |
+| <a name="input_cluster_security_group_additional_rules"></a> [cluster\_security\_group\_additional\_rules](#input\_cluster\_security\_group\_additional\_rules) | security group rules allowed to access EKS cluster (helpful for VPN rules) | `any` | `{}` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Type of environment (dev,stg,prod) | `string` | n/a | yes |
 | <a name="input_inception_desired_size"></a> [inception\_desired\_size](#input\_inception\_desired\_size) | number of desired cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_max_size"></a> [inception\_max\_size](#input\_inception\_max\_size) | number of max cluster node group instances | `number` | `1` | no |
