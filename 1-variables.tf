@@ -51,6 +51,12 @@ variable "cluster_private_endpoint_enabled" {
   default     = true
 }
 
+variable "cluster_security_group_additional_rules" {
+  type        = any
+  description = "security group rules allowed to access EKS cluster (helpful for VPN rules)"
+  default     = {}
+}
+
 variable "cluster_private_subnets" {
   type        = list(string)
   description = "VPC private subnets. Normally used by nodes and pods"
