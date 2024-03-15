@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.12.1 (2024-03-15)
+
+
+### Bug Fixes
+
+* adding additional rules for node-to-node traffic ([34b65b4](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/34b65b4dd43d519dcd5378ad4ca27547f6afa512))
+
 ## 1.12.0 (2024-03-12)
 
 
