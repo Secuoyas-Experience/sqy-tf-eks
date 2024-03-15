@@ -57,6 +57,12 @@ variable "cluster_security_group_additional_rules" {
   default     = {}
 }
 
+variable "cluster_node_security_group_additional_rules" {
+  type        = any
+  description = "security group rules between nodes"
+  default     = {}
+}
+
 variable "cluster_private_subnets" {
   type        = list(string)
   description = "VPC private subnets. Normally used by nodes and pods"
