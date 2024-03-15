@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.12.0-blue)
+![version](https://img.shields.io/badge/version-v1.12.1-blue)
 
 ## Intro
 
@@ -75,6 +75,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_domains_zones_arns"></a> [cluster\_domains\_zones\_arns](#input\_cluster\_domains\_zones\_arns) | Zone arns. Should be provided by another resource. If you want this module to create them use cluster\_domains variable | `list(string)` | `[]` | no |
 | <a name="input_cluster_kubernetes_version"></a> [cluster\_kubernetes\_version](#input\_cluster\_kubernetes\_version) | Cluster kubernetes version | `string` | `"1.29"` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name | `string` | n/a | yes |
+| <a name="input_cluster_node_security_group_additional_rules"></a> [cluster\_node\_security\_group\_additional\_rules](#input\_cluster\_node\_security\_group\_additional\_rules) | security group rules between nodes | `any` | `{}` | no |
 | <a name="input_cluster_private_endpoint_enabled"></a> [cluster\_private\_endpoint\_enabled](#input\_cluster\_private\_endpoint\_enabled) | if true enables private EKS endpoint | `bool` | `true` | no |
 | <a name="input_cluster_private_subnets"></a> [cluster\_private\_subnets](#input\_cluster\_private\_subnets) | VPC private subnets. Normally used by nodes and pods | `list(string)` | n/a | yes |
 | <a name="input_cluster_public_endpoint_enabled"></a> [cluster\_public\_endpoint\_enabled](#input\_cluster\_public\_endpoint\_enabled) | if true enables public EKS endpoint | `bool` | `true` | no |
