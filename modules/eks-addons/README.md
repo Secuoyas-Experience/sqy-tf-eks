@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.12.2-blue)
+![version](https://img.shields.io/badge/version-v1.12.3-blue)
 
 ## Intro
 
@@ -82,7 +82,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_addons_karpenter_version"></a> [addons\_karpenter\_version](#input\_addons\_karpenter\_version) | Karpenter Helm Chart version | `string` | `"v0.34.0"` | no |
 | <a name="input_addons_metrics_server_version"></a> [addons\_metrics\_server\_version](#input\_addons\_metrics\_server\_version) | n/a | `string` | `"3.12.0"` | no |
 | <a name="input_addons_reloader_version"></a> [addons\_reloader\_version](#input\_addons\_reloader\_version) | Stakater Reloader Helm Chart version | `string` | `"1.0.56"` | no |
-| <a name="input_addons_velero_bucket_arn"></a> [addons\_velero\_bucket\_arn](#input\_addons\_velero\_bucket\_arn) | if addons\_velero\_create\_bucket is false then we need to provide the bucket arn | `string` | n/a | yes |
+| <a name="input_addons_velero_bucket_arn"></a> [addons\_velero\_bucket\_arn](#input\_addons\_velero\_bucket\_arn) | if addons\_velero\_create\_bucket is false then we need to provide the bucket arn | `string` | `null` | no |
 | <a name="input_addons_velero_enabled"></a> [addons\_velero\_enabled](#input\_addons\_velero\_enabled) | Enable velero (enabled by default) | `bool` | `false` | no |
 | <a name="input_addons_velero_version"></a> [addons\_velero\_version](#input\_addons\_velero\_version) | Velervar.cluster\_nameo Helm Chart version | `string` | `"4.0.3"` | no |
 | <a name="input_cluster_domains_zones_arns"></a> [cluster\_domains\_zones\_arns](#input\_cluster\_domains\_zones\_arns) | Zone arns. Should be provided by another resource. If you want this module to create them use cluster\_domains variable | `list(string)` | `[]` | no |
