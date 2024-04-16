@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.12.2 (2024-04-16)
+
+
+### Bug Fixes
+
+* some terraform fmt in velero files ([1ecbb90](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/1ecbb90ca51569ec6edec9074c46a29e5c7ed2ae))
+
 ### 1.12.1 (2024-03-15)
 
 
