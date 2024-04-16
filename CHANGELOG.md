@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.12.3 (2024-04-16)
+
+
+### Bug Fixes
+
+* **addons:** set default value for velero s3 arn ([9d44de2](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/9d44de25c06f23cb7fb1bbace5331fa69d177384))
+
 ### 1.12.2 (2024-04-16)
 
 
