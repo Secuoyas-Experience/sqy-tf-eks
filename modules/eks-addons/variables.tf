@@ -118,6 +118,7 @@ variable "addons_velero_version" {
 variable "addons_velero_bucket_arn" {
   type        = string
   description = "if addons_velero_create_bucket is false then we need to provide the bucket arn"
+  default     = null
 }
 
 variable "addons_helm_repository_username" {
