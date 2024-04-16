@@ -1,6 +1,6 @@
 module "ebs_csi_driver_irsa" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks"
-  version = "~> 5.33.0"
+  version = "~> 5.39.0"
 
   role_name_prefix      = "${module.cluster_eks.cluster_name}-ebs-csi-driver-"
   attach_ebs_csi_policy = true
@@ -15,7 +15,7 @@ module "ebs_csi_driver_irsa" {
 
 module "cluster_eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "20.2.1"
+  version = "20.8.5"
 
   cluster_name                             = var.cluster_name
   cluster_version                          = var.cluster_kubernetes_version
