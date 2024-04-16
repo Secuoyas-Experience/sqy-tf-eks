@@ -47,7 +47,7 @@ variable "addons_argocd_version" {
 
 variable "addons_argocd_enabled" {
   type        = bool
-  default     = true
+  default     = false
   description = "if true ArgoCD is enabled"
 }
 
@@ -76,7 +76,7 @@ variable "addons_argo_events_version" {
 variable "addons_argo_events_enabled" {
   type        = bool
   description = "if true argo-events is enabled"
-  default     = true
+  default     = false
 }
 
 variable "addons_aws_load_balancer_version" {
