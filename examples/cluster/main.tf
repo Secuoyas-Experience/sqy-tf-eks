@@ -7,6 +7,7 @@ module "cluster" {
   cluster_azs                = ["eu-central-1a", "eu-central-1b", "eu-central-1c"]
   cluster_private_subnets    = ["10.0.0.0/18", "10.0.64.0/18", "10.0.128.0/24"]
   cluster_public_subnets     = ["10.0.192.0/24", "10.0.193.0/24", "10.0.194.0/24"]
+  cluster_enable_snapshotter = true
   inception_min_size         = 1
   inception_max_size         = 1
   inception_desired_size     = 1

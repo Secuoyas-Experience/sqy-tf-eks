@@ -103,6 +103,12 @@ variable "addons_cert_manager_enabled" {
   description = "if true cert-manager is enabled"
 }
 
+variable "addons_velero_enabled" {
+  type        = bool
+  default     = false
+  description = "Enable velero (enabled by default)"
+}
+
 variable "addons_velero_version" {
   type        = string
   description = "Velervar.cluster_nameo Helm Chart version"

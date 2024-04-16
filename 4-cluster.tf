@@ -35,17 +35,24 @@ module "cluster_eks" {
     }
 
     kube-proxy = {
-      addon_version = "v1.29.0-eksbuild.3"
+      addon_version = "v1.29.3-eksbuild.2"
     }
 
     vpc-cni = {
-      addon_version = "v1.16.2-eksbuild.1"
+      addon_version = "v1.18.0-eksbuild.1"
     }
 
     aws-ebs-csi-driver = {
-      addon_version            = "v1.27.0-eksbuild.1"
+      addon_version            = "v1.29.1-eksbuild.1"
       service_account_role_arn = module.ebs_csi_driver_irsa.iam_role_arn
-      configuration_values     = jsonencode({ sidecars = { snapshotter = { forceEnable = false } } })
+
+      configuration_values = jsonencode({
+        sidecars = {
+          snapshotter = {
+            forceEnable = var.cluster_enable_snapshotter
+          }
+        }
+      })
     }
   }
 
@@ -95,3 +102,39 @@ module "cluster_eks" {
     "karpenter.sh/discovery" = var.cluster_name
   }
 }
+
+# 1. install CRDS
+data "kubectl_file_documents" "snapshotter_crds" {
+  content = file("${path.module}/manifests/snapshotter.crd-v7.0.2.yaml")
+}
+
+resource "kubectl_manifest" "snapshotter_crds" {
+  for_each  = var.cluster_enable_snapshotter ? data.kubectl_file_documents.snapshotter_crds.manifests : {}
+  yaml_body = each.value
+
+  depends_on = [module.cluster_eks]
+}
+
+# 2. SNAPSHOTTER - Install RBAC
+data "kubectl_file_documents" "snapshotter_rbac" {
+  content = file("${path.module}/manifests/snapshotter.rbac-v7.0.2.yaml")
+}
+
+resource "kubectl_manifest" "snapshotter_rbac" {
+  for_each   = var.cluster_enable_snapshotter ? data.kubectl_file_documents.snapshotter_rbac.manifests : {}
+  yaml_body  = each.value
+  depends_on = [kubectl_manifest.snapshotter_crds]
+}
+
+# 3. SNAPSHOTTER - Install controller
+data "kubectl_file_documents" "snapshotter_deployment" {
+  content = file("${path.module}/manifests/snapshotter.deployment-v7.0.2.yaml")
+}
+
+resource "kubectl_manifest" "snapshotter_controller" {
+  for_each   = var.cluster_enable_snapshotter ? data.kubectl_file_documents.snapshotter_deployment.manifests : {}
+  yaml_body  = each.value
+  depends_on = [kubectl_manifest.snapshotter_rbac]
+}
+
+# 4. SNAPSHOTTER - Install ebs csi driver (Check if it works installed before)

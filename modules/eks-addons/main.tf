@@ -15,6 +15,7 @@ module "karpenter" {
 
 module "velero" {
   source            = "../eks-velero"
+  count             = var.addons_velero_enabled ? 1 : 0
   s3_backup_arn     = var.addons_velero_bucket_arn
   oidc_provider_arn = var.cluster_oidc_provider_arn
   timeout           = var.addons_helm_timeout

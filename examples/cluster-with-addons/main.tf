@@ -31,6 +31,7 @@ module "addons" {
   cluster_endpoint           = module.cluster.cluster_endpoint
   cluster_domains_zones_arns = module.zones.route53_zone_arns
   cluster_oidc_provider_arn  = module.cluster.oidc_provider_arn
+  addons_velero_enabled      = true
   addons_velero_bucket_arn   = module.velero_backup_s3.arn
 }
 

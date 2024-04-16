@@ -101,6 +101,12 @@ variable "cluster_kubernetes_version" {
   default     = "1.29"
 }
 
+variable "cluster_enable_snapshotter" {
+  type        = bool
+  default     = false
+  description = "if true enables VolumeSnapshot API"
+}
+
 variable "organization" {
   type        = string
   description = "Organization the cluster is used for"
