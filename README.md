@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.12.1-blue)
+![version](https://img.shields.io/badge/version-v1.12.2-blue)
 
 ## Intro
 
@@ -36,7 +36,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.34.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.40.0 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | >=2.11.0 |
 | <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0.4 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.24.0 |
@@ -45,14 +45,15 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.34.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.40.0 |
+| <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | ~> 2.0.4 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cluster_eks"></a> [cluster\_eks](#module\_cluster\_eks) | terraform-aws-modules/eks/aws | 20.2.1 |
-| <a name="module_ebs_csi_driver_irsa"></a> [ebs\_csi\_driver\_irsa](#module\_ebs\_csi\_driver\_irsa) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | ~> 5.33.0 |
+| <a name="module_cluster_eks"></a> [cluster\_eks](#module\_cluster\_eks) | terraform-aws-modules/eks/aws | 20.8.5 |
+| <a name="module_ebs_csi_driver_irsa"></a> [ebs\_csi\_driver\_irsa](#module\_ebs\_csi\_driver\_irsa) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | ~> 5.39.0 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | 5.4.0 |
 
 ## Resources
@@ -60,9 +61,15 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | Name | Type |
 |------|------|
 | [aws_iam_role.kube_admin_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
+| [kubectl_manifest.snapshotter_controller](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/resources/manifest) | resource |
+| [kubectl_manifest.snapshotter_crds](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/resources/manifest) | resource |
+| [kubectl_manifest.snapshotter_rbac](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/resources/manifest) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_iam_policy_document.assume_role_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
 | [aws_iam_policy_document.eks_read_policy_document](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document) | data source |
+| [kubectl_file_documents.snapshotter_crds](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/data-sources/file_documents) | data source |
+| [kubectl_file_documents.snapshotter_deployment](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/data-sources/file_documents) | data source |
+| [kubectl_file_documents.snapshotter_rbac](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/data-sources/file_documents) | data source |
 
 ## Inputs
 
@@ -73,6 +80,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_cidr"></a> [cluster\_cidr](#input\_cluster\_cidr) | VPC cidr | `string` | `"10.0.0.0/16"` | no |
 | <a name="input_cluster_domains"></a> [cluster\_domains](#input\_cluster\_domains) | Domain names handled by this cluster. Normally the NS domain name where ingresses are under (e.g dev.mycompany.com) | `list(string)` | `[]` | no |
 | <a name="input_cluster_domains_zones_arns"></a> [cluster\_domains\_zones\_arns](#input\_cluster\_domains\_zones\_arns) | Zone arns. Should be provided by another resource. If you want this module to create them use cluster\_domains variable | `list(string)` | `[]` | no |
+| <a name="input_cluster_enable_snapshotter"></a> [cluster\_enable\_snapshotter](#input\_cluster\_enable\_snapshotter) | if true enables VolumeSnapshot API | `bool` | `false` | no |
 | <a name="input_cluster_kubernetes_version"></a> [cluster\_kubernetes\_version](#input\_cluster\_kubernetes\_version) | Cluster kubernetes version | `string` | `"1.29"` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name | `string` | n/a | yes |
 | <a name="input_cluster_node_security_group_additional_rules"></a> [cluster\_node\_security\_group\_additional\_rules](#input\_cluster\_node\_security\_group\_additional\_rules) | security group rules between nodes | `any` | `{}` | no |

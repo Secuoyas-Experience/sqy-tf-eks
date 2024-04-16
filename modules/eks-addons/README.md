@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.12.1-blue)
+![version](https://img.shields.io/badge/version-v1.12.2-blue)
 
 ## Intro
 
@@ -36,7 +36,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.34.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.40.0 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.1 |
 | <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0.4 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.24.0 |
@@ -65,9 +65,9 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_addons_argo_events_enabled"></a> [addons\_argo\_events\_enabled](#input\_addons\_argo\_events\_enabled) | if true argo-events is enabled | `bool` | `true` | no |
+| <a name="input_addons_argo_events_enabled"></a> [addons\_argo\_events\_enabled](#input\_addons\_argo\_events\_enabled) | if true argo-events is enabled | `bool` | `false` | no |
 | <a name="input_addons_argo_events_version"></a> [addons\_argo\_events\_version](#input\_addons\_argo\_events\_version) | Argo Events Helm Chart version | `string` | `"2.4.1"` | no |
-| <a name="input_addons_argocd_enabled"></a> [addons\_argocd\_enabled](#input\_addons\_argocd\_enabled) | if true ArgoCD is enabled | `bool` | `true` | no |
+| <a name="input_addons_argocd_enabled"></a> [addons\_argocd\_enabled](#input\_addons\_argocd\_enabled) | if true ArgoCD is enabled | `bool` | `false` | no |
 | <a name="input_addons_argocd_version"></a> [addons\_argocd\_version](#input\_addons\_argocd\_version) | ArgoCD Helm Chart version | `string` | `"5.46.7"` | no |
 | <a name="input_addons_aws_efs_csi_driver_enabled"></a> [addons\_aws\_efs\_csi\_driver\_enabled](#input\_addons\_aws\_efs\_csi\_driver\_enabled) | if true aws-efs-csi-driver is enabled | `bool` | `false` | no |
 | <a name="input_addons_aws_load_balancer_version"></a> [addons\_aws\_load\_balancer\_version](#input\_addons\_aws\_load\_balancer\_version) | EKS AWS Load Balancer Helm Chart version | `string` | `"1.6.2"` | no |
@@ -83,6 +83,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_addons_metrics_server_version"></a> [addons\_metrics\_server\_version](#input\_addons\_metrics\_server\_version) | n/a | `string` | `"3.12.0"` | no |
 | <a name="input_addons_reloader_version"></a> [addons\_reloader\_version](#input\_addons\_reloader\_version) | Stakater Reloader Helm Chart version | `string` | `"1.0.56"` | no |
 | <a name="input_addons_velero_bucket_arn"></a> [addons\_velero\_bucket\_arn](#input\_addons\_velero\_bucket\_arn) | if addons\_velero\_create\_bucket is false then we need to provide the bucket arn | `string` | n/a | yes |
+| <a name="input_addons_velero_enabled"></a> [addons\_velero\_enabled](#input\_addons\_velero\_enabled) | Enable velero (enabled by default) | `bool` | `false` | no |
 | <a name="input_addons_velero_version"></a> [addons\_velero\_version](#input\_addons\_velero\_version) | Velervar.cluster\_nameo Helm Chart version | `string` | `"4.0.3"` | no |
 | <a name="input_cluster_domains_zones_arns"></a> [cluster\_domains\_zones\_arns](#input\_cluster\_domains\_zones\_arns) | Zone arns. Should be provided by another resource. If you want this module to create them use cluster\_domains variable | `list(string)` | `[]` | no |
 | <a name="input_cluster_endpoint"></a> [cluster\_endpoint](#input\_cluster\_endpoint) | n/a | `string` | n/a | yes |
