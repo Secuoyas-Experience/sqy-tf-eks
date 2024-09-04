@@ -7,6 +7,7 @@ module "karpenter" {
 
   node_iam_role_additional_policies = {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
+    CloudWatchReadOnlyAccess     = "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
   }
 }
 
