@@ -36,7 +36,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.40.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.67.0 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | >=2.11.0 |
 | <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 2.0.4 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | ~> 2.24.0 |
@@ -45,7 +45,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.40.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.67.0 |
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | ~> 2.0.4 |
 
 ## Modules
