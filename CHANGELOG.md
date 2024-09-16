@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.13.0 (2024-09-16)
+
+
+### Features
+
+* updating aws provider version to 5.67.0 ([44aa081](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/44aa081cf495d8988ac999837137d580ac1eb589))
+
 ### 1.12.4 (2024-09-04)
 
 ### 1.12.3 (2024-04-16)
