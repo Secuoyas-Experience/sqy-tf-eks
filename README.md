@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.13.0-blue)
+![version](https://img.shields.io/badge/version-v1.13.1-blue)
 
 ## Intro
 
@@ -87,7 +87,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_private_endpoint_enabled"></a> [cluster\_private\_endpoint\_enabled](#input\_cluster\_private\_endpoint\_enabled) | if true enables private EKS endpoint | `bool` | `true` | no |
 | <a name="input_cluster_private_subnets"></a> [cluster\_private\_subnets](#input\_cluster\_private\_subnets) | VPC private subnets. Normally used by nodes and pods | `list(string)` | n/a | yes |
 | <a name="input_cluster_public_endpoint_enabled"></a> [cluster\_public\_endpoint\_enabled](#input\_cluster\_public\_endpoint\_enabled) | if true enables public EKS endpoint | `bool` | `true` | no |
-| <a name="input_cluster_public_endpoint_whitelist_cidrs"></a> [cluster\_public\_endpoint\_whitelist\_cidrs](#input\_cluster\_public\_endpoint\_whitelist\_cidrs) | network cidrs from which EKS endpoint is accessible. By default if enable is accessible from anywhere | `list(string)` | <pre>[<br>  "0.0.0.0/0"<br>]</pre> | no |
+| <a name="input_cluster_public_endpoint_whitelist_cidrs"></a> [cluster\_public\_endpoint\_whitelist\_cidrs](#input\_cluster\_public\_endpoint\_whitelist\_cidrs) | network cidrs from which EKS endpoint is accessible. By default if enable is accessible from anywhere | `list(string)` | <pre>[<br/>  "0.0.0.0/0"<br/>]</pre> | no |
 | <a name="input_cluster_public_subnets"></a> [cluster\_public\_subnets](#input\_cluster\_public\_subnets) | VPC public subnets. Normally used by the AWS load balancers to expose services | `list(string)` | n/a | yes |
 | <a name="input_cluster_region"></a> [cluster\_region](#input\_cluster\_region) | AWS region where the EKS cluster is located | `string` | n/a | yes |
 | <a name="input_cluster_security_group_additional_rules"></a> [cluster\_security\_group\_additional\_rules](#input\_cluster\_security\_group\_additional\_rules) | security group rules allowed to access EKS cluster (helpful for VPN rules) | `any` | `{}` | no |
@@ -95,7 +95,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_inception_desired_size"></a> [inception\_desired\_size](#input\_inception\_desired\_size) | number of desired cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_max_size"></a> [inception\_max\_size](#input\_inception\_max\_size) | number of max cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_min_size"></a> [inception\_min\_size](#input\_inception\_min\_size) | number of min cluster node group instances | `number` | `1` | no |
-| <a name="input_inception_types"></a> [inception\_types](#input\_inception\_types) | list of types of initial cluster node group instances | `list(string)` | <pre>[<br>  "t3a.medium"<br>]</pre> | no |
+| <a name="input_inception_types"></a> [inception\_types](#input\_inception\_types) | list of types of initial cluster node group instances | `list(string)` | <pre>[<br/>  "t3a.medium"<br/>]</pre> | no |
 | <a name="input_organization"></a> [organization](#input\_organization) | Organization the cluster is used for | `string` | n/a | yes |
 
 ## Outputs
