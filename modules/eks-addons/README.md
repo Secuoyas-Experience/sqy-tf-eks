@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.13.0-blue)
+![version](https://img.shields.io/badge/version-v1.13.1-blue)
 
 ## Intro
 
@@ -80,6 +80,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_addons_helm_timeout"></a> [addons\_helm\_timeout](#input\_addons\_helm\_timeout) | helm release timeout seconds (default 1800 sec -> 30 min) | `number` | `1800` | no |
 | <a name="input_addons_karpenter_nodepools_path"></a> [addons\_karpenter\_nodepools\_path](#input\_addons\_karpenter\_nodepools\_path) | Karpenter's provisioners path | `string` | `""` | no |
 | <a name="input_addons_karpenter_version"></a> [addons\_karpenter\_version](#input\_addons\_karpenter\_version) | Karpenter Helm Chart version | `string` | `"v0.34.0"` | no |
+| <a name="input_addons_karpenter_volumeSize"></a> [addons\_karpenter\_volumeSize](#input\_addons\_karpenter\_volumeSize) | Karpenter's volumeSize | `string` | `"10Gi"` | no |
 | <a name="input_addons_metrics_server_version"></a> [addons\_metrics\_server\_version](#input\_addons\_metrics\_server\_version) | n/a | `string` | `"3.12.0"` | no |
 | <a name="input_addons_reloader_version"></a> [addons\_reloader\_version](#input\_addons\_reloader\_version) | Stakater Reloader Helm Chart version | `string` | `"1.0.56"` | no |
 | <a name="input_addons_velero_bucket_arn"></a> [addons\_velero\_bucket\_arn](#input\_addons\_velero\_bucket\_arn) | if addons\_velero\_create\_bucket is false then we need to provide the bucket arn | `string` | `null` | no |
