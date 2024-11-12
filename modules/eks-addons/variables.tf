@@ -39,6 +39,12 @@ variable "addons_karpenter_nodepools_path" {
   default     = ""
 }
 
+variable "addons_karpenter_volumeSize" {
+  type        = string
+  description = "Karpenter's volumeSize"
+  default     = "10Gi"
+}
+
 variable "addons_argocd_version" {
   type        = string
   description = "ArgoCD Helm Chart version"

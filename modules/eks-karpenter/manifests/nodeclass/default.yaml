@@ -14,3 +14,7 @@ spec:
   role: ${role_name}
   tags:
     karpenter.sh/discovery: "${cluster_name}"
+  blockDeviceMappings:
+    - deviceName: /dev/xvda
+      ebs:
+        volumeSize: "${volumeSize}"

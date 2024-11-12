@@ -7,6 +7,7 @@ module "karpenter" {
   cluster_name              = var.cluster_name
   cluster_endpoint          = var.cluster_endpoint
   cluster_oidc_provider_arn = var.cluster_oidc_provider_arn
+  karpenter_volumeSize = var.addons_karpenter_volumeSize
 }
 
 ########################################

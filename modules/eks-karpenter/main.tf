@@ -68,5 +68,6 @@ resource "kubectl_manifest" "karpenter_default_nodeclass" {
   yaml_body = templatefile("${path.module}/manifests/nodeclass/default.yaml", {
     cluster_name = var.cluster_name
     role_name    = module.karpenter.node_iam_role_name
+    volumeSize = var.karpenter_volumeSize
   })
 }
