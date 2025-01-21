@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.14.0 (2025-01-21)
+
+
+### Features
+
+* **eks:** update eks 1.29 -> 1.30 ([6cf3a57](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/6cf3a571c7805256d5598b9213bb82b80d7d057e))
+
 ### 1.13.2 (2024-11-12)
 
 ### 1.13.1 (2024-11-12)
