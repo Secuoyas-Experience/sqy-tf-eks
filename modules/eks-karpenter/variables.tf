@@ -12,7 +12,7 @@ variable "cluster_oidc_provider_arn" {
 
 variable "addon_version" {
   type    = string
-  default = "v0.37.0"
+  default = "0.37.0"
 }
 
 variable "addon_timeout" {
