@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.15.0 (2025-01-21)
+
+
+### Features
+
+* **eks:** update karpenter version ([4657edf](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/4657edf001909eb9b8095d40da4a7f22f2e6eebc))
+
 ## 1.14.0 (2025-01-21)
 
 
