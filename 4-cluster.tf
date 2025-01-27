@@ -31,19 +31,19 @@ module "cluster_eks" {
   # https://docs.aws.amazon.com/eks/latest/userguide/eks-networking-add-ons.html
   cluster_addons = {
     coredns = {
-      addon_version = "v1.11.1-eksbuild.9"
+      addon_version = "v1.11.1-eksbuild.6"
     }
 
     kube-proxy = {
-      addon_version = "v1.30.0-eksbuild.3"
+      addon_version = "v1.29.3-eksbuild.2"
     }
 
     vpc-cni = {
-      addon_version = "v1.19.0-eksbuild.1"
+      addon_version = "v1.18.0-eksbuild.1"
     }
 
     aws-ebs-csi-driver = {
-      addon_version            = "v1.31.1-eksbuild.1"
+      addon_version            = "v1.29.1-eksbuild.1"
       service_account_role_arn = module.ebs_csi_driver_irsa.iam_role_arn
 
       configuration_values = jsonencode({

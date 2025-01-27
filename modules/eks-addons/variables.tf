@@ -27,12 +27,6 @@ variable "addons_helm_timeout" {
   default     = 1800
 }
 
-variable "addons_karpenter_version" {
-  type        = string
-  description = "Karpenter Helm Chart version"
-  default     = "v0.34.0"
-}
-
 variable "addons_karpenter_nodepools_path" {
   type        = string
   description = "Karpenter's provisioners path"
@@ -48,7 +42,6 @@ variable "addons_karpenter_volumeSize" {
 variable "addons_argocd_version" {
   type        = string
   description = "ArgoCD Helm Chart version"
-  default     = "5.46.7"
 }
 
 variable "addons_argocd_enabled" {
@@ -58,37 +51,31 @@ variable "addons_argocd_enabled" {
 }
 
 variable "addons_external_secrets_version" {
-  type    = string
-  default = "0.9.11"
+  type = string
 }
 
 variable "addons_metrics_server_version" {
-  type    = string
-  default = "3.12.0"
+  type = string
 }
 
 variable "addons_external_dns_version" {
-  type    = string
-  default = "1.14.3"
+  type = string
 }
 
 # https://github.com/argoproj/argo-helm/tree/main/charts/argo-events
 variable "addons_argo_events_version" {
   type        = string
   description = "Argo Events Helm Chart version"
-  default     = "2.4.1"
 }
 
 variable "addons_argo_events_enabled" {
   type        = bool
   description = "if true argo-events is enabled"
-  default     = false
 }
 
 variable "addons_aws_load_balancer_version" {
   type        = string
   description = "EKS AWS Load Balancer Helm Chart version"
-  default     = "1.6.2"
 }
 
 variable "addons_reloader_version" {
@@ -100,7 +87,6 @@ variable "addons_reloader_version" {
 variable "addons_cert_manager_version" {
   type        = string
   description = "Cert Manager operator Helm Chart version"
-  default     = "1.13.3"
 }
 
 variable "addons_cert_manager_enabled" {
@@ -143,4 +129,34 @@ variable "addons_aws_efs_csi_driver_enabled" {
   type        = bool
   description = "if true aws-efs-csi-driver is enabled"
   default     = false
+}
+
+variable "irsa_namespace_service_accounts" {
+  description = "List of `namespace:serviceaccount`pairs to use in trust policy for IAM role for service accounts"
+  type        = list(string)
+}
+
+variable "addons_karpenter_volumeType" {
+  type        = string
+  description = "Nodeclass VolumeType"
+}
+
+variable "addons_karpenter_volumeIops" {
+  type        = number
+  description = "Nodeclass VolumeIops"
+}
+
+variable "addons_karpenter_namespace" {
+  type        = string
+  description = "Karpenter namespace"
+}
+
+variable "addons_karpenter_version" {
+  type        = string
+  description = "Karpenter Helm Chart version"
+}
+
+variable "eks_addons_extra_version" {
+  type        = string
+  description = "EKS Addons Extra version"
 }

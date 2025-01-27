@@ -3,11 +3,16 @@
 ########################################
 
 module "karpenter" {
-  source                    = "../eks-karpenter"
-  cluster_name              = var.cluster_name
-  cluster_endpoint          = var.cluster_endpoint
-  cluster_oidc_provider_arn = var.cluster_oidc_provider_arn
-  karpenter_volumeSize = var.addons_karpenter_volumeSize
+  source                          = "../eks-karpenter"
+  cluster_name                    = var.cluster_name
+  cluster_endpoint                = var.cluster_endpoint
+  cluster_oidc_provider_arn       = var.cluster_oidc_provider_arn
+  karpenter_volumeSize            = var.addons_karpenter_volumeSize
+  irsa_namespace_service_accounts = var.irsa_namespace_service_accounts
+  addons_karpenter_volumeType     = var.addons_karpenter_volumeType
+  addons_karpenter_volumeIops     = var.addons_karpenter_volumeIops
+  addons_karpenter_namespace      = var.addons_karpenter_namespace
+  addons_karpenter_version        = var.addons_karpenter_version
 }
 
 ########################################
@@ -52,7 +57,7 @@ resource "helm_release" "reloader" {
 
 module "eks_addons_extra" {
   source  = "aws-ia/eks-blueprints-addons/aws"
-  version = "1.15.1"
+  version = var.eks_addons_extra_version
 
   cluster_name      = var.cluster_name
   cluster_endpoint  = var.cluster_endpoint

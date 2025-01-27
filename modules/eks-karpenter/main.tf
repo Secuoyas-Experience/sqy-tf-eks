@@ -5,6 +5,10 @@ module "karpenter" {
   irsa_oidc_provider_arn = var.cluster_oidc_provider_arn
   enable_irsa            = true
 
+  # ----
+  irsa_namespace_service_accounts = var.irsa_namespace_service_accounts
+  # ----
+
   node_iam_role_additional_policies = {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
     CloudWatchReadOnlyAccess     = "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
@@ -12,13 +16,13 @@ module "karpenter" {
 }
 
 resource "helm_release" "karpenter" {
-  namespace        = "karpenter"
+  namespace        = var.addons_karpenter_namespace
   create_namespace = true
   name             = "karpenter"
   repository       = "oci://public.ecr.aws/karpenter"
   chart            = "karpenter"
   timeout          = var.addon_timeout
-  version          = var.addon_version
+  version          = var.addons_karpenter_version
   wait             = false
   wait_for_jobs    = false
 
@@ -38,12 +42,12 @@ resource "helm_release" "karpenter" {
   }
 
   set {
-    name  = "settings.aws.clusterEndpoint"
+    name  = "settings.clusterEndpoint"
     value = var.cluster_endpoint
   }
 
   set {
-    name  = "settings.aws.interruptionQueueName"
+    name  = "settings.interruptionQueue"
     value = module.karpenter.queue_name
   }
 
@@ -68,6 +72,8 @@ resource "kubectl_manifest" "karpenter_default_nodeclass" {
   yaml_body = templatefile("${path.module}/manifests/nodeclass/default.yaml", {
     cluster_name = var.cluster_name
     role_name    = module.karpenter.node_iam_role_name
-    volumeSize = var.karpenter_volumeSize
+    volumeSize   = var.karpenter_volumeSize
+    volumeType   = var.addons_karpenter_volumeType
+    volumeIops   = var.addons_karpenter_volumeIops
   })
 }

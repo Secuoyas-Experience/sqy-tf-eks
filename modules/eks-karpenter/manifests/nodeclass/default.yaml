@@ -18,12 +18,12 @@ spec:
     - deviceName: /dev/xvda
       ebs:
         volumeSize: "${volumeSize}"
-      # encrypted: true
-      volumeType: gp3
-      iops: 3000
+        encrypted: true
+        volumeType: "${volumeType}"
+        iops: ${volumeIops}
     - deviceName: /dev/xvdb
       ebs:
         volumeSize: "${volumeSize}"
-      # encrypted: true
-      volumeType: gp3
-      iops: 3000
+        encrypted: true
+        volumeType: "${volumeType}"
+        iops: ${volumeIops}
