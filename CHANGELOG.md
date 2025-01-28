@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.18.0 (2025-01-28)
+
+
+### Features
+
+* **karpenter:** update karpenter module and stop managing karpenter with terraform ([a12e6a6](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/a12e6a6138199b9869408dcba9aa45e51ecdb020))
+
 ### 1.17.1 (2025-01-23)
 
 ## 1.17.0 (2025-01-23)
