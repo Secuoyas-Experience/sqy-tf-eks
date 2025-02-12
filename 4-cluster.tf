@@ -15,7 +15,7 @@ module "ebs_csi_driver_irsa" {
 
 module "cluster_eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "20.8.5"
+  version = "20.14.0"
 
   cluster_name                             = var.cluster_name
   cluster_version                          = var.cluster_kubernetes_version
