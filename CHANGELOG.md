@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.19.0 (2025-02-12)
+
+
+### Features
+
+* **all:** add new variables ([afc002a](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/afc002a3ca9976c1f685dbecefc6f84f297005e1))
+
 ### 1.18.1 (2025-02-11)
 
 ## 1.18.0 (2025-01-28)
