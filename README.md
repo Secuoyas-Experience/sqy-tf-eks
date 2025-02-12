@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.18.1-blue)
+![version](https://img.shields.io/badge/version-v1.19.1-blue)
 
 ## Intro
 
@@ -52,7 +52,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cluster_eks"></a> [cluster\_eks](#module\_cluster\_eks) | terraform-aws-modules/eks/aws | 20.14.0 |
+| <a name="module_cluster_eks"></a> [cluster\_eks](#module\_cluster\_eks) | terraform-aws-modules/eks/aws | 20.8.5 |
 | <a name="module_ebs_csi_driver_irsa"></a> [ebs\_csi\_driver\_irsa](#module\_ebs\_csi\_driver\_irsa) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | ~> 5.39.0 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | 5.4.0 |
 
@@ -91,6 +91,10 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_public_subnets"></a> [cluster\_public\_subnets](#input\_cluster\_public\_subnets) | VPC public subnets. Normally used by the AWS load balancers to expose services | `list(string)` | n/a | yes |
 | <a name="input_cluster_region"></a> [cluster\_region](#input\_cluster\_region) | AWS region where the EKS cluster is located | `string` | n/a | yes |
 | <a name="input_cluster_security_group_additional_rules"></a> [cluster\_security\_group\_additional\_rules](#input\_cluster\_security\_group\_additional\_rules) | security group rules allowed to access EKS cluster (helpful for VPN rules) | `any` | `{}` | no |
+| <a name="input_eks_coredns_ver"></a> [eks\_coredns\_ver](#input\_eks\_coredns\_ver) | CoreDNS add-on version | `string` | `"v1.11.1-eksbuild.6"` | no |
+| <a name="input_eks_ebs_csi_ver"></a> [eks\_ebs\_csi\_ver](#input\_eks\_ebs\_csi\_ver) | Kube-Proxy add-on version | `string` | `"v1.29.1-eksbuild.1"` | no |
+| <a name="input_eks_kube_proxy_ver"></a> [eks\_kube\_proxy\_ver](#input\_eks\_kube\_proxy\_ver) | Kube-Proxy add-on version | `string` | `"v1.29.3-eksbuild.2"` | no |
+| <a name="input_eks_vpc_cni_ver"></a> [eks\_vpc\_cni\_ver](#input\_eks\_vpc\_cni\_ver) | Kube-Proxy add-on version | `string` | `"v1.18.0-eksbuild.1"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Type of environment (dev,stg,prod) | `string` | n/a | yes |
 | <a name="input_inception_desired_size"></a> [inception\_desired\_size](#input\_inception\_desired\_size) | number of desired cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_max_size"></a> [inception\_max\_size](#input\_inception\_max\_size) | number of max cluster node group instances | `number` | `1` | no |
