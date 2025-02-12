@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.19.1-blue)
+![version](https://img.shields.io/badge/version-v1.19.2-blue)
 
 ## Intro
 
@@ -52,7 +52,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_cluster_eks"></a> [cluster\_eks](#module\_cluster\_eks) | terraform-aws-modules/eks/aws | 20.8.5 |
+| <a name="module_cluster_eks"></a> [cluster\_eks](#module\_cluster\_eks) | terraform-aws-modules/eks/aws | 20.14.0 |
 | <a name="module_ebs_csi_driver_irsa"></a> [ebs\_csi\_driver\_irsa](#module\_ebs\_csi\_driver\_irsa) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | ~> 5.39.0 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | 5.4.0 |
 
