@@ -123,14 +123,9 @@ variable "access_entries" {
   default     = {}
 }
 
-variable "tf_aws_module_ver" {
-  description = "AWS EKS Terraform module version"
-  default     = "20.8.5"
-}
-
 variable "eks_coredns_ver" {
   description = "CoreDNS add-on version"
-  default     = "v1.11.1-eksbuild.9"
+  default     = "v1.11.1-eksbuild.6"
 }
 
 variable "eks_kube_proxy_ver" {
