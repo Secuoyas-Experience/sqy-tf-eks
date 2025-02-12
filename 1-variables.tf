@@ -98,7 +98,7 @@ variable "cluster_name" {
 variable "cluster_kubernetes_version" {
   type        = string
   description = "Cluster kubernetes version"
-  default     = "1.29"
+  default     = "1.30"
 }
 
 variable "cluster_enable_snapshotter" {
@@ -125,20 +125,20 @@ variable "access_entries" {
 
 variable "eks_coredns_ver" {
   description = "CoreDNS add-on version"
-  default     = "v1.11.1-eksbuild.6"
+  default     = "v1.11.4-eksbuild.2"
 }
 
 variable "eks_kube_proxy_ver" {
   description = "Kube-Proxy add-on version"
-  default     = "v1.29.3-eksbuild.2"
+  default     = "v1.30.7-eksbuild.2"
 }
 
 variable "eks_vpc_cni_ver" {
   description = "Kube-Proxy add-on version"
-  default     = "v1.18.0-eksbuild.1"
+  default     = "v1.19.2-eksbuild.1"
 }
 
 variable "eks_ebs_csi_ver" {
   description = "Kube-Proxy add-on version"
-  default     = "v1.29.1-eksbuild.1"
+  default     = "v1.39.0-eksbuild.1"
 }
