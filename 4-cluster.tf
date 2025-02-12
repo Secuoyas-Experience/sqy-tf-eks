@@ -15,7 +15,7 @@ module "ebs_csi_driver_irsa" {
 
 module "cluster_eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "20.14.0"
+  version = var.tf_aws_module_ver
 
   cluster_name                             = var.cluster_name
   cluster_version                          = var.cluster_kubernetes_version
@@ -31,19 +31,19 @@ module "cluster_eks" {
   # https://docs.aws.amazon.com/eks/latest/userguide/eks-networking-add-ons.html
   cluster_addons = {
     coredns = {
-      addon_version = "v1.11.1-eksbuild.9"
+      addon_version = var.eks_coredns_ver
     }
 
     kube-proxy = {
-      addon_version = "v1.30.0-eksbuild.3"
+      addon_version = var.eks_kube_proxy_ver
     }
 
     vpc-cni = {
-      addon_version = "v1.19.0-eksbuild.1"
+      addon_version = var.eks_vpc_cni_ver
     }
 
     aws-ebs-csi-driver = {
-      addon_version            = "v1.31.1-eksbuild.1"
+      addon_version            = var.eks_ebs_csi_ver
       service_account_role_arn = module.ebs_csi_driver_irsa.iam_role_arn
 
       configuration_values = jsonencode({

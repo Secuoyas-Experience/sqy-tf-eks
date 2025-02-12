@@ -122,3 +122,28 @@ variable "access_entries" {
   description = "EKS access entries (https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html)"
   default     = {}
 }
+
+variable "tf_aws_module_ver" {
+  description = "AWS EKS Terraform module version"
+  default     = "20.8.5"
+}
+
+variable "eks_coredns_ver" {
+  description = "CoreDNS add-on version"
+  default     = "v1.11.1-eksbuild.9"
+}
+
+variable "eks_kube_proxy_ver" {
+  description = "Kube-Proxy add-on version"
+  default     = "v1.29.3-eksbuild.2"
+}
+
+variable "eks_vpc_cni_ver" {
+  description = "Kube-Proxy add-on version"
+  default     = "v1.18.0-eksbuild.1"
+}
+
+variable "eks_ebs_csi_ver" {
+  description = "Kube-Proxy add-on version"
+  default     = "v1.29.1-eksbuild.1"
+}
