@@ -67,7 +67,32 @@ module "cluster_eks" {
       public_subnets  = module.vpc.public_subnets
       private_subnets = module.vpc.private_subnets
       ami_type        = "BOTTLEROCKET_x86_64"
-
+      block_device_mappings = {
+        xvda = {
+          device_name = "/dev/xvda"
+          ebs = {
+            volume_size           = 2
+            volume_type           = "gp3"
+            iops                  = 3000
+            throughput            = 150
+            encrypted             = true
+            kms_key_id            = aws_kms_key.ebskey.arn
+            delete_on_termination = true
+          }
+        }
+        xvdb = {
+          device_name = "/dev/xvdb"
+          ebs = {
+            volume_size           = var.inception_storage_size
+            volume_type           = "gp3"
+            iops                  = 3000
+            throughput            = 150
+            encrypted             = true
+            kms_key_id            = aws_kms_key.ebskey.arn
+            delete_on_termination = true
+          }
+        }
+      }
       labels = {
         "organization"     = var.organization
         "environment"      = var.environment

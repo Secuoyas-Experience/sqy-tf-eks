@@ -33,6 +33,12 @@ variable "inception_types" {
   default     = ["t3a.medium"]
 }
 
+variable "inception_storage_size" {
+  type        = number
+  description = "Size for storage volume in inception node group in GB"
+  default     = 40
+}
+
 variable "cluster_public_endpoint_enabled" {
   type        = bool
   description = "if true enables public EKS endpoint"
@@ -98,7 +104,7 @@ variable "cluster_name" {
 variable "cluster_kubernetes_version" {
   type        = string
   description = "Cluster kubernetes version"
-  default     = "1.30"
+  default     = "1.31"
 }
 
 variable "cluster_enable_snapshotter" {
@@ -130,12 +136,12 @@ variable "eks_coredns_ver" {
 
 variable "eks_kube_proxy_ver" {
   description = "Kube-Proxy add-on version"
-  default     = "v1.30.7-eksbuild.2"
+  default     = "v1.31.3-eksbuild.2"
 }
 
 variable "eks_vpc_cni_ver" {
   description = "Kube-Proxy add-on version"
-  default     = "v1.19.2-eksbuild.1"
+  default     = "v1.19.2-eksbuild.5"
 }
 
 variable "eks_ebs_csi_ver" {
