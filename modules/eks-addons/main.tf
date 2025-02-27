@@ -7,7 +7,7 @@ module "karpenter" {
   cluster_name              = var.cluster_name
   cluster_endpoint          = var.cluster_endpoint
   cluster_oidc_provider_arn = var.cluster_oidc_provider_arn
-  karpenter_volumeSize = var.addons_karpenter_volumeSize
+  karpenter_volumeSize      = var.addons_karpenter_volumeSize
 }
 
 ########################################
@@ -52,7 +52,7 @@ resource "helm_release" "reloader" {
 
 module "eks_addons_extra" {
   source  = "aws-ia/eks-blueprints-addons/aws"
-  version = "1.15.1"
+  version = "1.17.0"
 
   cluster_name      = var.cluster_name
   cluster_endpoint  = var.cluster_endpoint
@@ -71,44 +71,49 @@ module "eks_addons_extra" {
   external_dns_route53_zone_arns = var.cluster_domains_zones_arns
 
   cert_manager = {
-    chart_version    = coalesce(var.addons_cert_manager_version, "v1.14.2")
+    chart_version    = coalesce(var.addons_cert_manager_version)
     timeout          = var.addons_helm_timeout
     disable_webhooks = true
   }
 
   aws_load_balancer_controller = {
-    chart_version    = coalesce(var.addons_aws_load_balancer_version, "1.6.2")
+    chart_version    = coalesce(var.addons_aws_load_balancer_version)
     timeout          = var.addons_helm_timeout
     disable_webhooks = true
     set              = [{ name = "enableServiceMutatorWebhook", value = "false" }]
   }
 
   external_secrets = {
-    chart_version = coalesce(var.addons_external_secrets_version, "0.9.11")
+    chart_version = coalesce(var.addons_external_secrets_version)
     timeout       = var.addons_helm_timeout
   }
 
   metrics_server = {
-    chart_version = coalesce(var.addons_metrics_server_version, "3.12.0")
+    chart_version = coalesce(var.addons_metrics_server_version)
     timeout       = var.addons_helm_timeout
   }
 
   external_dns = {
-    chart_version = coalesce(var.addons_external_dns_version, "1.14.3")
+    chart_version = coalesce(var.addons_external_dns_version)
     timeout       = var.addons_helm_timeout
     set           = [{ name = "policy", value = "sync" }]
   }
 
   argocd = {
-    chart_version = coalesce(var.addons_argocd_version, "5.46.7")
+    chart_version = coalesce(var.addons_argocd_version)
     timeout       = var.addons_helm_timeout
     wait          = false
   }
 
   argo_events = {
-    chart_version = coalesce(var.addons_argo_events_version, "2.4.1")
+    chart_version = coalesce(var.addons_argo_events_version)
     timeout       = var.addons_helm_timeout
     wait          = false
+  }
+
+  aws_efs_csi_driver = {
+    chart_version = coalesce(var.addons_aws_efs_csi_driver_version)
+    timeout       = var.addons_helm_timeout
   }
 
   depends_on = [

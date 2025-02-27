@@ -144,3 +144,8 @@ variable "addons_aws_efs_csi_driver_enabled" {
   description = "if true aws-efs-csi-driver is enabled"
   default     = false
 }
+
+variable "addons_aws_efs_csi_driver_version" {
+  type        = string
+  description = "AWS EFS CSI Driver Helm Chart version"
+}
