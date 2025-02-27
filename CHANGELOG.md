@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.21.0 (2025-02-27)
+
+
+### Features
+
+* **eks-driver:** add driver version in the tfvars ([ff1a300](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/ff1a3004b9fd40e68dc92c46ce594a448c6fcc84))
+
 ### 1.20.1 (2025-02-27)
 
 ## 1.20.0 (2025-02-12)
