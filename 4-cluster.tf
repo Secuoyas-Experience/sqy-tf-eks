@@ -66,6 +66,7 @@ module "cluster_eks" {
       min_size        = "${var.inception_min_size}"
       public_subnets  = module.vpc.public_subnets
       private_subnets = module.vpc.private_subnets
+      ami_type        = "BOTTLEROCKET_x86_64"
 
       labels = {
         "organization"     = var.organization
