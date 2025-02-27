@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.0-blue)
+![version](https://img.shields.io/badge/version-v1.22.1-blue)
 
 ## Intro
 
@@ -81,7 +81,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_domains"></a> [cluster\_domains](#input\_cluster\_domains) | Domain names handled by this cluster. Normally the NS domain name where ingresses are under (e.g dev.mycompany.com) | `list(string)` | `[]` | no |
 | <a name="input_cluster_domains_zones_arns"></a> [cluster\_domains\_zones\_arns](#input\_cluster\_domains\_zones\_arns) | Zone arns. Should be provided by another resource. If you want this module to create them use cluster\_domains variable | `list(string)` | `[]` | no |
 | <a name="input_cluster_enable_snapshotter"></a> [cluster\_enable\_snapshotter](#input\_cluster\_enable\_snapshotter) | if true enables VolumeSnapshot API | `bool` | `false` | no |
-| <a name="input_cluster_kubernetes_version"></a> [cluster\_kubernetes\_version](#input\_cluster\_kubernetes\_version) | Cluster kubernetes version | `string` | `"1.30"` | no |
+| <a name="input_cluster_kubernetes_version"></a> [cluster\_kubernetes\_version](#input\_cluster\_kubernetes\_version) | Cluster kubernetes version | `string` | `"1.31"` | no |
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | AWS EKS cluster name | `string` | n/a | yes |
 | <a name="input_cluster_node_security_group_additional_rules"></a> [cluster\_node\_security\_group\_additional\_rules](#input\_cluster\_node\_security\_group\_additional\_rules) | security group rules between nodes | `any` | `{}` | no |
 | <a name="input_cluster_private_endpoint_enabled"></a> [cluster\_private\_endpoint\_enabled](#input\_cluster\_private\_endpoint\_enabled) | if true enables private EKS endpoint | `bool` | `true` | no |
@@ -93,12 +93,13 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_security_group_additional_rules"></a> [cluster\_security\_group\_additional\_rules](#input\_cluster\_security\_group\_additional\_rules) | security group rules allowed to access EKS cluster (helpful for VPN rules) | `any` | `{}` | no |
 | <a name="input_eks_coredns_ver"></a> [eks\_coredns\_ver](#input\_eks\_coredns\_ver) | CoreDNS add-on version | `string` | `"v1.11.4-eksbuild.2"` | no |
 | <a name="input_eks_ebs_csi_ver"></a> [eks\_ebs\_csi\_ver](#input\_eks\_ebs\_csi\_ver) | Kube-Proxy add-on version | `string` | `"v1.39.0-eksbuild.1"` | no |
-| <a name="input_eks_kube_proxy_ver"></a> [eks\_kube\_proxy\_ver](#input\_eks\_kube\_proxy\_ver) | Kube-Proxy add-on version | `string` | `"v1.30.7-eksbuild.2"` | no |
-| <a name="input_eks_vpc_cni_ver"></a> [eks\_vpc\_cni\_ver](#input\_eks\_vpc\_cni\_ver) | Kube-Proxy add-on version | `string` | `"v1.19.2-eksbuild.1"` | no |
+| <a name="input_eks_kube_proxy_ver"></a> [eks\_kube\_proxy\_ver](#input\_eks\_kube\_proxy\_ver) | Kube-Proxy add-on version | `string` | `"v1.31.3-eksbuild.2"` | no |
+| <a name="input_eks_vpc_cni_ver"></a> [eks\_vpc\_cni\_ver](#input\_eks\_vpc\_cni\_ver) | Kube-Proxy add-on version | `string` | `"v1.19.2-eksbuild.5"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Type of environment (dev,stg,prod) | `string` | n/a | yes |
 | <a name="input_inception_desired_size"></a> [inception\_desired\_size](#input\_inception\_desired\_size) | number of desired cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_max_size"></a> [inception\_max\_size](#input\_inception\_max\_size) | number of max cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_min_size"></a> [inception\_min\_size](#input\_inception\_min\_size) | number of min cluster node group instances | `number` | `1` | no |
+| <a name="input_inception_storage_size"></a> [inception\_storage\_size](#input\_inception\_storage\_size) | Size for storage volume in inception node group in GB | `number` | `40` | no |
 | <a name="input_inception_types"></a> [inception\_types](#input\_inception\_types) | list of types of initial cluster node group instances | `list(string)` | <pre>[<br/>  "t3a.medium"<br/>]</pre> | no |
 | <a name="input_organization"></a> [organization](#input\_organization) | Organization the cluster is used for | `string` | n/a | yes |
 
