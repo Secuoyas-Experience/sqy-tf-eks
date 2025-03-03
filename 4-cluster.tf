@@ -67,6 +67,26 @@ module "cluster_eks" {
       public_subnets  = module.vpc.public_subnets
       private_subnets = module.vpc.private_subnets
       ami_type        = "BOTTLEROCKET_x86_64"
+      block_device_mappings = {
+        xvda = {
+          device_name = "/dev/xvda"
+          ebs = {
+            volume_size           = 2
+            volume_type           = "gp3"
+            encrypted             = true
+            delete_on_termination = true
+          }
+        }
+        xvdb = {
+          device_name = "/dev/xvdb"
+          ebs = {
+            volume_size           = var.inception_storage_size
+            volume_type           = "gp3"
+            encrypted             = true
+            delete_on_termination = true
+          }
+        }
+      }      
       labels = {
         "organization"     = var.organization
         "environment"      = var.environment
