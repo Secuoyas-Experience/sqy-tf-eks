@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.8-blue)
+![version](https://img.shields.io/badge/version-v1.22.9-blue)
 
 ## Intro
 
@@ -51,7 +51,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_eks_addons_extra"></a> [eks\_addons\_extra](#module\_eks\_addons\_extra) | aws-ia/eks-blueprints-addons/aws | 1.17.0 |
+| <a name="module_eks_addons_extra"></a> [eks\_addons\_extra](#module\_eks\_addons\_extra) | aws-ia/eks-blueprints-addons/aws | 1.20.0 |
 | <a name="module_karpenter"></a> [karpenter](#module\_karpenter) | ../eks-karpenter | n/a |
 | <a name="module_velero"></a> [velero](#module\_velero) | ../eks-velero | n/a |
 
