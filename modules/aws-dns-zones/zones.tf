@@ -1,6 +1,6 @@
 module "zones" {
   source  = "terraform-aws-modules/route53/aws//modules/zones"
-  version = "~> 2.11.0"
+  version = "~> 4.1.0"
 
   zones = { for v in var.domains : v =>
     {

@@ -52,7 +52,7 @@ resource "helm_release" "reloader" {
 
 module "eks_addons_extra" {
   source  = "aws-ia/eks-blueprints-addons/aws"
-  version = "1.17.0"
+  version = "1.20.0"
 
   cluster_name      = var.cluster_name
   cluster_endpoint  = var.cluster_endpoint
