@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.4-blue)
+![version](https://img.shields.io/badge/version-v1.22.5-blue)
 
 ## Intro
 
@@ -36,7 +36,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.67.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.89 |
 
 ## Providers
 
