@@ -11,3 +11,29 @@ module "karpenter" {
     CloudWatchReadOnlyAccess     = "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
   }
 }
+
+resource "aws_iam_policy" "karpenter_spot_permission" {
+  name        = "KarpenterSpotPermission"
+  description = "allow Karpenter to create spot instances"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = "iam:CreateServiceLinkedRole"
+        Resource = "*"
+        Condition = {
+          StringLike = {
+            "iam:AWSServiceName" : "spot.amazonaws.com"
+          }
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "attach_policy" {
+  role       = module.karpenter.iam_role_name
+  policy_arn = aws_iam_policy.karpenter_spot_permission.arn
+}
