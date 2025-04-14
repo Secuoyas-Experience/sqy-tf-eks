@@ -9,6 +9,7 @@ module "karpenter" {
   node_iam_role_additional_policies = {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
     CloudWatchReadOnlyAccess     = "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
+    KarpenterCacheECRPermission = aws_iam_policy.karpenter_cache_ecr_permission.arn
   }
 }
 
@@ -36,4 +37,27 @@ resource "aws_iam_policy" "karpenter_spot_permission" {
 resource "aws_iam_role_policy_attachment" "attach_policy" {
   role       = module.karpenter.iam_role_name
   policy_arn = aws_iam_policy.karpenter_spot_permission.arn
+}
+
+
+
+
+resource "aws_iam_policy" "karpenter_cache_ecr_permission" {
+  name        = "KarpenterCacheECRPermission"
+  description = "Allow Karpenter to ecr cache"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = [
+          "ecr:BatchImportUpstreamImage",
+          "ecr:CreateRepository",
+          "ecr:CreatePullThroughCacheRule"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
 }
