@@ -86,7 +86,12 @@ module "cluster_eks" {
             delete_on_termination = true
           }
         }
-      }      
+      }
+
+      iam_role_additional_policies = {
+        NodeCacheECRPermission = aws_iam_policy.node_cache_ecr_permission.arn
+      }
+
       labels = {
         "organization"     = var.organization
         "environment"      = var.environment
@@ -123,6 +128,25 @@ module "cluster_eks" {
   }
 }
 
+resource "aws_iam_policy" "node_cache_ecr_permission" {
+  name        = "NodeCacheECRPermission"
+  description = "Allow Node to ecr cache"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = [
+          "ecr:BatchImportUpstreamImage",
+          "ecr:CreateRepository",
+          "ecr:CreatePullThroughCacheRule"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
 # 1. install CRDS
 data "kubectl_file_documents" "snapshotter_crds" {
   content = file("${path.module}/manifests/snapshotter.crd-v7.0.2.yaml")
