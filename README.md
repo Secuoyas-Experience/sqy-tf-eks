@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.12-blue)
+![version](https://img.shields.io/badge/version-v1.22.13-blue)
 
 ## Intro
 
@@ -60,6 +60,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 
 | Name | Type |
 |------|------|
+| [aws_iam_policy.node_cache_ecr_permission](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy) | resource |
 | [aws_iam_role.kube_admin_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [kubectl_manifest.snapshotter_controller](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/resources/manifest) | resource |
 | [kubectl_manifest.snapshotter_crds](https://registry.terraform.io/providers/alekc/kubectl/latest/docs/resources/manifest) | resource |
