@@ -1,6 +1,6 @@
 {
   "name": "sqy-tf-eks",
-  "version": "1.22.13",
+  "version": "1.22.14",
   "description": "Secuoyas Terraform for building EKS clusters",
   "directories": {
     "doc": "docs"
