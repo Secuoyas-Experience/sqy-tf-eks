@@ -86,6 +86,9 @@ module "eks_addons_extra" {
   external_secrets = {
     chart_version = coalesce(var.addons_external_secrets_version)
     timeout       = var.addons_helm_timeout
+    role_policies = {
+      ecr = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+    }
   }
 
   metrics_server = {
