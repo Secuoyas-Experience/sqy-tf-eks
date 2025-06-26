@@ -43,7 +43,7 @@ resource "aws_iam_role_policy_attachment" "attach_policy" {
 
 
 resource "aws_iam_policy" "karpenter_cache_ecr_permission" {
-  name        = "KarpenterCacheECRPermission"
+  name        = "KarpenterCacheECRPermission-${var.cluster_name}"
   description = "Allow Karpenter to ecr cache"
 
   policy = jsonencode({
