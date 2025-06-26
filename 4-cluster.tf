@@ -129,7 +129,7 @@ module "cluster_eks" {
 }
 
 resource "aws_iam_policy" "node_cache_ecr_permission" {
-  name        = "NodeCacheECRPermission"
+  name        = "NodeCacheECRPermission-${var.cluster_name}"
   description = "Allow Node to ecr cache"
 
   policy = jsonencode({
