@@ -14,7 +14,7 @@ module "karpenter" {
 }
 
 resource "aws_iam_policy" "karpenter_spot_permission" {
-  name        = "KarpenterSpotPermission"
+  name        = "KarpenterSpotPermission-${var.cluster_name}"
   description = "allow Karpenter to create spot instances"
 
   policy = jsonencode({
