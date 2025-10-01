@@ -85,6 +85,18 @@ variable "addons_argo_events_enabled" {
   default     = false
 }
 
+variable "addons_argocd_image_repository" {
+  type        = string
+  description = "ArgoCD image repository"
+  default     = "quay.io/argoproj/argocd"
+}
+
+variable "addons_argocd_image_repository_tag" {
+  type        = string
+  description = "ArgoCD image tag"
+  default     = "v2.8.7"
+}
+
 variable "addons_aws_load_balancer_version" {
   type        = string
   description = "EKS AWS Load Balancer Helm Chart version"

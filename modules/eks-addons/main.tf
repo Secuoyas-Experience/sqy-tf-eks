@@ -106,6 +106,10 @@ module "eks_addons_extra" {
     chart_version = coalesce(var.addons_argocd_version)
     timeout       = var.addons_helm_timeout
     wait          = false
+    # set = [
+    #   { name = "global.image.repository", value = var.addons_argocd_image_repository },
+    #   { name = "global.image.tag", value = var.addons_argocd_image_repository_tag }
+    # ]
   }
 
   argo_events = {
