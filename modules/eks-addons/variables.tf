@@ -97,6 +97,18 @@ variable "addons_argocd_image_repository_tag" {
   default     = "v2.8.7"
 }
 
+variable "addons_argocd_redis_image_repository" {
+  type        = string
+  description = "ArgoCD redis image repository"
+  default     = "public.ecr.aws/docker/library/redis"
+}
+
+variable "addons_argocd_redis_image_repository_tag" {
+  type        = string
+  description = "ArgoCD redis image tag"
+  default     = "7.0.13-alpine"
+}
+
 variable "addons_argocd_server_ingress_enabled" {
   type        = bool
   description = "if true ArgoCD server ingress is enabled"
