@@ -110,10 +110,9 @@ module "eks_addons_extra" {
       [
         { name = "global.image.repository", value = var.addons_argocd_image_repository },
         { name = "global.image.tag", value = var.addons_argocd_image_repository_tag },
-        { name = "configs.params.server.insecure", value = true },
         { name = "redis.image.repository", value = var.addons_argocd_redis_image_repository },
         { name = "redis.image.tag", value = var.addons_argocd_redis_image_repository_tag },
-        { name = "configs.params.server.insecure", value = true },
+        { name = "configs.params.\"server.insecure\"", value = true },
       ],
       (
         var.addons_argocd_server_ingress_enabled
