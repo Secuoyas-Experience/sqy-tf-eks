@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.18-blue)
+![version](https://img.shields.io/badge/version-v1.22.19-blue)
 
 ## Intro
 
@@ -70,6 +70,8 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_addons_argocd_enabled"></a> [addons\_argocd\_enabled](#input\_addons\_argocd\_enabled) | if true ArgoCD is enabled | `bool` | `false` | no |
 | <a name="input_addons_argocd_image_repository"></a> [addons\_argocd\_image\_repository](#input\_addons\_argocd\_image\_repository) | ArgoCD image repository | `string` | `"quay.io/argoproj/argocd"` | no |
 | <a name="input_addons_argocd_image_repository_tag"></a> [addons\_argocd\_image\_repository\_tag](#input\_addons\_argocd\_image\_repository\_tag) | ArgoCD image tag | `string` | `"v2.8.7"` | no |
+| <a name="input_addons_argocd_redis_image_repository"></a> [addons\_argocd\_redis\_image\_repository](#input\_addons\_argocd\_redis\_image\_repository) | ArgoCD redis image repository | `string` | `"public.ecr.aws/docker/library/redis"` | no |
+| <a name="input_addons_argocd_redis_image_repository_tag"></a> [addons\_argocd\_redis\_image\_repository\_tag](#input\_addons\_argocd\_redis\_image\_repository\_tag) | ArgoCD redis image tag | `string` | `"7.0.13-alpine"` | no |
 | <a name="input_addons_argocd_server_ingress_enabled"></a> [addons\_argocd\_server\_ingress\_enabled](#input\_addons\_argocd\_server\_ingress\_enabled) | if true ArgoCD server ingress is enabled | `bool` | `true` | no |
 | <a name="input_addons_argocd_server_ingress_host"></a> [addons\_argocd\_server\_ingress\_host](#input\_addons\_argocd\_server\_ingress\_host) | ArgoCD server ingress host | `string` | n/a | yes |
 | <a name="input_addons_argocd_version"></a> [addons\_argocd\_version](#input\_addons\_argocd\_version) | ArgoCD Helm Chart version | `string` | `"5.46.7"` | no |
