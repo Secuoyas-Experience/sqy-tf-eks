@@ -97,6 +97,17 @@ variable "addons_argocd_image_repository_tag" {
   default     = "v2.8.7"
 }
 
+variable "addons_argocd_server_ingress_enabled" {
+  type        = bool
+  description = "if true ArgoCD server ingress is enabled"
+  default     = true
+}
+
+variable "addons_argocd_server_ingress_host" {
+  type        = string
+  description = "ArgoCD server ingress host"
+}
+
 variable "addons_aws_load_balancer_version" {
   type        = string
   description = "EKS AWS Load Balancer Helm Chart version"

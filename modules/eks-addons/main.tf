@@ -106,10 +106,35 @@ module "eks_addons_extra" {
     chart_version = coalesce(var.addons_argocd_version)
     timeout       = var.addons_helm_timeout
     wait          = false
-    # set = [
-    #   { name = "global.image.repository", value = var.addons_argocd_image_repository },
-    #   { name = "global.image.tag", value = var.addons_argocd_image_repository_tag }
-    # ]
+    set = flatten([
+      [
+        { name = "global.image.repository", value = var.addons_argocd_image_repository },
+        { name = "global.image.tag", value = var.addons_argocd_image_repository_tag },
+        { name = "configs.params.server.insecure", value = true },
+      ],
+      (
+        var.addons_argocd_server_ingress_enabled
+        ) ? [
+        { name  = "server.ingress.enabled",
+          value = var.addons_argocd_server_ingress_enabled
+        },
+        { name  = "server.ingress.hosts[0]",
+          value = var.addons_argocd_server_ingress_host
+        },
+        { name  = "server.ingress.annotations.cert-manager\\.io/cluster-issuer",
+          value = "letscrypt-production"
+        },
+        { name  = "server.ingress.ingressClassName",
+          value = "nginx"
+        },
+        { name  = "server.ingress.tls[0].hosts[0]",
+          value = var.addons_argocd_server_ingress_host,
+        },
+        { name  = "server.ingress.tls[0].secretName",
+          value = "argocd-secret-tls",
+        },
+      ] : []
+    ])
   }
 
   argo_events = {
