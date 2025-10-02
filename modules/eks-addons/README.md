@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.17-blue)
+![version](https://img.shields.io/badge/version-v1.22.18-blue)
 
 ## Intro
 
@@ -68,6 +68,10 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_addons_argo_events_enabled"></a> [addons\_argo\_events\_enabled](#input\_addons\_argo\_events\_enabled) | if true argo-events is enabled | `bool` | `false` | no |
 | <a name="input_addons_argo_events_version"></a> [addons\_argo\_events\_version](#input\_addons\_argo\_events\_version) | Argo Events Helm Chart version | `string` | `"2.4.1"` | no |
 | <a name="input_addons_argocd_enabled"></a> [addons\_argocd\_enabled](#input\_addons\_argocd\_enabled) | if true ArgoCD is enabled | `bool` | `false` | no |
+| <a name="input_addons_argocd_image_repository"></a> [addons\_argocd\_image\_repository](#input\_addons\_argocd\_image\_repository) | ArgoCD image repository | `string` | `"quay.io/argoproj/argocd"` | no |
+| <a name="input_addons_argocd_image_repository_tag"></a> [addons\_argocd\_image\_repository\_tag](#input\_addons\_argocd\_image\_repository\_tag) | ArgoCD image tag | `string` | `"v2.8.7"` | no |
+| <a name="input_addons_argocd_server_ingress_enabled"></a> [addons\_argocd\_server\_ingress\_enabled](#input\_addons\_argocd\_server\_ingress\_enabled) | if true ArgoCD server ingress is enabled | `bool` | `true` | no |
+| <a name="input_addons_argocd_server_ingress_host"></a> [addons\_argocd\_server\_ingress\_host](#input\_addons\_argocd\_server\_ingress\_host) | ArgoCD server ingress host | `string` | n/a | yes |
 | <a name="input_addons_argocd_version"></a> [addons\_argocd\_version](#input\_addons\_argocd\_version) | ArgoCD Helm Chart version | `string` | `"5.46.7"` | no |
 | <a name="input_addons_aws_efs_csi_driver_enabled"></a> [addons\_aws\_efs\_csi\_driver\_enabled](#input\_addons\_aws\_efs\_csi\_driver\_enabled) | if true aws-efs-csi-driver is enabled | `bool` | `false` | no |
 | <a name="input_addons_aws_efs_csi_driver_version"></a> [addons\_aws\_efs\_csi\_driver\_version](#input\_addons\_aws\_efs\_csi\_driver\_version) | AWS EFS CSI Driver Helm Chart version | `string` | n/a | yes |
