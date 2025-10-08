@@ -136,8 +136,8 @@ resource "aws_iam_policy" "node_cache_ecr_permission" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "ecr:BatchImportUpstreamImage",
           "ecr:CreateRepository",
           "ecr:CreatePullThroughCacheRule"
@@ -173,6 +173,7 @@ resource "kubectl_manifest" "snapshotter_rbac" {
 # 3. SNAPSHOTTER - Install controller
 data "kubectl_file_documents" "snapshotter_deployment" {
   content = file("${path.module}/manifests/snapshotter.deployment-v7.0.2.yaml")
+  # content = file("${path.module}/manifests/snapshotter.deployment-v7.0.2.temp.yaml")
 }
 
 resource "kubectl_manifest" "snapshotter_controller" {

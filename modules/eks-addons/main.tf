@@ -32,13 +32,23 @@ module "velero" {
 ########################################
 
 resource "helm_release" "reloader" {
+  count            = var.addons_reloader_enabled ? 1 : 0
   name             = "stakater"
   repository       = "https://stakater.github.io/stakater-charts"
   chart            = "reloader"
   wait             = false
   disable_webhooks = true
-  version          = "1.0.56"
+  version          = var.addons_reloader_chart_version
   timeout          = var.addons_helm_timeout
+  set {
+    name  = "reloader.deployment.image.name"
+    value = var.addons_reloader_image_repository
+  }
+
+  set {
+    name  = "reloader.deployment.image.tag"
+    value = var.addons_reloader_image_repository_tag
+  }
 
   depends_on = [
     module.karpenter.karpenter_default_nodepool,
@@ -74,18 +84,38 @@ module "eks_addons_extra" {
     chart_version    = coalesce(var.addons_cert_manager_version)
     timeout          = var.addons_helm_timeout
     disable_webhooks = true
+    set = [
+      { name = "image.repository", value = var.addons_cert_manager_image_repository[0] },
+      { name = "image.tag", value = var.addons_cert_manager_image_repository_tag },
+      { name = "cainjector.image.repository", value = var.addons_cert_manager_image_repository[1] },
+      { name = "cainjector.image.tag", value = var.addons_cert_manager_image_repository_tag },
+      { name = "webhook.image.repository", value = var.addons_cert_manager_image_repository[2] },
+      { name = "webhook.image.tag", value = var.addons_cert_manager_image_repository_tag }
+    ]
   }
 
   aws_load_balancer_controller = {
     chart_version    = coalesce(var.addons_aws_load_balancer_version)
     timeout          = var.addons_helm_timeout
     disable_webhooks = true
-    set              = [{ name = "enableServiceMutatorWebhook", value = "false" }]
+    set = [
+      { name = "enableServiceMutatorWebhook", value = "false" },
+      { name = "image.repository", value = var.addons_aws_load_balancer_image_repository },
+      { name = "image.tag", value = var.addons_aws_load_balancer_image_repository_tag }
+    ]
   }
 
   external_secrets = {
     chart_version = coalesce(var.addons_external_secrets_version)
     timeout       = var.addons_helm_timeout
+    set = [
+      { name = "image.repository", value = var.addons_external_secrets_image_repository },
+      { name = "image.tag", value = var.addons_external_secrets_image_repository_tag },
+      { name = "webhook.image.repository", value = var.addons_external_secrets_image_repository },
+      { name = "webhook.image.tag", value = var.addons_external_secrets_image_repository_tag },
+      { name = "certController.image.repository", value = var.addons_external_secrets_image_repository },
+      { name = "certController.image.tag", value = var.addons_external_secrets_image_repository_tag }
+    ]
     role_policies = {
       ecr = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
     }
@@ -94,12 +124,20 @@ module "eks_addons_extra" {
   metrics_server = {
     chart_version = coalesce(var.addons_metrics_server_version)
     timeout       = var.addons_helm_timeout
+    set = [
+      { name = "image.repository", value = var.addons_metrics_server_image_repository },
+      { name = "image.tag", value = var.addons_metrics_server_image_repository_tag }
+    ]
   }
 
   external_dns = {
     chart_version = coalesce(var.addons_external_dns_version)
     timeout       = var.addons_helm_timeout
-    set           = [{ name = "policy", value = "sync" }]
+    set = [
+      { name = "policy", value = "sync" },
+      { name = "image.repository", value = var.addons_external_dns_image_repository },
+      { name = "image.tag", value = var.addons_external_dns_image_repository_tag }
+    ]
   }
 
   argocd = {
@@ -112,6 +150,8 @@ module "eks_addons_extra" {
         { name = "global.image.tag", value = var.addons_argocd_image_repository_tag },
         { name = "redis.image.repository", value = var.addons_argocd_redis_image_repository },
         { name = "redis.image.tag", value = var.addons_argocd_redis_image_repository_tag },
+        { name = "dex.image.repository", value = var.addons_argocd_dex_image_repository },
+        { name = "dex.image.tag", value = var.addons_argocd_dex_image_repository_tag },
         { name = "configs.params.server\\.insecure", value = true },
       ],
       (
@@ -148,6 +188,16 @@ module "eks_addons_extra" {
   aws_efs_csi_driver = {
     chart_version = coalesce(var.addons_aws_efs_csi_driver_version)
     timeout       = var.addons_helm_timeout
+    set = [
+      { name = "image.repository", value = var.addons_aws_efs_csi_driver_image_repository["controller"] },
+      { name = "image.tag", value = var.addons_aws_efs_csi_driver_image_repository_tag["controller"] },
+      { name = "sidecars.livenessProbe.image.repository", value = var.addons_aws_efs_csi_driver_image_repository["livenessProbe"] },
+      { name = "sidecars.livenessProbe.image.tag", value = var.addons_aws_efs_csi_driver_image_repository_tag["livenessProbe"] },
+      { name = "sidecars.nodeDriverRegistrar.image.repository", value = var.addons_aws_efs_csi_driver_image_repository["nodeDriverRegistrar"] },
+      { name = "sidecars.nodeDriverRegistrar.image.tag", value = var.addons_aws_efs_csi_driver_image_repository_tag["nodeDriverRegistrar"] },
+      { name = "sidecars.csiProvisioner.image.repository", value = var.addons_aws_efs_csi_driver_image_repository["csiProvisioner"] },
+      { name = "sidecars.csiProvisioner.image.tag", value = var.addons_aws_efs_csi_driver_image_repository_tag["csiProvisioner"] }
+    ]
   }
 
   depends_on = [
