@@ -9,7 +9,8 @@ module "karpenter" {
   node_iam_role_additional_policies = {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
     CloudWatchReadOnlyAccess     = "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
-    KarpenterCacheECRPermission = aws_iam_policy.karpenter_cache_ecr_permission.arn
+    KarpenterCacheECRPermission  = aws_iam_policy.karpenter_cache_ecr_permission.arn
+    KarpenterIAMPermission       = aws_iam_policy.karpenter_iam_permission.arn
   }
 }
 
@@ -50,11 +51,29 @@ resource "aws_iam_policy" "karpenter_cache_ecr_permission" {
     Version = "2012-10-17",
     Statement = [
       {
-        Effect   = "Allow"
-        Action   = [
+        Effect = "Allow"
+        Action = [
           "ecr:BatchImportUpstreamImage",
           "ecr:CreateRepository",
           "ecr:CreatePullThroughCacheRule"
+        ]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_policy" "karpenter_iam_permission" {
+  name        = "KarpenterIAMPermission-${var.cluster_name}"
+  description = "Allow Karpenter to manage IAM roles"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "iam:ListInstanceProfiles"
         ]
         Resource = "*"
       }
