@@ -10,7 +10,6 @@ module "karpenter" {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
     CloudWatchReadOnlyAccess     = "arn:aws:iam::aws:policy/CloudWatchReadOnlyAccess"
     KarpenterCacheECRPermission  = aws_iam_policy.karpenter_cache_ecr_permission.arn
-    KarpenterIAMPermission       = aws_iam_policy.karpenter_iam_permission.arn
   }
 }
 
@@ -36,8 +35,11 @@ resource "aws_iam_policy" "karpenter_spot_permission" {
 }
 
 resource "aws_iam_role_policy_attachment" "attach_policy" {
-  role       = module.karpenter.iam_role_name
-  policy_arn = aws_iam_policy.karpenter_spot_permission.arn
+  role = module.karpenter.iam_role_name
+  policy_arn = [
+    aws_iam_policy.karpenter_spot_permission.arn,
+    aws_iam_policy.karpenter_iam_permission.arn
+  ]
 }
 
 
