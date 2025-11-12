@@ -153,7 +153,7 @@ module "eks_addons_extra" {
         { name = "dex.image.repository", value = var.addons_argocd_dex_image_repository },
         { name = "dex.image.tag", value = var.addons_argocd_dex_image_repository_tag },
         { name = "configs.params.server\\.insecure", value = true },
-        { name = "global.image.repository", value = var.addons_argocd_image_repository },
+        { name = "global.domain", value = var.addons_argocd_server_ingress_host },
 
       ],
       (
