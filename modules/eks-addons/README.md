@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.29-blue)
+![version](https://img.shields.io/badge/version-v1.22.30-blue)
 
 ## Intro
 
@@ -67,6 +67,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 |------|-------------|------|---------|:--------:|
 | <a name="input_addons_argo_events_enabled"></a> [addons\_argo\_events\_enabled](#input\_addons\_argo\_events\_enabled) | if true argo-events is enabled | `bool` | `false` | no |
 | <a name="input_addons_argo_events_version"></a> [addons\_argo\_events\_version](#input\_addons\_argo\_events\_version) | Argo Events Helm Chart version | `string` | `"2.4.1"` | no |
+| <a name="input_addons_argocd_az"></a> [addons\_argocd\_az](#input\_addons\_argocd\_az) | ArgoCD AZ where nodes should run | `string` | n/a | yes |
 | <a name="input_addons_argocd_dex_image_repository"></a> [addons\_argocd\_dex\_image\_repository](#input\_addons\_argocd\_dex\_image\_repository) | ArgoCD dex image repository | `string` | `"ghcr.io/dexidp/dex"` | no |
 | <a name="input_addons_argocd_dex_image_repository_tag"></a> [addons\_argocd\_dex\_image\_repository\_tag](#input\_addons\_argocd\_dex\_image\_repository\_tag) | ArgoCD dex image tag | `string` | `"v2.37.0"` | no |
 | <a name="input_addons_argocd_enabled"></a> [addons\_argocd\_enabled](#input\_addons\_argocd\_enabled) | if true ArgoCD is enabled | `bool` | `false` | no |
