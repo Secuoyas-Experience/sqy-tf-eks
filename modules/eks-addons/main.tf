@@ -178,13 +178,13 @@ module "eks_addons_extra" {
           value = "argocd-secret-tls",
         },
       ] : [],
-    length(var.argocd_az) > 0 ? [
-      { name = "controller.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.argocd_az },
-      { name = "dex.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.argocd_az },
-      { name = "redis.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.argocd_az },
-      { name = "repoServer.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.argocd_az },
-      { name = "server.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.argocd_az },
-      { name = "applicationSet.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.argocd_az },
+    length(var.addons_argocd_az) > 0 ? [
+      { name = "controller.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+      { name = "dex.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+      { name = "redis.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+      { name = "repoServer.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+      { name = "server.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+      { name = "applicationSet.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
     ] : []
     ])
   }
