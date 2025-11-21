@@ -185,6 +185,7 @@ module "eks_addons_extra" {
       { name = "repoServer.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
       { name = "server.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
       { name = "applicationSet.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+      { name = "notifications.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.argocd_az },
     ] : []
     ])
   }
