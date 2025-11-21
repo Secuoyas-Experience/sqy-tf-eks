@@ -146,6 +146,7 @@ module "eks_addons_extra" {
     wait          = false
     set = flatten([
       [
+        { name = "global.domain", value = var.addons_argocd_server_ingress_host },
         { name = "global.image.repository", value = var.addons_argocd_image_repository },
         { name = "global.image.tag", value = var.addons_argocd_image_repository_tag },
         { name = "redis.image.repository", value = var.addons_argocd_redis_image_repository },
@@ -178,15 +179,15 @@ module "eks_addons_extra" {
           value = "argocd-secret-tls",
         },
       ] : [],
-    length(var.addons_argocd_az) > 0 ? [
-      { name = "controller.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
-      { name = "dex.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
-      { name = "redis.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
-      { name = "repoServer.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
-      { name = "server.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
-      { name = "applicationSet.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
-      { name = "notifications.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
-    ] : []
+      length(var.addons_argocd_az) > 0 ? [
+        { name = "controller.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+        { name = "dex.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+        { name = "redis.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+        { name = "repoServer.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+        { name = "server.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+        { name = "applicationSet.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+        { name = "notifications.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
+      ] : []
     ])
   }
 
