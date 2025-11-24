@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.33-blue)
+![version](https://img.shields.io/badge/version-v1.22.34-blue)
 
 ## Intro
 
@@ -97,6 +97,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_eks_kube_proxy_ver"></a> [eks\_kube\_proxy\_ver](#input\_eks\_kube\_proxy\_ver) | Kube-Proxy add-on version | `string` | `"v1.31.3-eksbuild.2"` | no |
 | <a name="input_eks_vpc_cni_ver"></a> [eks\_vpc\_cni\_ver](#input\_eks\_vpc\_cni\_ver) | Kube-Proxy add-on version | `string` | `"v1.19.2-eksbuild.5"` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Type of environment (dev,stg,prod) | `string` | n/a | yes |
+| <a name="input_inception_azs"></a> [inception\_azs](#input\_inception\_azs) | Availability zones for inception node group. If not specified, uses all cluster\_azs. For One Zone EFS environments, recommend using only the EFS AZ to reduce data transfer costs. | `list(string)` | `null` | no |
 | <a name="input_inception_desired_size"></a> [inception\_desired\_size](#input\_inception\_desired\_size) | number of desired cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_max_size"></a> [inception\_max\_size](#input\_inception\_max\_size) | number of max cluster node group instances | `number` | `1` | no |
 | <a name="input_inception_min_size"></a> [inception\_min\_size](#input\_inception\_min\_size) | number of min cluster node group instances | `number` | `1` | no |
