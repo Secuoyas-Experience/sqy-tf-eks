@@ -39,6 +39,12 @@ variable "inception_storage_size" {
   default     = 40
 }
 
+variable "inception_azs" {
+  type        = list(string)
+  description = "Availability zones for inception node group. If not specified, uses all cluster_azs. For One Zone EFS environments, recommend using only the EFS AZ to reduce data transfer costs."
+  default     = null
+}
+
 variable "cluster_public_endpoint_enabled" {
   type        = bool
   description = "if true enables public EKS endpoint"

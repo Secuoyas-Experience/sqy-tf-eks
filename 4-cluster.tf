@@ -58,15 +58,21 @@ module "cluster_eks" {
 
   eks_managed_node_groups = {
     inception = {
-      capacity_type   = "ON_DEMAND"
+      capacity_type  = "ON_DEMAND"
       node_group_name = "inception"
-      instance_types  = var.inception_types
-      desired_size    = "${var.inception_desired_size}"
-      max_size        = "${var.inception_max_size}"
-      min_size        = "${var.inception_min_size}"
-      public_subnets  = module.vpc.public_subnets
-      private_subnets = module.vpc.private_subnets
-      ami_type        = "BOTTLEROCKET_x86_64"
+      instance_types = var.inception_types
+      desired_size   = "${var.inception_desired_size}"
+      max_size       = "${var.inception_max_size}"
+      min_size       = "${var.inception_min_size}"
+
+      # Filter subnets based on inception_azs if specified
+      # This allows restricting inception nodes to specific AZs (useful for One Zone EFS environments)
+      subnet_ids = var.inception_azs != null ? [
+        for idx, az in var.cluster_azs : module.vpc.private_subnets[idx]
+        if contains(var.inception_azs, az)
+      ] : module.vpc.private_subnets
+
+      ami_type = "BOTTLEROCKET_x86_64"
       block_device_mappings = {
         xvda = {
           device_name = "/dev/xvda"
