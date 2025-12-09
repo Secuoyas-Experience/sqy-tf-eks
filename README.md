@@ -3,7 +3,7 @@
 
 [![docs](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/docs.yaml)
 [![main](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml/badge.svg)](https://github.com/Secuoyas-Experience/sqy-tf-eks/actions/workflows/main.yaml)
-![version](https://img.shields.io/badge/version-v1.22.34-blue)
+![version](https://img.shields.io/badge/version-v1.22.35-blue)
 
 ## Intro
 
@@ -92,6 +92,7 @@ A continuacion se muestra la documentacion de Terraform generada con [Terraform 
 | <a name="input_cluster_public_subnets"></a> [cluster\_public\_subnets](#input\_cluster\_public\_subnets) | VPC public subnets. Normally used by the AWS load balancers to expose services | `list(string)` | n/a | yes |
 | <a name="input_cluster_region"></a> [cluster\_region](#input\_cluster\_region) | AWS region where the EKS cluster is located | `string` | n/a | yes |
 | <a name="input_cluster_security_group_additional_rules"></a> [cluster\_security\_group\_additional\_rules](#input\_cluster\_security\_group\_additional\_rules) | security group rules allowed to access EKS cluster (helpful for VPN rules) | `any` | `{}` | no |
+| <a name="input_cluster_snapshotter_image"></a> [cluster\_snapshotter\_image](#input\_cluster\_snapshotter\_image) | Container image for the snapshot-controller | `string` | `"registry.k8s.io/sig-storage/snapshot-controller:v7.0.1"` | no |
 | <a name="input_eks_coredns_ver"></a> [eks\_coredns\_ver](#input\_eks\_coredns\_ver) | CoreDNS add-on version | `string` | `"v1.11.4-eksbuild.2"` | no |
 | <a name="input_eks_ebs_csi_ver"></a> [eks\_ebs\_csi\_ver](#input\_eks\_ebs\_csi\_ver) | Kube-Proxy add-on version | `string` | `"v1.39.0-eksbuild.1"` | no |
 | <a name="input_eks_kube_proxy_ver"></a> [eks\_kube\_proxy\_ver](#input\_eks\_kube\_proxy\_ver) | Kube-Proxy add-on version | `string` | `"v1.31.3-eksbuild.2"` | no |
