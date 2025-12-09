@@ -24,7 +24,7 @@ spec:
       - args:
         - --v=5
         - --leader-election=true
-        image: 590183960087.dkr.ecr.eu-central-1.amazonaws.com/k8s/sig-storage/snapshot-controller:v7.0.1
+        image: ${snapshotter_image}
         imagePullPolicy: IfNotPresent
         name: snapshot-controller
       serviceAccountName: snapshot-controller

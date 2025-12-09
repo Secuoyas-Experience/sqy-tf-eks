@@ -178,8 +178,9 @@ resource "kubectl_manifest" "snapshotter_rbac" {
 
 # 3. SNAPSHOTTER - Install controller
 data "kubectl_file_documents" "snapshotter_deployment" {
-  content = file("${path.module}/manifests/snapshotter.deployment-v7.0.2.yaml")
-  # content = file("${path.module}/manifests/snapshotter.deployment-v7.0.2.temp.yaml")
+  content = templatefile("${path.module}/manifests/snapshotter.deployment-v7.0.2.yaml", {
+    snapshotter_image = var.cluster_snapshotter_image
+  })
 }
 
 resource "kubectl_manifest" "snapshotter_controller" {

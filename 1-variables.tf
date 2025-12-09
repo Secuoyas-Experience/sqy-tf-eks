@@ -119,6 +119,12 @@ variable "cluster_enable_snapshotter" {
   description = "if true enables VolumeSnapshot API"
 }
 
+variable "cluster_snapshotter_image" {
+  type        = string
+  default     = "registry.k8s.io/sig-storage/snapshot-controller:v7.0.1"
+  description = "Container image for the snapshot-controller"
+}
+
 variable "organization" {
   type        = string
   description = "Organization the cluster is used for"
