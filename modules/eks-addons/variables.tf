@@ -168,7 +168,6 @@ variable "addons_argocd_server_ingress_host" {
   description = "ArgoCD server ingress host"
 }
 
-
 variable "addons_argocd_az" {
   type        = string
   description = "ArgoCD AZ where nodes should run"

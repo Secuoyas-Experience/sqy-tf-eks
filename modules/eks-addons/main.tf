@@ -157,26 +157,33 @@ module "eks_addons_extra" {
         { name = "global.domain", value = var.addons_argocd_server_ingress_host },
 
       ],
-      (
-        var.addons_argocd_server_ingress_enabled
-        ) ? [
+      var.addons_argocd_server_ingress_enabled ? [
         { name  = "server.ingress.enabled",
           value = var.addons_argocd_server_ingress_enabled
         },
         { name  = "server.ingress.hosts[0]",
           value = var.addons_argocd_server_ingress_host
         },
-        { name  = "server.ingress.annotations.cert-manager\\.io/cluster-issuer",
-          value = "letscrypt-production"
-        },
         { name  = "server.ingress.ingressClassName",
-          value = "nginx"
+          value = "alb"
         },
         { name  = "server.ingress.tls[0].hosts[0]",
           value = var.addons_argocd_server_ingress_host,
         },
-        { name  = "server.ingress.tls[0].secretName",
-          value = "argocd-secret-tls",
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/scheme",
+          value = "internal"
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/target-type",
+          value = "ip"
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/listen-ports",
+          value = "[{\"HTTPS\":443}]"
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/ssl-redirect",
+          value = "443"
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/group\\.name",
+          value = "internal-tools"
         },
       ] : [],
       length(var.addons_argocd_az) > 0 ? [
