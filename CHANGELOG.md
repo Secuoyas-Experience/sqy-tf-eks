@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.23.0 (2026-02-06)
+
+
+### Features
+
+* **eks-addons:** update ArgoCD ingress configuration to use ALB with new annotations ([2192437](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/2192437d6587d6c1c603ead0cf7184c94881e20d))
+
 ### 1.22.35 (2025-12-09)
 
 ### 1.22.34 (2025-11-24)
