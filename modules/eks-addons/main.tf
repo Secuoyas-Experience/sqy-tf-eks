@@ -103,6 +103,13 @@ module "eks_addons_extra" {
       { name = "image.repository", value = var.addons_aws_load_balancer_image_repository },
       { name = "image.tag", value = var.addons_aws_load_balancer_image_repository_tag }
     ]
+    policy_statements = [
+      {
+        effect    = "Allow"
+        actions   = ["elasticloadbalancing:SetRulePriorities"]
+        resources = ["*"]
+      }
+    ]
   }
 
   external_secrets = {
