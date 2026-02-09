@@ -161,8 +161,9 @@ module "eks_addons_extra" {
         { name = "dex.image.repository", value = var.addons_argocd_dex_image_repository },
         { name = "dex.image.tag", value = var.addons_argocd_dex_image_repository_tag },
         { name = "configs.params.server\\.insecure", value = true },
-        { name = "global.domain", value = var.addons_argocd_server_ingress_host },
-
+        { name = "configs.params.redis\\.server", value = "argo-cd-argocd-redis:6379" },
+        { name = "configs.params.repo\\.server", value = "argo-cd-argocd-repo-server:8081" },
+        { name = "configs.params.server\\.dex\\.server", value = "https://argo-cd-argocd-dex-server:5556" },
       ],
       # ArgoCD ingress is managed via hc-pe-argocd helm chart (GitOps)
       length(var.addons_argocd_az) > 0 ? [
