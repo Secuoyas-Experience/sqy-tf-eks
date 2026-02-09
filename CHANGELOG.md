@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 1.23.3 (2026-02-09)
+
+
+### Bug Fixes
+
+* **argocd:** add redis/repo/dex server params to configs.params ([9cb6dfa](https://github.com/Secuoyas-Experience/sqy-tf-eks/commit/9cb6dfabe8382e3dfb2cdb00e6d68fae6d3e73a8))
+
 ### 1.23.2 (2026-02-09)
 
 ### 1.23.1 (2026-02-09)
