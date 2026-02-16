@@ -165,7 +165,35 @@ module "eks_addons_extra" {
         { name = "configs.params.repo\\.server", value = "argo-cd-argocd-repo-server:8081" },
         { name = "configs.params.server\\.dex\\.server", value = "https://argo-cd-argocd-dex-server:5556" },
       ],
-      # ArgoCD ingress is managed via hc-pe-argocd helm chart (GitOps)
+      var.addons_argocd_server_ingress_enabled ? [
+        { name  = "server.ingress.enabled",
+          value = var.addons_argocd_server_ingress_enabled
+        },
+        { name  = "server.ingress.hosts[0]",
+          value = var.addons_argocd_server_ingress_host
+        },
+        { name  = "server.ingress.ingressClassName",
+          value = "alb"
+        },
+        { name  = "server.ingress.tls[0].hosts[0]",
+          value = var.addons_argocd_server_ingress_host,
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/scheme",
+          value = "internal"
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/target-type",
+          value = "ip"
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/listen-ports",
+          value = "[{\"HTTPS\":443}]"
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/ssl-redirect",
+          value = "443"
+        },
+        { name  = "server.ingress.annotations.alb\\.ingress\\.kubernetes\\.io/group\\.name",
+          value = "internal-tools"
+        },
+      ] : [],
       length(var.addons_argocd_az) > 0 ? [
         { name = "controller.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
         { name = "dex.nodeSelector.topology\\.kubernetes\\.io/zone", value = var.addons_argocd_az },
